@@ -183,7 +183,7 @@ function App() {
             <p className="eyebrow">Projects</p>
             <h2>Kanban project showcase</h2>
             <p className="section-lead">
-              Project cards below are grouped by status from a local JSON file.
+              Project cards are grouped by status from a local JSON file.
             </p>
 
             {dataError && <p className="data-error">{dataError}</p>}
@@ -197,11 +197,22 @@ function App() {
                 return (
                   <section className="kanban-column" key={column.id}>
                     <div className="kanban-column-header">
-                      <h3>{column.label}</h3>
-                      <span>{columnProjects.length}</span>
+                      <div>
+                        <h3>{column.label}</h3>
+                        <p>
+                          {columnProjects.length} project
+                          {columnProjects.length === 1 ? '' : 's'}
+                        </p>
+                      </div>
                     </div>
 
                     <div className="kanban-card-list">
+                      {columnProjects.length === 0 && (
+                        <div className="empty-project-card">
+                          No projects yet
+                        </div>
+                      )}
+
                       {columnProjects.map((project) => (
                         <a
                           className="project-card"
@@ -210,6 +221,10 @@ function App() {
                           rel="noreferrer"
                           key={project.id}
                         >
+                          <span className="project-status-label">
+                            {column.label}
+                          </span>
+
                           <h4>{project.title}</h4>
                           <p>{project.description}</p>
 
@@ -218,6 +233,10 @@ function App() {
                               <span key={tech}>{tech}</span>
                             ))}
                           </div>
+
+                          <span className="project-card-action">
+                            Open project
+                          </span>
                         </a>
                       ))}
                     </div>

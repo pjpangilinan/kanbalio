@@ -25,5 +25,68 @@
     "tech_stack": ["React", "API", "CSS"],
     "github_url": "https://github.com/pjpangilinan",
     "live_url": ""
+  },
+  {
+    "id": "expense-tracker",
+    "title": "Expense Tracker",
+    "description": "A personal finance tracker for monitoring spending habits and monthly budgets.",
+    "status": "in-progress",
+    "tech_stack": ["React", "TypeScript", "Chart.js", "Local Storage"],
+    "github_url": "https://github.com/pjpangilinan",
+    "live_url": ""
+  },
+  {
+    "id": "movie-browser",
+    "title": "Movie Browser",
+    "description": "A movie discovery app with trending titles, search, and detailed previews.",
+    "status": "todo",
+    "tech_stack": ["React", "TMDB API", "CSS Modules"],
+    "github_url": "https://github.com/pjpangilinan",
+    "live_url": ""
+  },
+  {
+    "id": "markdown-notes",
+    "title": "Markdown Notes",
+    "description": "A clean markdown editor and note-taking tool with live preview support.",
+    "status": "done",
+    "tech_stack": ["React", "Markdown", "Vite", "CSS"],
+    "github_url": "https://github.com/pjpangilinan",
+    "live_url": ""
+  },
+  {
+    "id": "habit-tracker",
+    "title": "Habit Tracker",
+    "description": "A minimal habit-building app with streak tracking and daily reminders.",
+    "status": "in-progress",
+    "tech_stack": ["React", "Firebase", "Tailwind CSS"],
+    "github_url": "https://github.com/pjpangilinan",
+    "live_url": ""
+  },
+  {
+    "id": "dev-blog",
+    "title": "Developer Blog",
+    "description": "A personal tech blog for sharing coding notes, tutorials, and project updates.",
+    "status": "todo",
+    "tech_stack": ["Next.js", "MDX", "Tailwind CSS"],
+    "github_url": "https://github.com/pjpangilinan",
+    "live_url": ""
+  },
+  {
+    "id": "music-player",
+    "title": "Music Player UI",
+    "description": "A sleek music player interface focused on animations and responsive layouts.",
+    "status": "done",
+    "tech_stack": ["React", "CSS", "Framer Motion"],
+    "github_url": "https://github.com/pjpangilinan",
+    "live_url": ""
+  },
+  {
+    "id": "recipe-finder",
+    "title": "Recipe Finder",
+    "description": "A recipe search application with filtering, favorites, and meal inspiration.",
+    "status": "todo",
+    "tech_stack": ["React", "REST API", "CSS"],
+    "github_url": "https://github.com/pjpangilinan",
+    "live_url": ""
   }
 ]
