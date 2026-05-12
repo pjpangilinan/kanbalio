@@ -1,0 +1,29 @@
+[
+  {
+    "id": "portfolio-site",
+    "title": "Portfolio Website",
+    "description": "A fast, static developer portfolio with a stacked kanban-style project showcase.",
+    "status": "in-progress",
+    "tech_stack": ["React", "Vite", "CSS", "GitHub Pages"],
+    "github_url": "https://github.com/pjpangilinan/kanbalio",
+    "live_url": "https://pjpangilinan.github.io/kanbalio/"
+  },
+  {
+    "id": "task-dashboard",
+    "title": "Task Dashboard",
+    "description": "A simple productivity dashboard concept for organizing tasks and project notes.",
+    "status": "todo",
+    "tech_stack": ["React", "JavaScript", "Local Storage"],
+    "github_url": "https://github.com/pjpangilinan",
+    "live_url": ""
+  },
+  {
+    "id": "weather-app",
+    "title": "Weather App",
+    "description": "A lightweight weather interface focused on clean UI and responsive layouts.",
+    "status": "done",
+    "tech_stack": ["React", "API", "CSS"],
+    "github_url": "https://github.com/pjpangilinan",
+    "live_url": ""
+  }
+]

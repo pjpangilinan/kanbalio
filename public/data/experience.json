@@ -1,0 +1,16 @@
+[
+  {
+    "role": "Software Engineer",
+    "company": "Sample Company",
+    "start_date": "2024-01",
+    "end_date": "Present",
+    "description": "Built and maintained responsive frontend features with a focus on performance, accessibility, and clean user experience."
+  },
+  {
+    "role": "Frontend Developer Intern",
+    "company": "Example Studio",
+    "start_date": "2023-06",
+    "end_date": "2023-12",
+    "description": "Supported the development of reusable UI components and improved page layouts across internal tools."
+  }
+]
