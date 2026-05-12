@@ -332,6 +332,54 @@ h2 {
     border-radius: 18px;
     padding: 18px;
   }
+    .timeline {
+    gap: 18px;
+    margin-top: 34px;
+  }
+
+  .timeline::before {
+    left: 15px;
+  }
+
+  .timeline-item {
+    grid-template-columns: 31px minmax(0, 1fr);
+    gap: 13px;
+  }
+
+  .timeline-marker {
+    width: 31px;
+    height: 31px;
+  }
+
+  .timeline-marker span {
+    width: 21px;
+    height: 21px;
+    font-size: 0.68rem;
+  }
+
+  .timeline-card {
+    border-radius: 18px;
+    padding: 17px;
+  }
+
+  .timeline-card-header {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .timeline-card-header span {
+    white-space: normal;
+    border-radius: 12px;
+  }
+
+  .timeline-card h3 {
+    font-size: 1rem;
+  }
+
+  .timeline-card > p {
+    margin-top: 14px;
+    font-size: 0.94rem;
+  }
 }
 
 .data-error {
@@ -340,38 +388,112 @@ h2 {
   font-weight: 600;
 }
 
-.experience-list {
+.timeline {
+  position: relative;
   display: grid;
-  gap: 16px;
-  margin-top: 36px;
+  gap: 22px;
+  margin-top: 44px;
 }
 
-.experience-card {
+.timeline::before {
+  content: "";
+  position: absolute;
+  top: 18px;
+  bottom: 18px;
+  left: 18px;
+  width: 1px;
+  background: linear-gradient(
+    to bottom,
+    transparent,
+    var(--border),
+    var(--border),
+    transparent
+  );
+}
+
+.timeline-item {
+  position: relative;
+  display: grid;
+  grid-template-columns: 38px minmax(0, 1fr);
+  gap: 18px;
+  align-items: flex-start;
+}
+
+.timeline-marker {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  width: 38px;
+  height: 38px;
+  place-items: center;
   border: 1px solid var(--border);
-  border-radius: 22px;
+  border-radius: 999px;
+  background: var(--background);
+}
+
+.timeline-marker span {
+  display: grid;
+  width: 26px;
+  height: 26px;
+  place-items: center;
+  border-radius: 999px;
+  background: var(--surface);
+  color: var(--muted);
+  font-size: 0.78rem;
+  font-weight: 800;
+}
+
+.timeline-card {
+  border: 1px solid var(--border);
+  border-radius: 24px;
   padding: 22px;
   background: var(--surface);
   box-shadow: var(--shadow);
+  transition:
+    transform 180ms ease,
+    border-color 180ms ease,
+    background-color 180ms ease;
 }
 
-.experience-card h3 {
+.timeline-card:hover {
+  transform: translateY(-3px);
+  border-color: color-mix(in srgb, var(--accent) 32%, var(--border));
+}
+
+.timeline-card-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 18px;
+}
+
+.timeline-card h3 {
   margin: 0;
   font-size: 1.1rem;
+  letter-spacing: -0.02em;
 }
 
-.experience-card div p,
-.experience-card > p {
-  margin: 8px 0 0;
+.timeline-card-header p {
+  margin: 7px 0 0;
   color: var(--muted);
-  line-height: 1.6;
-}
-
-.experience-card span {
-  display: block;
-  margin-top: 12px;
-  color: var(--muted);
-  font-size: 0.9rem;
   font-weight: 600;
+}
+
+.timeline-card-header span {
+  flex: 0 0 auto;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  padding: 7px 10px;
+  color: var(--muted);
+  font-size: 0.82rem;
+  font-weight: 750;
+  white-space: nowrap;
+}
+
+.timeline-card > p {
+  margin: 18px 0 0;
+  color: var(--muted);
+  line-height: 1.65;
 }
 
 .kanban-board {

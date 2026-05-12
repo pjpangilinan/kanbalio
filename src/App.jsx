@@ -151,19 +151,27 @@ function App() {
 
             {dataError && <p className="data-error">{dataError}</p>}
 
-            <div className="experience-list">
-              {experience.map((item) => (
-                <article className="experience-card" key={`${item.role}-${item.company}`}>
+<div className="timeline" aria-label="Professional experience timeline">
+  {experience.map((item, index) => (
+    <article className="timeline-item" key={`${item.role}-${item.company}`}>
+      <div className="timeline-marker" aria-hidden="true">
+        <span>{index + 1}</span>
+      </div>
+
+              <div className="timeline-card">
+                <div className="timeline-card-header">
                   <div>
                     <h3>{item.role}</h3>
                     <p>{item.company}</p>
                   </div>
 
-                  <span>
-                    {item.start_date} — {item.end_date}
-                  </span>
+                    <span>
+                      {item.start_date} — {item.end_date}
+                    </span>
+                  </div>
 
                   <p>{item.description}</p>
+                  </div>
                 </article>
               ))}
             </div>
