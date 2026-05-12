@@ -151,26 +151,26 @@ function App() {
 
             {dataError && <p className="data-error">{dataError}</p>}
 
-<div className="timeline" aria-label="Professional experience timeline">
-  {experience.map((item, index) => (
-    <article className="timeline-item" key={`${item.role}-${item.company}`}>
-      <div className="timeline-marker" aria-hidden="true">
-        <span>{index + 1}</span>
-      </div>
-
-              <div className="timeline-card">
-                <div className="timeline-card-header">
-                  <div>
-                    <h3>{item.role}</h3>
-                    <p>{item.company}</p>
+            <div className="timeline" aria-label="Professional experience timeline">
+              {experience.map((item, index) => (
+                <article className="timeline-item" key={`${item.role}-${item.company}`}>
+                  <div className="timeline-marker" aria-hidden="true">
+                    <span>{index + 1}</span>
                   </div>
 
-                    <span>
-                      {item.start_date} — {item.end_date}
-                    </span>
-                  </div>
+                  <div className="timeline-card">
+                    <div className="timeline-card-header">
+                      <div>
+                        <h3>{item.role}</h3>
+                        <p>{item.company}</p>
+                      </div>
 
-                  <p>{item.description}</p>
+                      <span>
+                        {item.start_date} — {item.end_date}
+                      </span>
+                    </div>
+
+                    <p>{item.description}</p>
                   </div>
                 </article>
               ))}
@@ -228,7 +228,7 @@ function App() {
           </div>
         </section>
 
-        <section id="contact" className="page-section">
+        <section id="contact" className="page-section contact-section">
           <div className="section-content">
             <p className="eyebrow">Contact</p>
             <h2>Let’s connect</h2>
@@ -236,7 +236,7 @@ function App() {
               Contact links and the resume button will be added later.
             </p>
 
-            <div className="placeholder-card">
+            <div className="contact-placeholder-card">
               Contact content placeholder
             </div>
           </div>
