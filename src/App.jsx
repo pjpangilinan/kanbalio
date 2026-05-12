@@ -252,12 +252,44 @@ function App() {
             <p className="eyebrow">Contact</p>
             <h2>Let’s connect</h2>
             <p className="section-lead">
-              Contact links and the resume button will be added later.
+              Reach out by email, explore the code, or view the latest resume PDF.
             </p>
 
-            <div className="contact-placeholder-card">
-              Contact content placeholder
+            <div className="contact-grid">
+              <a className="contact-card" href="mailto:patrickjpangilinan@protonmail.com">
+                <span>Email</span>
+                <strong>patrickjpangilinan@protonmail.com</strong>
+              </a>
+
+              <a
+                className="contact-card"
+                href="https://github.com/pjpangilinan"
+                target="_blank"
+                rel="noreferrer"
+              >
+                <span>GitHub</span>
+                <strong>github.com/pjpangilinan</strong>
+              </a>
+
+              <a
+                className="contact-card"
+                href="https://www.linkedin.com/in/patrick-james-pangilinan-490a41329/"
+                target="_blank"
+                rel="noreferrer"
+              >
+                <span>LinkedIn</span>
+                <strong>linkedin.com/in/patrick-james-pangilinan-490a41329</strong>
+              </a>
             </div>
+
+            <a
+              className="resume-button"
+              href={`${import.meta.env.BASE_URL}resume.pdf`}
+              target="_blank"
+              rel="noreferrer"
+            >
+              View Resume
+            </a>
           </div>
         </section>
       </main>
