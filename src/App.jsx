@@ -46,8 +46,8 @@ function App() {
         const basePath = import.meta.env.BASE_URL
 
         const [projectsResponse, experienceResponse] = await Promise.all([
-          fetch(`${basePath}/public/data/projects.json`),
-          fetch(`${basePath}/public/data/experience.json`),
+          fetch(`${basePath}public/data/projects.json`),
+          fetch(`${basePath}public/data/experience.json`),
         ])
 
         if (!projectsResponse.ok || !experienceResponse.ok) {
