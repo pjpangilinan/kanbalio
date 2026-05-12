@@ -33,6 +33,17 @@ jobs:
           node-version: 24
           cache: npm
 
+      - name: Install LaTeX
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y texlive-latex-base texlive-latex-recommended texlive-latex-extra
+
+      - name: Build resume PDF
+        run: |
+          mkdir -p public
+          pdflatex -interaction=nonstopmode -halt-on-error -output-directory=resume resume/resume.tex
+          cp resume/resume.pdf public/resume.pdf
+
       - name: Install dependencies
         run: npm ci
 
