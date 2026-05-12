@@ -24,43 +24,66 @@ function getInitialTheme() {
 
 function App() {
   const [theme, setTheme] = useState(getInitialTheme)
+  const [isMenuOpen, setIsMenuOpen] = useState(false)
 
   useEffect(() => {
     document.documentElement.setAttribute('data-theme', theme)
     localStorage.setItem('theme', theme)
   }, [theme])
 
-  const toggleTheme = () => {
+  function toggleTheme() {
     setTheme((currentTheme) => (currentTheme === 'dark' ? 'light' : 'dark'))
+  }
+
+  function closeMenu() {
+    setIsMenuOpen(false)
   }
 
   return (
     <div className="app">
       <header className="site-header">
         <nav className="navbar" aria-label="Main navigation">
-          <a className="brand" href="#about" aria-label="Go to about section">
+          <a className="brand" href="#about" onClick={closeMenu}>
             kanbalio
           </a>
 
-          <div className="nav-actions">
-            <div className="nav-links">
-              {sections.map((section) => (
-                <a key={section.id} href={`#${section.id}`}>
-                  {section.label}
-                </a>
-              ))}
-            </div>
+          <div className="desktop-nav">
+            {sections.map((section) => (
+              <a key={section.id} href={`#${section.id}`}>
+                {section.label}
+              </a>
+            ))}
 
-            <button
-              className="theme-toggle"
-              type="button"
-              onClick={toggleTheme}
-              aria-label={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}
-            >
+            <button className="theme-toggle" type="button" onClick={toggleTheme}>
               {theme === 'dark' ? 'Light' : 'Dark'}
             </button>
           </div>
+
+          <button
+            className="menu-button"
+            type="button"
+            onClick={() => setIsMenuOpen((current) => !current)}
+            aria-expanded={isMenuOpen}
+            aria-controls="mobile-menu"
+          >
+            Menu
+          </button>
         </nav>
+
+        <div
+          id="mobile-menu"
+          className={`mobile-menu ${isMenuOpen ? 'is-open' : ''}`}
+        >
+          {sections.map((section) => (
+            <a key={section.id} href={`#${section.id}`} onClick={closeMenu}>
+              {section.label}
+            </a>
+          ))}
+
+          <button type="button" onClick={toggleTheme}>
+            {theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'}
+          </button>
+        </div>
       </header>
 
       <main>
