@@ -133,10 +133,10 @@ function App() {
         <section id="about" className="page-section hero-section">
           <div className="section-content">
             <p className="eyebrow">Computer Engineer</p>
-            <h1>Building clean, practical software experiences.</h1>
+            <h1>Building reliable software with clean, practical design.</h1>
             <p className="section-lead">
-              A minimal developer portfolio for showcasing experience, projects,
-              and contact information through a fast static website.
+              I create responsive web experiences, organize technical projects, and build
+              simple systems that are easy to maintain and improve.
             </p>
           </div>
         </section>
@@ -146,7 +146,7 @@ function App() {
             <p className="eyebrow">Experience</p>
             <h2>Professional background</h2>
             <p className="section-lead">
-              Experience entries below are loaded from a local JSON file.
+              A concise overview of roles, responsibilities, and technical growth.
             </p>
 
             {dataError && <p className="data-error">{dataError}</p>}
