@@ -1,16 +1,16 @@
 [
   {
-    "role": "Software Engineer",
-    "company": "Sample Company",
-    "start_date": "2024-01",
-    "end_date": "Present",
-    "description": "Built and maintained responsive frontend features with a focus on performance, accessibility, and clean user experience."
+    "role": "Tech Support Intern",
+    "company": "City Government of Trece Martires – ICT Division",
+    "start_date": "July 2025",
+    "end_date": "September 2025",
+    "description": "Trece Martires City. Cleaned and verified large-scale digital citizen records from post-2004 archives, improving data accuracy and consistency. Supported rollout of a Document Tracking System across multiple departments by assisting in system validation, user onboarding, and issue resolution. Troubleshot hardware, software, and network issues across office systems. Configured workstations and peripherals to support reliable day-to-day operations for staff."
   },
   {
-    "role": "Frontend Developer Intern",
-    "company": "Example Studio",
-    "start_date": "2023-06",
-    "end_date": "2023-12",
-    "description": "Supported the development of reusable UI components and improved page layouts across internal tools."
+    "role": "Part Timer",
+    "company": "NLMontano Accounting Firm",
+    "start_date": "2021",
+    "end_date": "Present",
+    "description": "Gregorio, Trece Martires City. Processed and encoded government remittances, including SSS, PhilHealth, and Pag-IBIG. Provided technical support for PCs, printers, and small office networks, including setup, maintenance, and troubleshooting. Assisted in maintaining system reliability and resolving technical issues in a small business environment."
   }
 ]
