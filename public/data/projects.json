@@ -88,5 +88,35 @@
     "tech_stack": ["React", "REST API", "CSS"],
     "github_url": "https://github.com/pjpangilinan",
     "live_url": ""
+  },
+  {
+  "id": "sample-training",
+  "title": "Sample Training",
+  "type": "Training",
+  "description": "A training placeholder focused on technical growth and practical skills.",
+  "status": "in-progress",
+  "tech_stack": ["React", "JavaScript"],
+  "github_url": "",
+  "live_url": ""
+  },
+  {
+  "id": "sample-certification",
+  "title": "Sample Certification",
+  "type": "Certification",
+  "description": "A certification placeholder that can later link to a credential.",
+  "status": "done",
+  "tech_stack": ["Cloud", "Security"],
+  "github_url": "",
+  "live_url": ""
+  },
+  {
+  "id": "portfolio-site",
+  "title": "Portfolio Website",
+  "type": "Project",
+  "description": "A fast, static developer portfolio.",
+  "status": "done",
+  "tech_stack": ["React", "Vite", "CSS"],
+  "github_url": "https://github.com/pjpangilinan/kanbalio",
+  "live_url": "https://pjpangilinan.github.io/kanbalio/"
   }
 ]

@@ -117,6 +117,11 @@ button {
   color: var(--text);
 }
 
+.desktop-nav a.is-active {
+  background: var(--surface-soft);
+  color: var(--text);
+}
+
 .theme-toggle,
 .menu-button {
   cursor: pointer;
@@ -603,6 +608,11 @@ h2 {
     transition:
       opacity 160ms ease,
       transform 160ms ease;
+  }
+
+  .mobile-menu a.is-active {
+    background: var(--surface-soft);
+    color: var(--text);
   }
 
   .mobile-menu.is-open {

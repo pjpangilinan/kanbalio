@@ -34,6 +34,7 @@ function App() {
   const [projects, setProjects] = useState([])
   const [experience, setExperience] = useState([])
   const [dataError, setDataError] = useState('')
+  const [activeSection, setActiveSection] = useState('about')
 
   useEffect(() => {
     document.documentElement.setAttribute('data-theme', theme)
@@ -70,6 +71,65 @@ function App() {
     loadPortfolioData()
   }, [])
 
+  useEffect(() => {
+    if (!window.location.hash) {
+      window.history.replaceState(
+        null,
+        '',
+        `${window.location.pathname}${window.location.search}#about`,
+      )
+    }
+
+    function updateActiveSection() {
+      const headerOffset = 80
+
+      const currentSection = sections.reduce((closestSection, section) => {
+        const element = document.getElementById(section.id)
+
+        if (!element) {
+          return closestSection
+        }
+
+        const distanceFromTop = Math.abs(
+          element.getBoundingClientRect().top - headerOffset,
+        )
+
+        if (!closestSection || distanceFromTop < closestSection.distance) {
+          return {
+            id: section.id,
+            distance: distanceFromTop,
+          }
+        }
+
+        return closestSection
+      }, null)
+
+      if (!currentSection) {
+        return
+      }
+
+      setActiveSection(currentSection.id)
+
+      if (window.location.hash !== `#${currentSection.id}`) {
+        window.history.replaceState(
+          null,
+          '',
+          `${window.location.pathname}${window.location.search}#${currentSection.id}`,
+        )
+      }
+    }
+
+    updateActiveSection()
+
+    window.addEventListener('scroll', updateActiveSection, { passive: true })
+    window.addEventListener('resize', updateActiveSection)
+
+    return () => {
+      window.removeEventListener('scroll', updateActiveSection)
+      window.removeEventListener('resize', updateActiveSection)
+    }
+  }, [])
+
   function toggleTheme() {
     setTheme((currentTheme) => (currentTheme === 'dark' ? 'light' : 'dark'))
   }
@@ -92,7 +152,11 @@ function App() {
 
           <div className="desktop-nav">
             {sections.map((section) => (
-              <a key={section.id} href={`#${section.id}`}>
+              <a
+                key={section.id}
+                href={`#${section.id}`}
+                className={activeSection === section.id ? 'is-active' : ''}
+              >
                 {section.label}
               </a>
             ))}
@@ -118,7 +182,12 @@ function App() {
           className={`mobile-menu ${isMenuOpen ? 'is-open' : ''}`}
         >
           {sections.map((section) => (
-            <a key={section.id} href={`#${section.id}`} onClick={closeMenu}>
+            <a
+              key={section.id}
+              href={`#${section.id}`}
+              onClick={closeMenu}
+              className={activeSection === section.id ? 'is-active' : ''}
+            >
               {section.label}
             </a>
           ))}
