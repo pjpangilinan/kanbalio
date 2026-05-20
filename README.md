@@ -1,24 +1,22 @@
 # Kanbalio
 
-A modern, static developer portfolio built for Patrick Pangilinan using React, Vite, and GitHub Pages.
+A static portfolio website built with React, Vite, and GitHub Pages.
 
-Kanbalio showcases projects, professional experience, technical skills, contact links, and a LaTeX-generated resume in a clean single-page portfolio layout.
+Live site:
 
-# Features
+https://pjpangilinan.github.io/kanbalio/
 
-- Modern responsive portfolio UI
-- Project kanban-style board
+## Features
+
+- Responsive single-page portfolio
+- Portfolio board for projects, certifications, training, and other items
 - Experience timeline
-- Resume download support
-- Static JSON-based content management
-- Automated deployment with GitHub Actions
-- LaTeX resume compilation pipeline
-- Zero backend required
-- Fast static hosting via GitHub Pages
+- Contact and resume section
+- JSON-based content
+- GitHub Pages deployment
+- LaTeX resume PDF build
 
----
-
-# Tech Stack
+## Tech Stack
 
 - React
 - Vite
@@ -27,9 +25,7 @@ Kanbalio showcases projects, professional experience, technical skills, contact 
 - GitHub Actions
 - LaTeX
 
----
-
-# Project Structure
+## Project Structure
 
 ```txt
 kanbalio/
@@ -39,42 +35,22 @@ kanbalio/
 │   │   └── experience.json
 │   ├── favicon.svg
 │   └── resume.pdf
-│
 ├── resume/
 │   └── resume.tex
-│
 ├── src/
 │   ├── App.jsx
 │   ├── App.css
 │   └── main.jsx
-│
 ├── .github/
 │   └── workflows/
 │       └── deploy.yml
-│
 ├── index.html
 ├── package.json
-└── vite.config.js
+├── vite.config.js
+└── README.md
 ```
 
----
-
-# Getting Started
-
-## Prerequisites
-
-Make sure you have the following installed:
-
-- Node.js
-- npm
-
-Download Node.js here:
-
-https://nodejs.org/
-
----
-
-## Installation
+## Getting Started
 
 Clone the repository:
 
@@ -82,7 +58,7 @@ Clone the repository:
 git clone https://github.com/pjpangilinan/kanbalio.git
 ```
 
-Navigate into the project folder:
+Go into the project folder:
 
 ```bash
 cd kanbalio
@@ -94,23 +70,13 @@ Install dependencies:
 npm install
 ```
 
----
-
-# Local Development
-
 Start the development server:
 
 ```bash
 npm run dev
 ```
 
-The application will be available locally through the Vite development server.
-
----
-
-# Production Build
-
-Build the project for production:
+Build for production:
 
 ```bash
 npm run build
@@ -122,39 +88,39 @@ Preview the production build:
 npm run preview
 ```
 
----
+## Content
 
-# Portfolio Content Management
+The site uses local JSON files for portfolio content.
 
-All portfolio content is stored locally using JSON files.
+### Portfolio Board
 
-No database or backend server is required.
-
----
-
-# Editing Projects
-
-Project data is located at:
+Board data is stored in:
 
 ```txt
 public/data/projects.json
 ```
 
-Each project entry uses the following structure:
+This file can include projects, certifications, training, courses, and other portfolio items.
+
+Example item:
 
 ```json
 {
-  "id": "project-id",
-  "title": "Project Title",
-  "description": "Short project description.",
-  "status": "todo",
+  "id": "portfolio-site",
+  "title": "Portfolio Website",
+  "type": "Project",
+  "description": "A static portfolio built with React, Vite, and GitHub Pages.",
+  "status": "done",
   "tech_stack": ["React", "Vite", "CSS"],
-  "github_url": "https://github.com/username/project",
-  "live_url": "https://example.com"
+  "issuer": "",
+  "date": "",
+  "credential_url": "",
+  "github_url": "https://github.com/pjpangilinan/kanbalio",
+  "live_url": "https://pjpangilinan.github.io/kanbalio/"
 }
 ```
 
-## Valid Project Status Values
+Valid status values:
 
 ```txt
 todo
@@ -162,17 +128,37 @@ in-progress
 done
 ```
 
----
+Suggested type values:
 
-# Editing Experience
+```txt
+Project
+Certification
+Training
+Course
+Experiment
+Research
+Open Source
+```
 
-Experience data is located at:
+Card link priority:
+
+```txt
+live_url
+credential_url
+github_url
+```
+
+If no link is provided, the card shows `Details coming soon`.
+
+### Experience
+
+Experience data is stored in:
 
 ```txt
 public/data/experience.json
 ```
 
-Each experience entry uses the following structure:
+Example entry:
 
 ```json
 {
@@ -184,67 +170,38 @@ Each experience entry uses the following structure:
 }
 ```
 
----
+## Resume
 
-# Resume Management
-
-The resume source file is stored in:
+The resume source is stored in:
 
 ```txt
 resume/resume.tex
 ```
 
-When resume files are updated and pushed to the repository, GitHub Actions automatically:
-
-1. Compiles the LaTeX source
-2. Generates an updated PDF
-3. Deploys the latest resume to GitHub Pages
-
-Generated resume output:
+The generated PDF is stored in:
 
 ```txt
 public/resume.pdf
 ```
 
-Live resume URL:
+Live resume:
 
 https://pjpangilinan.github.io/kanbalio/resume.pdf
 
----
+## Deployment
 
-# Deployment
+The site deploys through GitHub Actions and GitHub Pages.
 
-Kanbalio is automatically deployed using GitHub Actions and GitHub Pages.
-
-Every push to the `main` branch triggers:
-
-- Production build
-- Resume compilation
-- Static site deployment
-
-Deployment workflow file:
+Workflow file:
 
 ```txt
 .github/workflows/deploy.yml
 ```
 
----
+Pushing to `main` builds and deploys the site.
 
-# Design Philosophy
+When resume files change, the workflow also compiles the LaTeX resume and updates the PDF.
 
-Kanbalio focuses on:
+## License
 
-- Simplicity
-- Performance
-- Maintainability
-- Static-first architecture
-- Developer-focused presentation
-
-The project avoids unnecessary backend complexity and keeps all portfolio content easily editable through structured JSON files.
-
----
-
-# License
-
-This project is open-source and available under the MIT License.
-
+MIT License
