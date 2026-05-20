@@ -139,7 +139,23 @@ function App() {
   }
 
   function getProjectLink(project) {
-    return project.live_url || project.github_url
+    return project.live_url || project.credential_url || project.github_url || ''
+  }
+
+  function getProjectActionLabel(project) {
+    if (project.live_url) {
+      return 'Open live site'
+    }
+
+    if (project.credential_url) {
+      return 'View credential'
+    }
+
+    if (project.github_url) {
+      return 'View code'
+    }
+
+    return 'Details coming soon'
   }
 
   return (
@@ -290,12 +306,16 @@ function App() {
                           rel="noreferrer"
                           key={project.id}
                         >
-                          <span className="project-status-label">
-                            {column.label}
-                          </span>
 
+                        <div className="project-card-heading">
                           <h4>{project.title}</h4>
-                          <p>{project.description}</p>
+
+                          <span className="project-type-badge">
+                            {project.type || 'Project'}
+                          </span>
+                        </div>
+
+                        <p>{project.description}</p>
 
                           <div className="tech-tags">
                             {project.tech_stack.map((tech) => (
@@ -304,7 +324,7 @@ function App() {
                           </div>
 
                           <span className="project-card-action">
-                            Open project
+                            {getProjectActionLabel(project)}
                           </span>
                         </a>
                       ))}
