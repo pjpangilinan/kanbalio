@@ -271,7 +271,19 @@ function App() {
                       </span>
                     </div>
 
-                    <p>{item.description}</p>
+                    {item.location && (
+                      <p className="timeline-location">{item.location}</p>
+                    )}
+
+                    {item.bullets?.length > 0 ? (
+                      <ul className="timeline-bullets">
+                        {item.bullets.map((bullet) => (
+                          <li key={bullet}>{bullet}</li>
+                        ))}
+                      </ul>
+                    ) : (
+                      <p>{item.description}</p>
+                    )}
                   </div>
                 </article>
               ))}

@@ -2,15 +2,26 @@
   {
     "role": "Tech Support Intern",
     "company": "City Government of Trece Martires – ICT Division",
+    "location": "Trece Martires City",
     "start_date": "July 2025",
     "end_date": "September 2025",
-    "description": "Trece Martires City. Cleaned and verified large-scale digital citizen records from post-2004 archives, improving data accuracy and consistency. Supported rollout of a Document Tracking System across multiple departments by assisting in system validation, user onboarding, and issue resolution. Troubleshot hardware, software, and network issues across office systems. Configured workstations and peripherals to support reliable day-to-day operations for staff."
+    "bullets": [
+      "Cleaned and verified large-scale digital citizen records from post-2004 archives, improving data accuracy and consistency.",
+      "Supported rollout of a Document Tracking System across multiple departments by assisting in system validation, user onboarding, and issue resolution.",
+      "Troubleshot hardware, software, and network issues across office systems.",
+      "Configured workstations and peripherals to support reliable day-to-day operations for staff."
+    ]
   },
   {
     "role": "Part Timer",
     "company": "NLMontano Accounting Firm",
+    "location": "Gregorio, Trece Martires City",
     "start_date": "2021",
     "end_date": "Present",
-    "description": "Gregorio, Trece Martires City. Processed and encoded government remittances, including SSS, PhilHealth, and Pag-IBIG. Provided technical support for PCs, printers, and small office networks, including setup, maintenance, and troubleshooting. Assisted in maintaining system reliability and resolving technical issues in a small business environment."
+    "bullets": [
+      "Processed and encoded government remittances, including SSS, PhilHealth, and Pag-IBIG.",
+      "Provided technical support for PCs, printers, and small office networks, including setup, maintenance, and troubleshooting.",
+      "Assisted in maintaining system reliability and resolving technical issues in a small business environment."
+    ]
   }
 ]

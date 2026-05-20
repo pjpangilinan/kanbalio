@@ -26,19 +26,6 @@
     "live_url": ""
   },
   {
-    "id": "mc02-cpen106",
-    "title": "MC02-CPEN106",
-    "type": "Project",
-    "description": "A Streamlit dashboard created for CPEN106 Big Data Analytics 2 requirements.",
-    "status": "done",
-    "tech_stack": ["Python", "Streamlit", "Big Data Analytics", "Data Visualization"],
-    "issuer": "Cavite State University",
-    "date": "",
-    "credential_url": "",
-    "github_url": "https://github.com/pjpangilinan/MC02-CPEN106",
-    "live_url": ""
-  },
-  {
     "id": "kanbalio",
     "title": "Kanbalio",
     "type": "Project",
@@ -65,19 +52,6 @@
     "live_url": ""
   },
   {
-    "id": "sentio-bot",
-    "title": "Sentio Bot",
-    "type": "Project",
-    "description": "A Streamlit application for sentiment analysis and named entity recognition.",
-    "status": "done",
-    "tech_stack": ["Python", "Streamlit", "Sentiment Analysis", "Named Entity Recognition", "NLP"],
-    "issuer": "",
-    "date": "",
-    "credential_url": "",
-    "github_url": "https://github.com/pjpangilinan/Sentio-Bot",
-    "live_url": ""
-  },
-  {
     "id": "google-advanced-data-analytics-professional",
     "title": "Google Advanced Data Analytics Professional",
     "type": "Certification",
@@ -100,45 +74,6 @@
     "issuer": "Coursera",
     "date": "May 2026",
     "credential_url": "https://coursera.org/share/eac46fe83d3208954b2cece33250a40e",
-    "github_url": "",
-    "live_url": ""
-  },
-  {
-    "id": "coursera-professional-certificate-april-2026",
-    "title": "Coursera Professional Certificate",
-    "type": "Certification",
-    "description": "A completed Coursera professional certificate. Update this title and description with the exact certificate name when ready.",
-    "status": "done",
-    "tech_stack": ["Professional Development"],
-    "issuer": "Coursera",
-    "date": "April 2026",
-    "credential_url": "https://coursera.org/share/678a3ae79146c20f2d73cb28956b1335",
-    "github_url": "",
-    "live_url": ""
-  },
-  {
-    "id": "coursera-specialization-may-2026",
-    "title": "Coursera Specialization",
-    "type": "Certification",
-    "description": "A completed Coursera specialization. Update this title and description with the exact specialization name when ready.",
-    "status": "done",
-    "tech_stack": ["Professional Development"],
-    "issuer": "Coursera",
-    "date": "May 2026",
-    "credential_url": "https://coursera.org/share/305aaee5296292a6b733d9f35dbf9bef",
-    "github_url": "",
-    "live_url": ""
-  },
-  {
-    "id": "coursera-specialization-october-2025",
-    "title": "Coursera Specialization",
-    "type": "Certification",
-    "description": "A completed Coursera specialization. Update this title and description with the exact specialization name when ready.",
-    "status": "done",
-    "tech_stack": ["Professional Development"],
-    "issuer": "Coursera",
-    "date": "October 2025",
-    "credential_url": "https://coursera.org/share/bd701bf4eae9aabdc353744bc933668a",
     "github_url": "",
     "live_url": ""
   },
