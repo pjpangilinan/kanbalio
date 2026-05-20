@@ -4,7 +4,7 @@ import './App.css'
 const sections = [
   { id: 'about', label: 'About' },
   { id: 'experience', label: 'Experience' },
-  { id: 'projects', label: 'Projects' },
+  { id: 'projects', label: 'Board' },
   { id: 'contact', label: 'Contact' },
 ]
 
@@ -158,6 +158,22 @@ function App() {
     return 'Details coming soon'
   }
 
+  function getProjectActionLabel(project) {
+    if (project.live_url) {
+      return 'Open live site'
+    }
+
+    if (project.credential_url) {
+      return 'View credential'
+    }
+
+    if (project.github_url) {
+      return 'View code'
+    }
+
+    return 'Details coming soon'
+  }
+
   return (
     <div className="app">
       <header className="site-header">
@@ -265,10 +281,10 @@ function App() {
 
         <section id="projects" className="page-section">
           <div className="section-content">
-            <p className="eyebrow">Projects</p>
-            <h2>Kanban project showcase</h2>
+            <p className="eyebrow">Portfolio Board</p>
+            <h2>Work, training, and credentials</h2>
             <p className="section-lead">
-              Project cards are grouped by status from a local JSON file.
+              A status-based board for projects, certifications, training, and technical milestones.
             </p>
 
             {dataError && <p className="data-error">{dataError}</p>}
@@ -298,36 +314,46 @@ function App() {
                         </div>
                       )}
 
-                      {columnProjects.map((project) => (
-                        <a
-                          className="project-card"
-                          href={getProjectLink(project)}
-                          target="_blank"
-                          rel="noreferrer"
-                          key={project.id}
-                        >
+                      {columnProjects.map((project) => {
+                        const projectLink = getProjectLink(project)
+                        const CardElement = projectLink ? 'a' : 'article'
 
-                        <div className="project-card-heading">
-                          <h4>{project.title}</h4>
+                        return (
+                          <CardElement
+                            className={`project-card ${projectLink ? '' : 'is-disabled'}`}
+                            href={projectLink || undefined}
+                            target={projectLink ? '_blank' : undefined}
+                            rel={projectLink ? 'noreferrer' : undefined}
+                            key={project.id}
+                          >
+                            <div className="project-card-heading">
+                              <h4>{project.title}</h4>
 
-                          <span className="project-type-badge">
-                            {project.type || 'Project'}
-                          </span>
-                        </div>
+                              <span className="project-type-badge">
+                                {project.type || 'Project'}
+                              </span>
+                            </div>
 
-                        <p>{project.description}</p>
+                            {(project.issuer || project.date) && (
+                              <p className="project-meta">
+                                {[project.issuer, project.date].filter(Boolean).join(' · ')}
+                              </p>
+                            )}
 
-                          <div className="tech-tags">
-                            {project.tech_stack.map((tech) => (
-                              <span key={tech}>{tech}</span>
-                            ))}
-                          </div>
+                            <p>{project.description}</p>
 
-                          <span className="project-card-action">
-                            {getProjectActionLabel(project)}
-                          </span>
-                        </a>
-                      ))}
+                            <div className="tech-tags">
+                              {project.tech_stack.map((tech) => (
+                                <span key={tech}>{tech}</span>
+                              ))}
+                            </div>
+
+                            <span className="project-card-action">
+                              {getProjectActionLabel(project)}
+                            </span>
+                          </CardElement>
+                        )
+                      })}
                     </div>
                   </section>
                 )
