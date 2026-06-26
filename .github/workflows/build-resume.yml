@@ -20,16 +20,27 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Compile LaTeX to PDF
-        uses: xu-cheng/latex-action@v3
-        with:
-          root_file: resume/resume.tex
-          latexmk_use_xelatex: true
+      - name: Install TeX Live
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y \
+            texlive-xetex \
+            texlive-latex-extra \
+            texlive-fonts-extra
 
-      - name: Move PDF to public/
-        run: mv resume/resume.pdf public/resume.pdf
+      - name: Compile résumé
+        run: |
+          cd resume
+          xelatex -interaction=nonstopmode -halt-on-error resume.tex
+          xelatex -interaction=nonstopmode -halt-on-error resume.tex
+          cd ..
 
-      - name: Commit updated PDF
+      - name: Copy PDF to public/
+        run: |
+          mkdir -p public
+          cp resume/resume.pdf public/resume.pdf
+
+      - name: Commit PDF
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
           commit_message: 'ci: update resume.pdf from resume.tex'
