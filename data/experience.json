@@ -1,0 +1,27 @@
+[
+  {
+    "role": "Tech Support Intern",
+    "company": "City Government of Trece Martires – ICT Division",
+    "location": "Trece Martires City",
+    "start_date": "July 2025",
+    "end_date": "September 2025",
+    "bullets": [
+      "Verified and normalized ~13k legacy citizen records (post-2004) to improve archive accuracy.",
+      "Supported the rollout of a Document Tracking System through validation, onboarding, and issue resolution.",
+      "Diagnosed hardware, software, and network incidents across office endpoints.",
+      "Provisioned workstations and peripherals to keep daily operations reliable."
+    ]
+  },
+  {
+    "role": "Part Timer",
+    "company": "NLMontano Accounting Firm",
+    "location": "Gregorio, Trece Martires City",
+    "start_date": "2021",
+    "end_date": "Present",
+    "bullets": [
+      "Processed SSS, PhilHealth, and Pag-IBIG remittances with audit-ready accuracy.",
+      "Maintained office IT — PCs, printers, and small networks — across setup, support, and troubleshooting.",
+      "Kept a small-business IT environment stable and responsive to operational needs."
+    ]
+  }
+]

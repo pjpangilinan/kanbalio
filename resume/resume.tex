@@ -1,0 +1,94 @@
+\documentclass[11pt]{article}
+
+\usepackage[margin=0.75in]{geometry}
+\usepackage{fontspec}
+\usepackage{hyperref}
+\usepackage{enumitem}
+\usepackage{xcolor}
+\usepackage{titlesec}
+
+\setmainfont{Inter}
+\setmonofont{JetBrains Mono}
+
+\hypersetup{
+  colorlinks=true,
+  urlcolor=cyan!70!black,
+  linkcolor=cyan!70!black
+}
+
+\definecolor{cyanaccent}{HTML}{00D4FF}
+\definecolor{textdim}{HTML}{8B9CC8}
+
+\setlist[itemize]{leftmargin=*, itemsep=2pt, topsep=2pt}
+
+\titleformat{\section}
+  {\normalfont\Large\bfseries\color{textdim}}
+  {}{0em}{}
+
+\pagestyle{empty}
+
+\newcommand{\role}[4]{%
+  \noindent\textbf{#1} \hfill \texttt{\small #2}\\[-2pt]
+  \textit{#3} \hfill \texttt{\small #4}\\[4pt]
+}
+
+\begin{document}
+
+\begin{center}
+  {\Huge\textbf{Patrick James Pangilinan}}\\[4pt]
+  \texttt{\small Full Stack Developer}\\[2pt]
+  \texttt{\small patrickjpangilinan@protonmail.com \textbar{} github.com/pjpangilinan \textbar{} linkedin.com/in/patrick-james-pangilinan-490a41329}
+\end{center}
+
+\vspace{8pt}
+
+\section*{Summary}
+Full Stack Developer focused on building reliable, end-to-end systems across Python, Go, and JavaScript. Comfortable across the stack — from API design and data modeling to UI implementation and CI/CD. Currently deepening expertise in DevOps, systems analysis, and AI-powered products.
+
+\section*{Experience}
+
+\role{Tech Support Intern}{July 2025 -- September 2025}{City Government of Trece Martires -- ICT Division}{Trece Martires City}
+\begin{itemize}
+  \item Verified and normalized legacy citizen records (post-2004) to improve archive accuracy.
+  \item Supported the rollout of a Document Tracking System through validation, onboarding, and issue resolution.
+  \item Diagnosed hardware, software, and network incidents across office endpoints.
+  \item Provisioned workstations and peripherals to keep daily operations reliable.
+\end{itemize}
+
+\role{Part Timer}{2021 -- Present}{NLMontano Accounting Firm}{Gregorio, Trece Martires City}
+\begin{itemize}
+  \item Processed SSS, PhilHealth, and Pag-IBIG remittances with audit-ready accuracy.
+  \item Maintained office IT -- PCs, printers, and small networks -- across setup, support, and troubleshooting.
+  \item Kept a small-business IT environment stable and responsive to operational needs.
+\end{itemize}
+
+\section*{Selected Projects}
+
+\textbf{VOTECHAIN} -- \texttt{Python, Raspberry Pi, Blockchain, React, WebSockets}\\
+Blockchain-based e-voting with multi-factor auth and a real-time public transparency dashboard.
+
+\textbf{Kanbalio} -- \texttt{React, Vite, GitHub Pages, GitHub Actions, LaTeX}\\
+This portfolio -- glassmorphic command center with JSON-driven content and automated resume publishing.
+
+\textbf{Up To Date} -- \texttt{React, FastAPI, Groq API, RSS, Docker, PWA}\\
+AI-powered news dashboard with RSS ingestion, keyboard shortcuts, and Groq-summarized articles.
+
+\textbf{DAMPos} -- \texttt{Operating Systems, File Management, Memory Management, Process Management}\\
+Mini operating-system simulation covering core OS subsystems.
+
+\section*{Certifications}
+
+\textbf{Google Advanced Data Analytics Professional} -- Coursera, December 2024\\
+\textbf{ISO, CMMI \& Project Quality Certification Mastery} -- Coursera, May 2026\\
+\textbf{IBM Systems Analyst} -- IBM / Coursera (in progress)\\
+\textbf{IBM Applied DevOps Engineering} -- IBM / Coursera (in progress)
+
+\section*{Tech}
+
+\texttt{Python, Go, JavaScript, Bash}\\
+\texttt{React, FastAPI, Vite, Tailwind, Framer Motion}\\
+\texttt{Git, Docker, Postman, GitHub Actions, Linux, Raspberry Pi}\\
+\texttt{MongoDB, PostgreSQL, Redis, ClickHouse}\\
+\texttt{REST, GraphQL, WebSockets, RSS, PWA}
+
+\end{document}

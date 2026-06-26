@@ -1,0 +1,86 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: dark;
+}
+
+html, body, #root {
+  min-height: 100%;
+  background-color: #0A0F1E;
+  color: #F0F4FF;
+  font-family: 'Inter', system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  background-image:
+    radial-gradient(circle at 8% 12%, rgba(124, 58, 237, 0.10), transparent 45%),
+    radial-gradient(circle at 92% 88%, rgba(0, 212, 255, 0.08), transparent 50%);
+  background-attachment: fixed;
+}
+
+@layer components {
+  .glass {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 0.5rem;
+  }
+
+  .glass-hover {
+    @apply transition-all duration-300;
+  }
+  .glass-hover:hover {
+    border-color: rgba(255, 255, 255, 0.2);
+    box-shadow: 0 0 20px rgba(0, 212, 255, 0.15);
+  }
+
+  .glow-cyan {
+    box-shadow: 0 0 20px rgba(0, 212, 255, 0.2);
+  }
+  .glow-cyan:hover {
+    box-shadow: 0 0 32px rgba(0, 212, 255, 0.4);
+  }
+
+  .btn-primary {
+    @apply inline-flex items-center justify-center rounded-pill bg-cyan px-6 py-3 font-mono text-sm font-medium text-bg transition-all duration-200;
+  }
+  .btn-primary:hover {
+    box-shadow: 0 0 24px rgba(0, 212, 255, 0.5);
+  }
+
+  .btn-secondary {
+    @apply inline-flex items-center justify-center rounded-pill border border-white/20 px-6 py-3 font-mono text-sm font-medium text-text-primary transition-all duration-200;
+  }
+  .btn-secondary:hover {
+    background: rgba(255, 255, 255, 0.05);
+  }
+
+  .input-field {
+    @apply w-full rounded-card border border-white/10 bg-black/20 px-4 py-3 text-text-primary placeholder:text-text-secondary focus:border-cyan focus:outline-none focus:ring-1 focus:ring-cyan/50;
+  }
+
+  .label-tech {
+    @apply inline-flex items-center rounded-full border border-cyan/40 bg-black/30 px-3 py-1 font-mono text-xs text-cyan;
+  }
+  .label-tech-violet {
+    @apply inline-flex items-center rounded-full border border-violet/40 bg-black/30 px-3 py-1 font-mono text-xs text-violet;
+  }
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: #0A0F1E;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(0, 212, 255, 0.2);
+  border-radius: 8px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 212, 255, 0.4);
+}
