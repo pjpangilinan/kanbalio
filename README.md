@@ -154,9 +154,3 @@ I design and deploy full-stack applications with Python, React, and Docker, with
 </p>
 
 ---
-
-<div align="center">
-
-✨ *"I deploy my own résumé with GitHub Actions and write my CV in LaTeX."*
-
-</div>
