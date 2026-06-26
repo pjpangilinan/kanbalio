@@ -24,15 +24,16 @@ jobs:
         run: |
           sudo apt-get update
           sudo apt-get install -y \
-            texlive-xetex \
+            texlive-latex-base \
+            texlive-latex-recommended \
             texlive-latex-extra \
             texlive-fonts-extra
 
       - name: Compile résumé
         run: |
           cd resume
-          xelatex -interaction=nonstopmode -halt-on-error resume.tex
-          xelatex -interaction=nonstopmode -halt-on-error resume.tex
+          pdflatex -interaction=nonstopmode -halt-on-error resume.tex
+          pdflatex -interaction=nonstopmode -halt-on-error resume.tex
           cd ..
 
       - name: Copy PDF to public/
