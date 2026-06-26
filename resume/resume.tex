@@ -1,94 +1,173 @@
-\documentclass[11pt]{article}
+\documentclass[letterpaper,10pt]{article}
 
-\usepackage[margin=0.75in]{geometry}
-\usepackage{fontspec}
-\usepackage{hyperref}
-\usepackage{enumitem}
-\usepackage{xcolor}
+\usepackage{latexsym}
+\usepackage[empty]{fullpage}
 \usepackage{titlesec}
+\usepackage{marvosym}
+\usepackage[usenames,dvipsnames]{color}
+\usepackage{enumitem}
+\usepackage[hidelinks]{hyperref}
+\usepackage{fancyhdr}
+\usepackage[english]{babel}
+\usepackage{tabularx}
+\usepackage[sfdefault]{roboto}
+\input{glyphtounicode}
 
-\setmainfont{TeX Gyre Pagella}
-\setmonofont{TeX Gyre Cursor}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyfoot{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
 
-\hypersetup{
-  colorlinks=true,
-  urlcolor=cyan!70!black,
-  linkcolor=cyan!70!black
-}
+\addtolength{\oddsidemargin}{-0.5in}
+\addtolength{\evensidemargin}{-0.5in}
+\addtolength{\textwidth}{1in}
+\addtolength{\topmargin}{-.6in}
+\addtolength{\textheight}{1.2in}
 
-\definecolor{cyanaccent}{HTML}{00D4FF}
-\definecolor{textdim}{HTML}{8B9CC8}
-
-\setlist[itemize]{leftmargin=*, itemsep=2pt, topsep=2pt}
+\urlstyle{same}
+\raggedright
+\raggedbottom
+\setlength{\tabcolsep}{0in}
 
 \titleformat{\section}
-  {\normalfont\Large\bfseries\color{textdim}}
-  {}{0em}{}
+{\large\bfseries}
+{}{0em}{}[\titlerule]
 
-\pagestyle{empty}
+\pdfgentounicode=1
 
-\newcommand{\role}[4]{%
-  \noindent\textbf{#1} \hfill \texttt{\small #2}\\[-2pt]
-  \textit{#3} \hfill \texttt{\small #4}\\[4pt]
+\newcommand{\resumeItem}[1]{
+  \item\small{#1}
 }
+
+\newcommand{\resumeSubheading}[4]{
+  \vspace{-2pt}\item
+  \begin{tabular*}{0.97\textwidth}{l@{\extracolsep{\fill}}r}
+    \textbf{#1} & #2\\
+    \textit{#3} & \textit{#4}\\
+  \end{tabular*}
+  \vspace{-6pt}
+}
+
+\newcommand{\resumeSubHeadingListStart}{\begin{itemize}[leftmargin=0.15in,label={}]}
+\newcommand{\resumeSubHeadingListEnd}{\end{itemize}}
+
+\renewcommand\labelitemii{$\vcenter{\hbox{\tiny$\bullet$}}$}
 
 \begin{document}
 
 \begin{center}
-  {\Huge\textbf{Patrick James Pangilinan}}\\[4pt]
-  \texttt{\small Full Stack Developer}\\[2pt]
-  \texttt{\small patrickjpangilinan@protonmail.com \textbar{} github.com/pjpangilinan \textbar{} linkedin.com/in/patrick-james-pangilinan-490a41329}
+{\Huge \textbf{Patrick James A. Pangilinan}}\\[4pt]
+Full Stack Developer \textbar\ Computer Engineering Student\\[4pt]
+0966-749-7052 \textbar\
+\href{mailto:patrickjpangilinan@protonmail.com}{patrickjpangilinan@protonmail.com}
+\textbar\
+\href{https://github.com/pjpangilinan}{github.com/pjpangilinan}
+\textbar\
+\href{https://linkedin.com/in/patrick-james-pangilinan-490a41329}{linkedin.com/in/patrick-james-pangilinan-490a41329}
 \end{center}
 
-\vspace{8pt}
+%-------------------------------------------
 
 \section*{Summary}
-Full Stack Developer focused on building reliable, end-to-end systems across Python, Go, and JavaScript. Comfortable across the stack — from API design and data modeling to UI implementation and CI/CD. Currently deepening expertise in DevOps, systems analysis, and AI-powered products.
 
-\section*{Experience}
+Computer Engineering student with experience in full-stack software development, technical support, and systems troubleshooting. Skilled in Python, JavaScript, Go, React, FastAPI, Docker, Git, and REST APIs. Passionate about backend engineering, DevOps, and building reliable software systems.
 
-\role{Tech Support Intern}{July 2025 -- September 2025}{City Government of Trece Martires -- ICT Division}{Trece Martires City}
-\begin{itemize}
-  \item Verified and normalized legacy citizen records (post-2004) to improve archive accuracy.
-  \item Supported the rollout of a Document Tracking System through validation, onboarding, and issue resolution.
-  \item Diagnosed hardware, software, and network incidents across office endpoints.
-  \item Provisioned workstations and peripherals to keep daily operations reliable.
+%-------------------------------------------
+
+\section{Technical Skills}
+
+\begin{itemize}[leftmargin=0.15in]
+\item \small \textbf{Languages:} Python, JavaScript, Go, C++, Bash
+\item \small \textbf{Tools:} Git, Docker, Postman, GitHub Actions, Linux
 \end{itemize}
 
-\role{Part Timer}{2021 -- Present}{NLMontano Accounting Firm}{Gregorio, Trece Martires City}
-\begin{itemize}
-  \item Processed SSS, PhilHealth, and Pag-IBIG remittances with audit-ready accuracy.
-  \item Maintained office IT -- PCs, printers, and small networks -- across setup, support, and troubleshooting.
-  \item Kept a small-business IT environment stable and responsive to operational needs.
+%-------------------------------------------
+
+\section{Experience}
+
+\resumeSubHeadingListStart
+
+\resumeSubheading
+{Tech Support Intern}
+{Jul 2025 -- Sep 2025}
+{City Government of Trece Martires -- ICT Division}
+{Trece Martires City}
+
+\begin{itemize}[leftmargin=0.18in]
+\resumeItem{Verified and normalized large-scale citizen records, improving archive accuracy and consistency.}
+\resumeItem{Supported deployment of a Document Tracking System through validation, onboarding, and issue resolution.}
+\resumeItem{Troubleshot hardware, software, network, and workstation issues across multiple government departments.}
 \end{itemize}
 
-\section*{Selected Projects}
+\resumeSubheading
+{Part-Time IT Support}
+{2021 -- Present}
+{NLMontano Accounting Firm}
+{Trece Martires City}
 
-\textbf{VOTECHAIN} -- \texttt{Python, Raspberry Pi, Blockchain, React, WebSockets}\\
-Blockchain-based e-voting with multi-factor auth and a real-time public transparency dashboard.
+\begin{itemize}[leftmargin=0.18in]
+\resumeItem{Processed SSS, PhilHealth, and Pag-IBIG remittances with high accuracy.}
+\resumeItem{Maintained office PCs, printers, and small office networks through setup and troubleshooting.}
+\resumeItem{Ensured reliable day-to-day IT operations in a small business environment.}
+\end{itemize}
 
-\textbf{Kanbalio} -- \texttt{React, Vite, GitHub Pages, GitHub Actions, LaTeX}\\
-This portfolio -- glassmorphic command center with JSON-driven content and automated resume publishing.
+\resumeSubHeadingListEnd
 
-\textbf{Up To Date} -- \texttt{React, FastAPI, Groq API, RSS, Docker, PWA}\\
-AI-powered news dashboard with RSS ingestion, keyboard shortcuts, and Groq-summarized articles.
+%-------------------------------------------
 
-\textbf{DAMPos} -- \texttt{Operating Systems, File Management, Memory Management, Process Management}\\
-Mini operating-system simulation covering core OS subsystems.
+\section{Projects}
 
-\section*{Certifications}
+\resumeSubHeadingListStart
 
-\textbf{Google Advanced Data Analytics Professional} -- Coursera, December 2024\\
-\textbf{ISO, CMMI \& Project Quality Certification Mastery} -- Coursera, May 2026\\
-\textbf{IBM Systems Analyst} -- IBM / Coursera (in progress)\\
-\textbf{IBM Applied DevOps Engineering} -- IBM / Coursera (in progress)
+\resumeSubheading
+{VOTECHAIN}
+{}
+{Python, React, Raspberry Pi, Blockchain, WebSockets}
+{\href{https://github.com/pjpangilinan/votechain}{GitHub}}
 
-\section*{Tech}
+\begin{itemize}[leftmargin=0.18in]
+\resumeItem{Developed a blockchain-based electronic voting system using Raspberry Pi and Python.}
+\resumeItem{Implemented SHA-256 hashing and immutable blockchain storage for tamper-evident vote records.}
+\resumeItem{Built a React dashboard with real-time vote monitoring using WebSockets.}
+\end{itemize}
 
-\texttt{Python, Go, JavaScript, Bash}\\
-\texttt{React, FastAPI, Vite, Tailwind, Framer Motion}\\
-\texttt{Git, Docker, Postman, GitHub Actions, Linux, Raspberry Pi}\\
-\texttt{MongoDB, PostgreSQL, Redis, ClickHouse}\\
-\texttt{REST, GraphQL, WebSockets, RSS, PWA}
+\resumeSubheading
+{Up To Date -- AI-Powered News Dashboard}
+{}
+{React, FastAPI, Docker, Groq API}
+{\href{https://github.com/pjpangilinan/tech-dashboard}{GitHub}}
+
+\begin{itemize}[leftmargin=0.18in]
+\resumeItem{Built a full-stack news dashboard using React and FastAPI.}
+\resumeItem{Integrated AI-powered article summarization using the Groq API.}
+\resumeItem{Implemented RSS aggregation, Progressive Web App support, and Docker deployment.}
+\end{itemize}
+
+\resumeSubHeadingListEnd
+
+%-------------------------------------------
+
+\section{Education}
+
+\resumeSubHeadingListStart
+
+\resumeSubheading
+{Cavite State University}
+{2022 -- Present}
+{Bachelor of Science in Computer Engineering}
+{}
+
+\resumeSubHeadingListEnd
+
+%-------------------------------------------
+
+\section{Certifications}
+
+\begin{itemize}[leftmargin=0.15in]
+\item \small \textbf{AWS Cloud Solutions Architect} --- {\href{https://www.coursera.org/account/accomplishments/specialization/ZRPNWECCUPUC}{Coursera}} \hfill June 2026
+\item \small \textbf{IBM DevOps, Cloud, and Agile Foundations} --- {\href{https://www.coursera.org/account/accomplishments/specialization/O6FGFWOS2HH9}{Coursera}} \hfill May 2026
+\end{itemize}
 
 \end{document}
+```
