@@ -98,7 +98,7 @@ export default function Hero() {
             <span className="btn-primary cursor-pointer">View Projects</span>
           </Link>
           <a
-            href={`${import.meta.env.BASE_URL}resume.pdf`}
+            href={`${import.meta.env.BASE_URL}resume.pdf?v=${__BUILD_DATE__}`}
             target="_blank"
             rel="noopener noreferrer"
             className="btn-secondary"

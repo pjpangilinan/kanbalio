@@ -132,7 +132,7 @@ export default function Contact() {
           </button>
 
           <a
-            href={`${import.meta.env.BASE_URL}resume.pdf`}
+            href={`${import.meta.env.BASE_URL}resume.pdf?v=${__BUILD_DATE__}`}
             target="_blank"
             rel="noopener noreferrer"
             className="btn-secondary mt-1"
