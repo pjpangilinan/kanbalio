@@ -348,7 +348,7 @@ export default function ProjectShowcase() {
         onClose={() => setModal(null)}
         title="Architecture — full view"
       >
-        <div className="min-w-[320px]">
+        <div className="min-w-[360px] md:min-w-[700px]">
           <MermaidChart chart={item.chart} id={`${item.id}-modal`} large />
         </div>
       </Modal>
@@ -358,7 +358,7 @@ export default function ProjectShowcase() {
         onClose={() => setModal(null)}
         title="Screenshots"
       >
-        <div className="flex flex-col gap-4">
+        <div className="min-w-[360px] md:min-w-[700px]">
           {Array.from({ length: item.screenshots }, (_, i) => (
             <div
               key={i}
