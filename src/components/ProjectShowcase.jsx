@@ -201,28 +201,36 @@ export default function ProjectShowcase() {
   const [active, setActive] = useState(0)
   const [direction, setDirection] = useState(1)
   const [modal, setModal] = useState(null)
+  const [screenshotIdx, setScreenshotIdx] = useState(0)
   const item = SHOWCASE[active]
   const project = projects.find((p) => p.id === item.id)
 
   const prev = useCallback(() => {
     setDirection(-1)
+    setScreenshotIdx(0)
     setActive((i) => (i - 1 + SHOWCASE.length) % SHOWCASE.length)
   }, [])
 
   const next = useCallback(() => {
     setDirection(1)
+    setScreenshotIdx(0)
     setActive((i) => (i + 1) % SHOWCASE.length)
   }, [])
 
   useEffect(() => {
     const onKey = (e) => {
+      if (e.key === 'Escape') { setModal(null); return }
+      if (modal === 'screenshot') {
+        if (e.key === 'ArrowLeft') setScreenshotIdx(i => (i - 1 + item.screenshots) % item.screenshots)
+        if (e.key === 'ArrowRight') setScreenshotIdx(i => (i + 1) % item.screenshots)
+        return
+      }
       if (e.key === 'ArrowLeft') prev()
       if (e.key === 'ArrowRight') next()
-      if (e.key === 'Escape') setModal(null)
     }
     window.addEventListener('keydown', onKey)
     return () => window.removeEventListener('keydown', onKey)
-  }, [prev, next])
+  }, [prev, next, modal, item.screenshots])
 
   return (
     <section id="showcase" className="px-4 py-20 md:px-20">
@@ -296,27 +304,19 @@ export default function ProjectShowcase() {
                 <MermaidChart chart={item.chart} id={item.id} compact />
               </div>
 
-              <div className="glass p-4 sm:p-6">
-                <div className="mb-4 flex items-center justify-between">
+              <div
+                className="glass cursor-pointer p-4 transition-all hover:border-cyan/30 sm:p-6"
+                onClick={() => { setScreenshotIdx(0); setModal('screenshot') }}
+              >
+                <div className="mb-3 flex items-center justify-between">
                   <p className="font-mono text-xs uppercase tracking-[0.3em] text-text-secondary">
                     Screenshots
                   </p>
                   <span className="font-mono text-[10px] text-cyan/60">
-                    click to expand
+                    {item.screenshots} file{item.screenshots === 1 ? '' : 's'} · click to view
                   </span>
                 </div>
-                <div
-                  className={`grid cursor-pointer gap-3 ${
-                    item.screenshots === 3
-                      ? 'grid-cols-1 sm:grid-cols-3'
-                      : 'grid-cols-1 sm:grid-cols-2'
-                  }`}
-                  onClick={() => setModal('screenshot')}
-                >
-                  {Array.from({ length: item.screenshots }, (_, i) => (
-                    <ScreenshotPlaceholder key={i} index={i + 1} />
-                  ))}
-                </div>
+                <ScreenshotPlaceholder index={1} />
               </div>
             </div>
           </motion.div>
@@ -358,13 +358,10 @@ export default function ProjectShowcase() {
         onClose={() => setModal(null)}
         title="Screenshots"
       >
-        <div className="min-w-[360px] md:min-w-[700px]">
-          {Array.from({ length: item.screenshots }, (_, i) => (
-            <div
-              key={i}
-              className="flex aspect-video items-center justify-center rounded-card border-2 border-dashed border-white/10 bg-white/[0.02]"
-            >
-              <div className="flex flex-col items-center gap-2 text-text-secondary">
+        <div className="flex min-w-[360px] flex-col gap-4 md:min-w-[600px]">
+          <div className="relative">
+            <div className="flex aspect-video items-center justify-center rounded-card border-2 border-dashed border-white/10 bg-white/[0.02]">
+              <div className="flex flex-col items-center gap-3 text-text-secondary">
                 <svg
                   width="48"
                   height="48"
@@ -380,11 +377,46 @@ export default function ProjectShowcase() {
                   <polyline points="21 15 16 10 5 21" />
                 </svg>
                 <span className="font-mono text-sm uppercase tracking-widest text-text-secondary/60">
-                  screenshot {i + 1}
+                  screenshot {screenshotIdx + 1}
                 </span>
               </div>
             </div>
-          ))}
+
+            {item.screenshots > 1 && (
+              <>
+                <button
+                  type="button"
+                  onClick={(e) => { e.stopPropagation(); setScreenshotIdx(i => (i - 1 + item.screenshots) % item.screenshots) }}
+                  aria-label="Previous screenshot"
+                  className="btn-secondary absolute left-2 top-1/2 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full p-0 text-lg"
+                >
+                  ‹
+                </button>
+                <button
+                  type="button"
+                  onClick={(e) => { e.stopPropagation(); setScreenshotIdx(i => (i + 1) % item.screenshots) }}
+                  aria-label="Next screenshot"
+                  className="btn-secondary absolute right-2 top-1/2 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full p-0 text-lg"
+                >
+                  ›
+                </button>
+              </>
+            )}
+          </div>
+
+          <div className="flex items-center justify-center gap-2 font-mono text-xs tracking-widest text-text-secondary">
+            {Array.from({ length: item.screenshots }, (_, i) => (
+              <span
+                key={i}
+                className={`h-1.5 rounded-full transition-all ${
+                  i === screenshotIdx ? 'w-6 bg-cyan' : 'w-3 bg-white/10'
+                }`}
+              />
+            ))}
+            <span className="ml-2">
+              {screenshotIdx + 1}/{item.screenshots}
+            </span>
+          </div>
         </div>
       </Modal>
     </section>
