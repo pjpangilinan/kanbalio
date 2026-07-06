@@ -24,7 +24,7 @@ function MouseGlow() {
     <div
       className="pointer-events-none fixed inset-0 z-50 transition-opacity duration-500"
       style={{
-        background: `radial-gradient(150px at ${pos.x}px ${pos.y}px, rgba(0, 212, 255, 0.06), transparent 80%)`,
+        background: `radial-gradient(80px at ${pos.x}px ${pos.y}px, rgba(0, 212, 255, 0.05), transparent 80%)`,
         opacity: pos.x === -999 ? 0 : 1,
       }}
     />
@@ -53,24 +53,24 @@ function ClickRipple() {
       <span
         className="pointer-events-none fixed z-[60] rounded-full"
         style={{
-          left: r.x - 50,
-          top: r.y - 50,
-          width: 100,
-          height: 100,
-          border: '1px solid rgba(0, 212, 255, 0.5)',
-          boxShadow: 'inset 0 0 10px rgba(0, 212, 255, 0.08)',
+          left: r.x - 25,
+          top: r.y - 25,
+          width: 50,
+          height: 50,
+          border: '1px solid rgba(0, 212, 255, 0.35)',
+          boxShadow: 'inset 0 0 6px rgba(0, 212, 255, 0.05)',
           animation: 'ripple-expand 0.5s ease-out forwards',
         }}
       />
       <span
         className="pointer-events-none fixed z-[60] rounded-full"
         style={{
-          left: r.x - 1.5,
-          top: r.y - 1.5,
-          width: 3,
-          height: 3,
+          left: r.x - 1,
+          top: r.y - 1,
+          width: 2,
+          height: 2,
           background: '#7C3AED',
-          boxShadow: '0 0 6px rgba(124, 58, 237, 0.8)',
+          boxShadow: '0 0 4px rgba(124, 58, 237, 0.5)',
           animation: 'ripple-dot 0.5s ease-out forwards',
         }}
       />
