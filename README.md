@@ -59,18 +59,6 @@ No server. No backend. Two workflows. One JSON-driven content layer.
   </tr>
   <tr>
     <td width="50%">
-      <h3 align="center"><a href="https://pjpangilinan.github.io/kanbalio/">Kanbalio</a></h3>
-      <p align="center">Glassmorphic portfolio with JSON-driven content and an automated LaTeX → PDF résumé pipeline.</p>
-      <p align="center">
-        <img src="https://img.shields.io/badge/React-61DAFB?style=flat-square&logo=react&logoColor=black" />
-        <img src="https://img.shields.io/badge/Vite-646CFF?style=flat-square&logo=vite&logoColor=white" />
-        <img src="https://img.shields.io/badge/GitHub%20Pages-222?style=flat-square&logo=githubpages&logoColor=white" />
-        <img src="https://img.shields.io/badge/GitHub%20Actions-2088FF?style=flat-square&logo=githubactions&logoColor=white" />
-        <img src="https://img.shields.io/badge/LaTeX-008080?style=flat-square&logo=latex&logoColor=white" />
-      </p>
-      <p align="center"><a href="https://github.com/pjpangilinan/kanbalio"><strong>Repo »</strong></a></p>
-    </td>
-    <td width="50%">
       <h3 align="center"><a href="https://github.com/pjpangilinan/votechain">VOTECHAIN</a></h3>
       <p align="center">Blockchain-based e-voting with multi-factor auth and a real-time public transparency dashboard.</p>
       <p align="center">
@@ -82,30 +70,16 @@ No server. No backend. Two workflows. One JSON-driven content layer.
       </p>
       <p align="center"><a href="https://github.com/pjpangilinan/votechain"><strong>Repo »</strong></a> · <a href="https://votechain-7b4va.ondigitalocean.app"><strong>Live »</strong></a></p>
     </td>
-  </tr>
-  <tr>
     <td width="50%">
-      <h3 align="center"><a href="https://github.com/pjpangilinan/tech-dashboard">Up To Date</a></h3>
-      <p align="center">AI-powered news dashboard with RSS ingestion, keyboard shortcuts, and Groq-summarized articles.</p>
+      <h3 align="center"><a href="https://github.com/pjpangilinan/muse-journ">Muse Journal</a></h3>
+      <p align="center">Automated personal Spotify listening history archive. Self-hosted via GitHub Actions, permanent, searchable.</p>
       <p align="center">
-        <img src="https://img.shields.io/badge/React-61DAFB?style=flat-square&logo=react&logoColor=black" />
-        <img src="https://img.shields.io/badge/FastAPI-009688?style=flat-square&logo=fastapi&logoColor=white" />
-        <img src="https://img.shields.io/badge/Docker-2496ED?style=flat-square&logo=docker&logoColor=white" />
-        <img src="https://img.shields.io/badge/Groq-F55036?style=flat-square&logo=groq&logoColor=white" />
-        <img src="https://img.shields.io/badge/PWA-5A0FC8?style=flat-square&logo=pwa&logoColor=white" />
+        <img src="https://img.shields.io/badge/Go-00ADD8?style=flat-square&logo=go&logoColor=white" />
+        <img src="https://img.shields.io/badge/SQLite-003B57?style=flat-square&logo=sqlite&logoColor=white" />
+        <img src="https://img.shields.io/badge/Tailwind-38B2AC?style=flat-square&logo=tailwindcss&logoColor=white" />
+        <img src="https://img.shields.io/badge/GitHub%20Actions-2088FF?style=flat-square&logo=githubactions&logoColor=white" />
       </p>
-      <p align="center"><a href="https://github.com/pjpangilinan/tech-dashboard"><strong>Repo »</strong></a></p>
-    </td>
-    <td width="50%">
-      <h3 align="center"><a href="https://github.com/pjpangilinan/DAMPos">DAMPos</a></h3>
-      <p align="center">Mini operating-system simulation covering file, memory, and process management.</p>
-      <p align="center">
-        <img src="https://img.shields.io/badge/Operating%20Systems-2C3E50?style=flat-square&logo=linux&logoColor=white" />
-        <img src="https://img.shields.io/badge/File%20Mgmt-34495E?style=flat-square" />
-        <img src="https://img.shields.io/badge/Memory%20Mgmt-16A085?style=flat-square" />
-        <img src="https://img.shields.io/badge/Process%20Mgmt-27AE60?style=flat-square" />
-      </p>
-      <p align="center"><a href="https://github.com/pjpangilinan/DAMPos"><strong>Repo »</strong></a> · <a href="https://dampos.streamlit.app/"><strong>Live »</strong></a></p>
+      <p align="center"><a href="https://github.com/pjpangilinan/muse-journ"><strong>Repo »</strong></a> · <a href="https://pjpangilinan.github.io/muse-journ/"><strong>Live »</strong></a></p>
     </td>
   </tr>
 </table>
@@ -159,12 +133,6 @@ No server. No backend. Two workflows. One JSON-driven content layer.
 
 ---
 
-## 🎓 Education
-
-**B.S. Computer Engineering** — Cavite State University _(2022 – Present)_
-
----
-
 ## 📫 Reach Out
 
 <p>
@@ -172,11 +140,3 @@ No server. No backend. Two workflows. One JSON-driven content layer.
   <a href="https://www.linkedin.com/in/patrick-james-pangilinan-490a41329/"><img src="https://img.shields.io/badge/LinkedIn-Patrick%20James%20Pangilinan-0A66C2?style=for-the-badge&logo=linkedin" /></a>
   <a href="mailto:patrickjpangilinan@protonmail.com"><img src="https://img.shields.io/badge/Email-ProtonMail-6D4AFF?style=for-the-badge&logo=protonmail&logoColor=white" /></a>
 </p>
-
----
-
-<div align="center">
-
-✨ *I deploy my own résumé with GitHub Actions and write my CV in LaTeX.*
-
-</div>
