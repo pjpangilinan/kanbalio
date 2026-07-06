@@ -22,6 +22,17 @@ const SHOWCASE = [
     screenshots: 3,
   },
   {
+    id: 'votechain',
+    chart: `graph TB
+      VOTER["Voter UI<br/>(React)"] --> BACK["FastAPI Backend"]
+      BACK --> PI["Raspberry Pi<br/>Blockchain Node"]
+      BACK --> WS2["WebSocket Push"]
+      PI --> DASH["Public Dashboard<br/>(React)"]
+      WS2 --> DASH
+      ADMIN["Admin Panel<br/>(React)"] --> BACK`,
+    screenshots: 2,
+  },
+  {
     id: 'muse-journ',
     chart: `graph LR
       subgraph "GitHub Actions"
@@ -33,17 +44,6 @@ const SHOWCASE = [
         FE["Static Frontend<br/>(Tailwind)"]
       end
       SQL --> FE`,
-    screenshots: 2,
-  },
-  {
-    id: 'votechain',
-    chart: `graph TB
-      VOTER["Voter UI<br/>(React)"] --> BACK["FastAPI Backend"]
-      BACK --> PI["Raspberry Pi<br/>Blockchain Node"]
-      BACK --> WS2["WebSocket Push"]
-      PI --> DASH["Public Dashboard<br/>(React)"]
-      WS2 --> DASH
-      ADMIN["Admin Panel<br/>(React)"] --> BACK`,
     screenshots: 2,
   },
 ]

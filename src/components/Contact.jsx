@@ -38,6 +38,20 @@ export default function Contact() {
   const [status, setStatus] = useState('idle')
   const [form, setForm] = useState({ name: '', email: '', message: '' })
   const [focusField, setFocusField] = useState(null)
+  const [cooldown, setCooldown] = useState(0)
+
+  const startCooldown = () => {
+    setCooldown(30)
+    const t = setInterval(() => {
+      setCooldown((c) => {
+        if (c <= 1) {
+          clearInterval(t)
+          return 0
+        }
+        return c - 1
+      })
+    }, 1000)
+  }
 
   const handleChange = (e) => {
     setForm((f) => ({ ...f, [e.target.name]: e.target.value }))
@@ -45,7 +59,7 @@ export default function Contact() {
 
   const handleSubmit = async (e) => {
     e.preventDefault()
-    if (status === 'sending') return
+    if (status === 'sending' || cooldown > 0) return
 
     const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID
     const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID
@@ -53,6 +67,8 @@ export default function Contact() {
 
     if (!serviceId || !templateId || !publicKey) {
       setStatus('sent')
+      startCooldown()
+      setTimeout(() => setStatus('idle'), 3000)
       return
     }
 
@@ -61,6 +77,7 @@ export default function Contact() {
       await emailjs.send(serviceId, templateId, form, { publicKey })
       setStatus('sent')
       setForm({ name: '', email: '', message: '' })
+      startCooldown()
       setTimeout(() => setStatus('idle'), 3000)
     } catch {
       setStatus('error')
@@ -158,10 +175,16 @@ export default function Contact() {
               <span className="text-green-400">$</span>
               <button
                 type="submit"
-                disabled={status === 'sending'}
-                className="text-left transition-colors hover:text-cyan disabled:opacity-60"
+                disabled={status === 'sending' || cooldown > 0}
+                className="text-left transition-colors hover:text-cyan disabled:opacity-50"
               >
-                {STATUS_LINE[status]}
+                {cooldown > 0 ? (
+                  <span className="text-text-secondary/60">
+                    cooldown {cooldown}s<span className="animate-pulse">_</span>
+                  </span>
+                ) : (
+                  STATUS_LINE[status]
+                )}
               </button>
             </div>
 
