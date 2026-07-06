@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import Navbar from './components/Navbar.jsx'
 import Hero from './components/Hero.jsx'
 import Experience from './components/Experience.jsx'
@@ -31,10 +31,58 @@ function MouseGlow() {
   )
 }
 
+let rippleId = 0
+
+function ClickRipple() {
+  const [ripples, setRipples] = useState([])
+
+  useEffect(() => {
+    const onClick = (e) => {
+      const id = ++rippleId
+      setRipples((prev) => [...prev, { x: e.clientX, y: e.clientY, id }])
+      setTimeout(() => {
+        setRipples((prev) => prev.filter((r) => r.id !== id))
+      }, 800)
+    }
+    window.addEventListener('click', onClick)
+    return () => window.removeEventListener('click', onClick)
+  }, [])
+
+  return ripples.map((r) => (
+    <React.Fragment key={r.id}>
+      <span
+        className="pointer-events-none fixed z-[60] rounded-full"
+        style={{
+          left: r.x - 150,
+          top: r.y - 150,
+          width: 300,
+          height: 300,
+          border: '1.5px solid rgba(0, 212, 255, 0.5)',
+          boxShadow: 'inset 0 0 30px rgba(0, 212, 255, 0.08)',
+          animation: 'ripple-expand 0.8s ease-out forwards',
+        }}
+      />
+      <span
+        className="pointer-events-none fixed z-[60] rounded-full"
+        style={{
+          left: r.x - 2,
+          top: r.y - 2,
+          width: 4,
+          height: 4,
+          background: '#7C3AED',
+          boxShadow: '0 0 8px rgba(124, 58, 237, 0.8)',
+          animation: 'ripple-dot 0.8s ease-out forwards',
+        }}
+      />
+    </React.Fragment>
+  ))
+}
+
 export default function App() {
   return (
     <div className="min-h-screen bg-bg text-text-primary">
       <MouseGlow />
+      <ClickRipple />
       <Navbar />
       <main>
         <Hero />
