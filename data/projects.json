@@ -1,5 +1,18 @@
 [
   {
+    "id": "kanbalio",
+    "title": "Kanbalio",
+    "type": "Project",
+    "description": "Glassmorphic personal portfolio with a status-based kanban board for projects, JSON-driven content, and an automated LaTeX → PDF résumé pipeline. Deployed to GitHub Pages.",
+    "status": "in-progress",
+    "tech_stack": ["React 18", "Vite", "Tailwind CSS", "Framer Motion", "GitHub Actions", "GitHub Pages", "LaTeX"],
+    "issuer": "",
+    "date": "",
+    "credential_url": "",
+    "github_url": "https://github.com/pjpangilinan/kanbalio",
+    "live_url": "https://pjpangilinan.github.io/kanbalio/"
+  },
+  {
     "id": "dgos-restaurant-ordering",
     "title": "DGOS — Digital Guest Ordering System",
     "type": "Project",
@@ -101,7 +114,7 @@
     "date": "",
     "credential_url": "",
     "github_url": "https://github.com/pjpangilinan/cseaesar",
-    "live_url": ""
+    "live_url": "https://pjpangilinan.github.io/cseaesar/"
   },
   {
     "id": "google-advanced-data-analytics-professional",

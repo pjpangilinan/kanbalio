@@ -13,7 +13,7 @@ const card = {
 
 export default function ProjectShowcase() {
   const items = projects.filter(
-    (p) => p.type === 'Project' && p.status === 'done',
+    (p) => p.type === 'Project' && (p.status === 'done' || p.status === 'in-progress'),
   )
 
   return (
