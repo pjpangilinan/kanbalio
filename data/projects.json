@@ -78,6 +78,32 @@
     "live_url": "https://pjpangilinan.github.io/graphien/"
   },
   {
+    "id": "muse-journ",
+    "title": "Muse Journal",
+    "type": "Project",
+    "description": "Automated personal Spotify listening history archive. Self-hosted, permanent, searchable — collecting and preserving listening data on a schedule via GitHub Actions.",
+    "status": "done",
+    "tech_stack": ["Go", "SQLite", "Tailwind CSS", "GitHub Actions"],
+    "issuer": "",
+    "date": "",
+    "credential_url": "",
+    "github_url": "https://github.com/pjpangilinan/muse-journ",
+    "live_url": "https://pjpangilinan.github.io/muse-journ/"
+  },
+  {
+    "id": "cseaesar",
+    "title": "CSEaesar",
+    "type": "Project",
+    "description": "Free, static, fully client-side reviewer for the Philippine Civil Service Examination — Professional Level (170 items / 3h10 / 80% to pass). No backend; localStorage + swappable JSON question bank.",
+    "status": "done",
+    "tech_stack": ["HTML", "CSS", "Vanilla JavaScript", "GitHub Actions"],
+    "issuer": "",
+    "date": "",
+    "credential_url": "",
+    "github_url": "https://github.com/pjpangilinan/cseaesar",
+    "live_url": ""
+  },
+  {
     "id": "google-advanced-data-analytics-professional",
     "title": "Google Advanced Data Analytics Professional",
     "type": "Certification",
