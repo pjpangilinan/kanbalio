@@ -82,7 +82,7 @@ function getMermaid() {
   return mermaidPromise
 }
 
-function MermaidChart({ chart, id, large }) {
+function MermaidChart({ chart, id, compact }) {
   const ref = useRef(null)
   const [error, setError] = useState(false)
 
@@ -124,7 +124,9 @@ function MermaidChart({ chart, id, large }) {
   return (
     <div
       ref={ref}
-      className="flex justify-center overflow-x-auto rounded-card bg-bg/60 py-4"
+      className={`flex justify-center rounded-card bg-bg/60 py-4 ${
+        compact ? 'max-h-56 overflow-y-auto' : 'overflow-x-auto'
+      }`}
     />
   )
 }
@@ -291,7 +293,7 @@ export default function ProjectShowcase() {
                     click to expand
                   </span>
                 </div>
-                <MermaidChart chart={item.chart} id={item.id} />
+                <MermaidChart chart={item.chart} id={item.id} compact />
               </div>
 
               <div className="glass p-4 sm:p-6">
