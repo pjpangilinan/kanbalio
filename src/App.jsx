@@ -1,7 +1,6 @@
 import Navbar from './components/Navbar.jsx'
 import Hero from './components/Hero.jsx'
 import Experience from './components/Experience.jsx'
-import Education from './components/Education.jsx'
 import KanbanBoard from './components/KanbanBoard.jsx'
 import ProjectShowcase from './components/ProjectShowcase.jsx'
 import Contact from './components/Contact.jsx'
@@ -13,7 +12,6 @@ export default function App() {
       <main>
         <Hero />
         <Experience />
-        <Education />
         <KanbanBoard />
         <ProjectShowcase />
         <Contact />

@@ -21,14 +21,14 @@ export default function ProjectShowcase() {
       <div className="mx-auto max-w-container">
         <div className="mb-12 flex flex-col items-center gap-3 text-center">
           <p className="font-mono text-xs uppercase tracking-[0.3em] text-cyan">
-            05 · Showcase
+            Showcase
           </p>
           <h2 className="text-4xl font-bold tracking-tight text-text-primary md:text-5xl">
             Project Archive
           </h2>
           <p className="max-w-xl text-sm text-text-secondary">
-            Every shipped project in one view — the kanban shows status, this
-            is the work.
+            A deeper look into selected projects — architecture, design decisions,
+            and what makes each one worth talking about.
           </p>
         </div>
 

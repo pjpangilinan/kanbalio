@@ -5,7 +5,7 @@ import projects from '../../data/projects.json'
 
 const COLUMNS = [
   { key: 'todo', label: 'To Do' },
-  { key: 'inProgress', label: 'In Progress' },
+  { key: 'in-progress', label: 'In Progress' },
   { key: 'done', label: 'Done' },
 ]
 

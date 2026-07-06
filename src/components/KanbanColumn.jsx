@@ -2,7 +2,7 @@ import KanbanCard from './KanbanCard.jsx'
 
 const BORDER_BY_KEY = {
   todo: 'border-violet/50',
-  inProgress: 'border-cyan/60 animate-pulse-border',
+  'in-progress': 'border-cyan/60 animate-pulse-border',
   done: 'border-emerald-400/50',
 }
 
@@ -31,7 +31,7 @@ export default function KanbanColumn({ columnKey, label, items }) {
               key={item.id ?? item.title}
               className={`rounded-card border ${borderClass} p-0`}
             >
-              <KanbanCard item={item} isActive={columnKey === 'inProgress'} />
+              <KanbanCard item={item} isActive={columnKey === 'in-progress'} />
             </li>
           ))
         )}
