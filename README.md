@@ -2,15 +2,32 @@
 
 # Hi, I'm Patrick James Pangilinan 👋
 
-**Aspiring Cloud, DevOps & Agentic Engineer · Open to Remote**
+**Cloud, DevOps & Agentic Engineer · Open to Remote**
 
 I design and deploy full-stack applications with Python, React, and Docker, with a focus on automated CI/CD pipelines, clean infrastructure, and AI-augmented systems. Currently levelling up on AWS and infrastructure-as-code through hands-on projects.
 
 [![Open to Work](https://img.shields.io/badge/Open%20to-Cloud%20%26%20DevOps%20%26%20Agentic%20roles-22c55e?style=flat-square&logo=target)](#-reach-out)
 [![Remote](https://img.shields.io/badge/Remote-friendly-0ea5e9?style=flat-square&logo=earth)](#-reach-out)
 [![Email](https://img.shields.io/badge/ProtonMail-6D4AFF?style=flat-square&logo=protonmail&logoColor=white)](mailto:patrickjpangilinan@protonmail.com)
+[![Deploy](https://img.shields.io/github/actions/workflow/status/pjpangilinan/kanbalio/deploy.yml?branch=main&label=deploy&style=flat-square)](https://github.com/pjpangilinan/kanbalio/actions)
+[![Résumé](https://img.shields.io/github/actions/workflow/status/pjpangilinan/kanbalio/build-resume.yml?branch=main&label=r%C3%A9sum%C3%A9&style=flat-square)](https://github.com/pjpangilinan/kanbalio/actions)
+[![License](https://img.shields.io/github/license/pjpangilinan/kanbalio?style=flat-square)](LICENSE)
+[![Last Commit](https://img.shields.io/github/last-commit/pjpangilinan/kanbalio?style=flat-square)](https://github.com/pjpangilinan/kanbalio/commits)
 
 </div>
+
+---
+
+## ⚙️ This Site
+
+[**Kanbalio**](https://pjpangilinan.github.io/kanbalio/) — my glassmorphic portfolio. It deploys itself:
+
+1. Push to `main` → **GitHub Actions** builds the Vite site
+2. Static assets go to **GitHub Pages**
+3. Push to `resume/` → separate **GitHub Actions** workflow compiles `resume.tex` via `pdflatex` → commits `public/resume.pdf`
+4. That commit triggers another deploy → live site always has the latest résumé
+
+No server. No backend. Two workflows. One JSON-driven content layer.
 
 ---
 
@@ -120,9 +137,12 @@ I design and deploy full-stack applications with Python, React, and Docker, with
 
 ## 📜 Certifications
 
+- ✅ **AWS Cloud Solutions Architect** — AWS / Coursera, June 2026
 - ✅ **Google Advanced Data Analytics Professional** — Coursera, Dec 2024
+- ✅ **IBM DevOps, Cloud, and Agile Foundations** — IBM / Coursera, May 2026
 - ✅ **ISO, CMMI & Project Quality Certification Mastery** — Coursera, May 2026
-- 🔄 **IBM Systems Analyst** — IBM / Coursera _(in progress)_
+- ✅ **Network Automation Engineering Fundamentals** — Cisco / Coursera, May 2026
+- 🔄 **Google Cybersecurity Certificate** — Google / Coursera _(in progress)_
 - 🔄 **IBM Applied DevOps Engineering** — IBM / Coursera _(in progress)_
 
 ---
@@ -154,3 +174,9 @@ I design and deploy full-stack applications with Python, React, and Docker, with
 </p>
 
 ---
+
+<div align="center">
+
+✨ *I deploy my own résumé with GitHub Actions and write my CV in LaTeX.*
+
+</div>

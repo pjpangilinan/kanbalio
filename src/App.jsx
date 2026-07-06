@@ -93,6 +93,17 @@ export default function App() {
       </main>
       <footer className="border-t border-white/5 py-10 text-center font-mono text-xs text-text-secondary">
         <p>Built with React · Vite · Tailwind · Framer Motion</p>
+        <p className="mt-2">
+          Deployed via GitHub Actions · Résumé auto-built from LaTeX ·{' '}
+          <a
+            href="https://github.com/pjpangilinan/kanbalio"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-cyan hover:underline"
+          >
+            View source
+          </a>
+        </p>
       </footer>
     </div>
   )
