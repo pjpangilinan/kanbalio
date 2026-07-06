@@ -3,6 +3,7 @@ import Hero from './components/Hero.jsx'
 import Experience from './components/Experience.jsx'
 import Education from './components/Education.jsx'
 import KanbanBoard from './components/KanbanBoard.jsx'
+import ProjectShowcase from './components/ProjectShowcase.jsx'
 import Contact from './components/Contact.jsx'
 
 export default function App() {
@@ -14,6 +15,7 @@ export default function App() {
         <Experience />
         <Education />
         <KanbanBoard />
+        <ProjectShowcase />
         <Contact />
       </main>
       <footer className="border-t border-white/5 py-10 text-center font-mono text-xs text-text-secondary">
