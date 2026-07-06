@@ -24,7 +24,7 @@ function MouseGlow() {
     <div
       className="pointer-events-none fixed inset-0 z-50 transition-opacity duration-500"
       style={{
-        background: `radial-gradient(600px at ${pos.x}px ${pos.y}px, rgba(0, 212, 255, 0.06), transparent 80%)`,
+        background: `radial-gradient(300px at ${pos.x}px ${pos.y}px, rgba(0, 212, 255, 0.06), transparent 80%)`,
         opacity: pos.x === -999 ? 0 : 1,
       }}
     />

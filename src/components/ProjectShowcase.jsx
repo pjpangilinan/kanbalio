@@ -96,7 +96,13 @@ function MermaidChart({ chart, id }) {
         const uid = `mermaid-${id}`
         ref.current.innerHTML = ''
         m.render(uid, chart).then(({ svg }) => {
-          if (!cancelled && ref.current) ref.current.innerHTML = svg
+          if (!cancelled && ref.current) {
+            const responsive = svg.replace(
+              '<svg ',
+              '<svg style="max-width:100%;height:auto" ',
+            )
+            ref.current.innerHTML = responsive
+          }
         })
       })
       .catch(() => {
@@ -192,10 +198,10 @@ export default function ProjectShowcase() {
             <p className="font-mono text-xs uppercase tracking-[0.3em] text-cyan">
               Showcase
             </p>
-            <h2 className="text-4xl font-bold tracking-tight text-text-primary md:text-5xl">
+            <h2 className="text-lg font-bold tracking-tight text-text-primary sm:text-2xl md:text-3xl">
               {project ? project.title : ''}
             </h2>
-            <p className="max-w-xl text-center text-sm text-text-secondary">
+            <p className="max-w-xl text-center text-xs text-text-secondary sm:text-sm">
               {project ? project.description : ''}
             </p>
             <div className="mt-1 flex gap-2">
@@ -258,7 +264,7 @@ export default function ProjectShowcase() {
           </motion.div>
         </AnimatePresence>
 
-        <footer className="mt-6 flex items-center justify-between font-mono text-xs tracking-widest text-text-secondary">
+        <footer className="mt-6 flex flex-col items-center gap-2 sm:flex-row sm:justify-between font-mono text-xs tracking-widest text-text-secondary">
           <span>
             {active + 1} / {SHOWCASE.length}
           </span>
