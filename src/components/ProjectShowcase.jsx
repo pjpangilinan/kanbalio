@@ -48,6 +48,12 @@ const SHOWCASE = [
   },
 ]
 
+const slideVariants = {
+  enter: (dir) => ({ x: dir > 0 ? 200 : -200, opacity: 0 }),
+  center: { x: 0, opacity: 1 },
+  exit: (dir) => ({ x: dir > 0 ? -200 : 200, opacity: 0 }),
+}
+
 let mermaidPromise = null
 
 function getMermaid() {
@@ -76,13 +82,7 @@ function getMermaid() {
   return mermaidPromise
 }
 
-const slideVariants = {
-  enter: (dir) => ({ x: dir > 0 ? 320 : -320, opacity: 0 }),
-  center: { x: 0, opacity: 1 },
-  exit: (dir) => ({ x: dir > 0 ? -320 : 320, opacity: 0 }),
-}
-
-function MermaidChart({ chart, id }) {
+function MermaidChart({ chart, id, large }) {
   const ref = useRef(null)
   const [error, setError] = useState(false)
 
@@ -93,15 +93,14 @@ function MermaidChart({ chart, id }) {
     getMermaid()
       .then((m) => {
         if (cancelled) return
-        const uid = `mermaid-${id}`
+        const uid = `mermaid-${id}-${Date.now()}`
         ref.current.innerHTML = ''
         m.render(uid, chart).then(({ svg }) => {
           if (!cancelled && ref.current) {
-            const responsive = svg.replace(
+            ref.current.innerHTML = svg.replace(
               '<svg ',
               '<svg style="max-width:100%;height:auto" ',
             )
-            ref.current.innerHTML = responsive
           }
         })
       })
@@ -125,14 +124,54 @@ function MermaidChart({ chart, id }) {
   return (
     <div
       ref={ref}
-      className="flex justify-center overflow-x-auto rounded-card border border-white/10 bg-bg/60 py-6"
+      className="flex justify-center overflow-x-auto rounded-card bg-bg/60 py-4"
     />
+  )
+}
+
+function Modal({ open, onClose, title, children }) {
+  return (
+    <AnimatePresence>
+      {open && (
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.2 }}
+          className="fixed inset-0 z-[70] flex items-center justify-center bg-black/80 p-4 sm:p-10"
+          onClick={onClose}
+        >
+          <motion.div
+            initial={{ scale: 0.9, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            exit={{ scale: 0.9, opacity: 0 }}
+            transition={{ duration: 0.2 }}
+            className="glass relative flex max-h-full max-w-full flex-col overflow-hidden"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="flex items-center justify-between border-b border-white/10 px-5 py-3">
+              <p className="font-mono text-xs uppercase tracking-[0.3em] text-cyan">
+                {title}
+              </p>
+              <button
+                type="button"
+                onClick={onClose}
+                className="btn-secondary h-8 w-8 rounded-full p-0 text-base"
+              >
+                ×
+              </button>
+            </div>
+            <div className="flex-1 overflow-auto p-5">{children}</div>
+          </motion.div>
+        </motion.div>
+      )}
+    </AnimatePresence>
   )
 }
 
 function ScreenshotPlaceholder({ index }) {
   return (
-    <div className="flex aspect-video items-center justify-center rounded-card border-2 border-dashed border-white/10 bg-white/[0.02]">
+    <div className="flex aspect-video items-center justify-center rounded-card border-2 border-dashed border-white/10 bg-white/[0.02] transition-colors hover:border-cyan/30">
       <div className="flex flex-col items-center gap-2 text-text-secondary">
         <svg
           width="28"
@@ -159,6 +198,7 @@ function ScreenshotPlaceholder({ index }) {
 export default function ProjectShowcase() {
   const [active, setActive] = useState(0)
   const [direction, setDirection] = useState(1)
+  const [modal, setModal] = useState(null)
   const item = SHOWCASE[active]
   const project = projects.find((p) => p.id === item.id)
 
@@ -176,51 +216,53 @@ export default function ProjectShowcase() {
     const onKey = (e) => {
       if (e.key === 'ArrowLeft') prev()
       if (e.key === 'ArrowRight') next()
+      if (e.key === 'Escape') setModal(null)
     }
     window.addEventListener('keydown', onKey)
     return () => window.removeEventListener('keydown', onKey)
   }, [prev, next])
 
   return (
-    <section id="showcase" className="px-6 py-20 md:px-20">
+    <section id="showcase" className="px-4 py-20 md:px-20">
       <div className="mx-auto max-w-5xl">
-        <div className="mb-8 flex items-center justify-between">
+        <div className="mb-6 flex flex-col items-center gap-2 text-center">
+          <p className="font-mono text-xs uppercase tracking-[0.3em] text-cyan">
+            Showcase
+          </p>
+          <h2 className="text-2xl font-bold tracking-tight text-text-primary sm:text-3xl md:text-4xl">
+            {project ? project.title : ''}
+          </h2>
+          <p className="max-w-xl text-xs text-text-secondary sm:text-sm">
+            {project ? project.description : ''}
+          </p>
+        </div>
+
+        <div className="mx-auto mb-6 flex max-w-xs items-center gap-3 sm:max-w-sm">
           <button
             type="button"
             onClick={prev}
             aria-label="Previous project"
-            className="btn-secondary h-10 w-10 rounded-full p-0 text-lg"
+            className="btn-secondary flex h-12 w-12 shrink-0 items-center justify-center rounded-full p-0 text-xl"
           >
             ‹
           </button>
 
-          <div className="flex flex-col items-center gap-2">
-            <p className="font-mono text-xs uppercase tracking-[0.3em] text-cyan">
-              Showcase
-            </p>
-            <h2 className="text-lg font-bold tracking-tight text-text-primary sm:text-2xl md:text-3xl">
-              {project ? project.title : ''}
-            </h2>
-            <p className="max-w-xl text-center text-xs text-text-secondary sm:text-sm">
-              {project ? project.description : ''}
-            </p>
-            <div className="mt-1 flex gap-2">
-              {SHOWCASE.map((s, i) => (
-                <span
-                  key={s.id}
-                  className={`h-1.5 w-6 rounded-full transition-colors ${
-                    i === active ? 'bg-cyan' : 'bg-white/10'
-                  }`}
-                />
-              ))}
-            </div>
+          <div className="flex flex-1 justify-center gap-2">
+            {SHOWCASE.map((s, i) => (
+              <span
+                key={s.id}
+                className={`h-1.5 rounded-full transition-all ${
+                  i === active ? 'w-8 bg-cyan' : 'w-4 bg-white/10'
+                }`}
+              />
+            ))}
           </div>
 
           <button
             type="button"
             onClick={next}
             aria-label="Next project"
-            className="btn-secondary h-10 w-10 rounded-full p-0 text-lg"
+            className="btn-secondary flex h-12 w-12 shrink-0 items-center justify-center rounded-full p-0 text-xl"
           >
             ›
           </button>
@@ -237,23 +279,37 @@ export default function ProjectShowcase() {
             transition={{ duration: 0.35, ease: 'easeInOut' }}
           >
             <div className="flex flex-col gap-6">
-              <div className="glass p-6">
-                <p className="mb-4 font-mono text-xs uppercase tracking-[0.3em] text-text-secondary">
-                  Architecture
-                </p>
+              <div
+                className="glass cursor-pointer p-4 transition-all hover:border-cyan/30 sm:p-6"
+                onClick={() => setModal('architecture')}
+              >
+                <div className="mb-3 flex items-center justify-between">
+                  <p className="font-mono text-xs uppercase tracking-[0.3em] text-text-secondary">
+                    Architecture
+                  </p>
+                  <span className="font-mono text-[10px] text-cyan/60">
+                    click to expand
+                  </span>
+                </div>
                 <MermaidChart chart={item.chart} id={item.id} />
               </div>
 
-              <div className="glass p-6">
-                <p className="mb-4 font-mono text-xs uppercase tracking-[0.3em] text-text-secondary">
-                  Screenshots
-                </p>
+              <div className="glass p-4 sm:p-6">
+                <div className="mb-4 flex items-center justify-between">
+                  <p className="font-mono text-xs uppercase tracking-[0.3em] text-text-secondary">
+                    Screenshots
+                  </p>
+                  <span className="font-mono text-[10px] text-cyan/60">
+                    click to expand
+                  </span>
+                </div>
                 <div
-                  className={`grid gap-4 ${
+                  className={`grid cursor-pointer gap-3 ${
                     item.screenshots === 3
                       ? 'grid-cols-1 sm:grid-cols-3'
                       : 'grid-cols-1 sm:grid-cols-2'
                   }`}
+                  onClick={() => setModal('screenshot')}
                 >
                   {Array.from({ length: item.screenshots }, (_, i) => (
                     <ScreenshotPlaceholder key={i} index={i + 1} />
@@ -264,12 +320,12 @@ export default function ProjectShowcase() {
           </motion.div>
         </AnimatePresence>
 
-        <footer className="mt-6 flex flex-col items-center gap-2 sm:flex-row sm:justify-between font-mono text-xs tracking-widest text-text-secondary">
-          <span>
+        <footer className="mt-6 flex flex-col items-center gap-2 font-mono text-xs tracking-widest sm:flex-row sm:justify-between">
+          <span className="text-text-secondary">
             {active + 1} / {SHOWCASE.length}
           </span>
           {project?.tech_stack && (
-            <div className="flex flex-wrap gap-2">
+            <div className="flex flex-wrap justify-center gap-2">
               {project.tech_stack.slice(0, 4).map((t) => (
                 <span key={t} className="label-tech">
                   {t}
@@ -284,6 +340,51 @@ export default function ProjectShowcase() {
           )}
         </footer>
       </div>
+
+      <Modal
+        open={modal === 'architecture'}
+        onClose={() => setModal(null)}
+        title="Architecture — full view"
+      >
+        <div className="min-w-[320px]">
+          <MermaidChart chart={item.chart} id={`${item.id}-modal`} large />
+        </div>
+      </Modal>
+
+      <Modal
+        open={modal === 'screenshot'}
+        onClose={() => setModal(null)}
+        title="Screenshots"
+      >
+        <div className="flex flex-col gap-4">
+          {Array.from({ length: item.screenshots }, (_, i) => (
+            <div
+              key={i}
+              className="flex aspect-video items-center justify-center rounded-card border-2 border-dashed border-white/10 bg-white/[0.02]"
+            >
+              <div className="flex flex-col items-center gap-2 text-text-secondary">
+                <svg
+                  width="48"
+                  height="48"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="1.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                >
+                  <rect x="3" y="3" width="18" height="18" rx="2" ry="2" />
+                  <circle cx="8.5" cy="8.5" r="1.5" />
+                  <polyline points="21 15 16 10 5 21" />
+                </svg>
+                <span className="font-mono text-sm uppercase tracking-widest text-text-secondary/60">
+                  screenshot {i + 1}
+                </span>
+              </div>
+            </div>
+          ))}
+        </div>
+      </Modal>
     </section>
   )
 }
