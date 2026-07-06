@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Link } from 'react-scroll'
 
-const ROLES = ['Cloud Engineer', 'DevOps Engineer']
+const ROLES = ['Cloud Engineer', 'DevOps Engineer', 'Agentic Engineer']
 
 const container = {
   hidden: {},
@@ -76,7 +76,7 @@ export default function Hero() {
         <motion.div variants={item} className="flex flex-wrap items-center gap-x-3 gap-y-1 font-mono text-xs text-text-secondary">
           <span className="flex items-center gap-1.5">
             <span className="inline-block h-1.5 w-1.5 rounded-full bg-emerald-400 shadow-[0_0_8px_rgba(52,211,153,0.7)]" />
-            Open to: Cloud & DevOps Engineer roles
+            Open to: Cloud & DevOps & Agentic Engineer roles
           </span>
           <span className="text-text-secondary/40">·</span>
           <span>Remote-friendly</span>
@@ -86,11 +86,11 @@ export default function Hero() {
           variants={item}
           className="max-w-2xl text-base leading-relaxed text-text-secondary"
         >
-          Aspiring Cloud and DevOps engineer. I design and deploy full-stack
-          applications with Python, React, and Docker, and I care about
-          automated CI/CD pipelines and clean infrastructure. Currently
-          levelling up on AWS and infrastructure-as-code through hands-on
-          projects.
+          Aspiring Cloud, DevOps, and Agentic Engineer. I design and deploy
+          full-stack applications with Python, React, and Docker, and I care
+          about automated CI/CD pipelines, clean infrastructure, and
+          AI-augmented systems. Currently levelling up on AWS and
+          infrastructure-as-code through hands-on projects.
         </motion.p>
 
         <motion.div variants={item} className="flex flex-wrap gap-3 pt-2">

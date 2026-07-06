@@ -2,11 +2,11 @@
 
 # Hi, I'm Patrick James Pangilinan 👋
 
-**Aspiring Cloud & DevOps Engineer · Open to Remote**
+**Aspiring Cloud, DevOps & Agentic Engineer · Open to Remote**
 
-I design and deploy full-stack applications with Python, React, and Docker, with a focus on automated CI/CD pipelines and clean infrastructure. Currently levelling up on AWS and infrastructure-as-code through hands-on projects.
+I design and deploy full-stack applications with Python, React, and Docker, with a focus on automated CI/CD pipelines, clean infrastructure, and AI-augmented systems. Currently levelling up on AWS and infrastructure-as-code through hands-on projects.
 
-[![Open to Work](https://img.shields.io/badge/Open%20to-Cloud%20%26%20DevOps%20roles-22c55e?style=flat-square&logo=target)](#-reach-out)
+[![Open to Work](https://img.shields.io/badge/Open%20to-Cloud%20%26%20DevOps%20%26%20Agentic%20roles-22c55e?style=flat-square&logo=target)](#-reach-out)
 [![Remote](https://img.shields.io/badge/Remote-friendly-0ea5e9?style=flat-square&logo=earth)](#-reach-out)
 [![Email](https://img.shields.io/badge/ProtonMail-6D4AFF?style=flat-square&logo=protonmail&logoColor=white)](mailto:patrickjpangilinan@protonmail.com)
 

@@ -1,5 +1,4 @@
 import { useState, useRef } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
 import emailjs from '@emailjs/browser'
 
 const SOCIALS = [
@@ -8,17 +7,37 @@ const SOCIALS = [
   { label: 'Email', href: 'mailto:patrickjpangilinan@protonmail.com' },
 ]
 
-const STATUS = {
-  idle: 'Send Message',
-  sending: 'Sending…',
-  sent: 'Sent ✓',
-  error: 'Failed — retry',
+const STATUS_LINE = {
+  idle: (
+    <span>
+      <span className="text-cyan">./send_message</span>
+      <span className="text-text-secondary/60"> —return</span>
+    </span>
+  ),
+  sending: (
+    <span className="text-yellow-400/80">
+      transmitting
+      <span className="inline-block w-1 animate-pulse">_</span>
+    </span>
+  ),
+  sent: (
+    <span className="text-green-400">
+      ./send_message → 200 OK ✓
+    </span>
+  ),
+  error: (
+    <span className="text-red-400">
+      ./send_message → connection refused{' '}
+      <span className="text-text-secondary/60">(click to retry)</span>
+    </span>
+  ),
 }
 
 export default function Contact() {
   const formRef = useRef(null)
   const [status, setStatus] = useState('idle')
   const [form, setForm] = useState({ name: '', email: '', message: '' })
+  const [focusField, setFocusField] = useState(null)
 
   const handleChange = (e) => {
     setForm((f) => ({ ...f, [e.target.name]: e.target.value }))
@@ -42,119 +61,145 @@ export default function Contact() {
       await emailjs.send(serviceId, templateId, form, { publicKey })
       setStatus('sent')
       setForm({ name: '', email: '', message: '' })
-      setTimeout(() => setStatus('idle'), 2400)
+      setTimeout(() => setStatus('idle'), 3000)
     } catch {
       setStatus('error')
     }
   }
 
+  const cursor = (field) =>
+    focusField === field ? (
+      <span className="inline-block h-4 w-2 animate-pulse bg-cyan" />
+    ) : null
+
   return (
     <section id="contact" className="px-6 py-20 md:px-20">
-      <div className="mx-auto max-w-[560px]">
-        <div className="mb-8 flex flex-col items-center gap-3 text-center">
+      <div className="mx-auto max-w-[640px]">
+        <div className="mb-8 flex flex-col items-center gap-2 text-center">
           <p className="font-mono text-xs uppercase tracking-[0.3em] text-cyan">
             04 · Contact
           </p>
           <h2 className="text-4xl font-bold tracking-tight text-text-primary md:text-5xl">
             Let's talk.
           </h2>
-          <p className="text-sm text-text-secondary">
-            Have a project in mind? Drop a message and I'll get back to you.
-          </p>
         </div>
 
         <form
           ref={formRef}
           onSubmit={handleSubmit}
-          className="glass glass-hover flex flex-col gap-4 p-8"
+          className="glass overflow-hidden"
         >
-          <label className="flex flex-col gap-2">
-            <span className="font-mono text-xs uppercase tracking-widest text-text-secondary">
-              Name
+          <div className="flex items-center gap-1.5 border-b border-white/10 px-4 py-2.5">
+            <span className="h-3 w-3 rounded-full bg-red-500/80" />
+            <span className="h-3 w-3 rounded-full bg-yellow-500/80" />
+            <span className="h-3 w-3 rounded-full bg-green-500/80" />
+            <span className="ml-3 font-mono text-xs tracking-wide text-text-secondary">
+              contact.sh — bash — {form.name || 'anonymous'}
             </span>
-            <input
-              type="text"
-              name="name"
-              value={form.name}
-              onChange={handleChange}
-              required
-              placeholder="Your name"
-              className="input-field"
-            />
-          </label>
+          </div>
 
-          <label className="flex flex-col gap-2">
-            <span className="font-mono text-xs uppercase tracking-widest text-text-secondary">
-              Email
-            </span>
-            <input
-              type="email"
-              name="email"
-              value={form.email}
-              onChange={handleChange}
-              required
-              placeholder="you@domain.com"
-              className="input-field"
-            />
-          </label>
+          <div className="flex flex-col gap-0 p-4 font-mono text-sm">
+            <div className="flex items-center gap-2 pb-2 text-text-secondary/60">
+              <span className="text-green-400">$</span>
+              <span>cat &lt;&lt; EOF | ./send_message</span>
+            </div>
 
-          <label className="flex flex-col gap-2">
-            <span className="font-mono text-xs uppercase tracking-widest text-text-secondary">
-              Message
-            </span>
-            <textarea
-              name="message"
-              value={form.message}
-              onChange={handleChange}
-              required
-              rows={5}
-              placeholder="Tell me about the project…"
-              className="input-field resize-none"
-            />
-          </label>
+            <div className="flex items-center gap-2 border-l-2 border-cyan/30 py-1.5 pl-4">
+              <span className="text-text-secondary/60 w-10 shrink-0">To:</span>
+              <input
+                type="text"
+                name="name"
+                value={form.name}
+                onChange={handleChange}
+                onFocus={() => setFocusField('name')}
+                onBlur={() => setFocusField(null)}
+                required
+                placeholder="your name"
+                className="flex-1 bg-transparent font-mono text-sm text-text-primary outline-none placeholder:text-text-secondary/30"
+              />
+              {cursor('name')}
+            </div>
 
-          <button
-            type="submit"
-            disabled={status === 'sending'}
-            className="btn-primary mt-2 disabled:opacity-60"
-          >
-            <AnimatePresence mode="wait" initial={false}>
-              <motion.span
-                key={status}
-                initial={{ opacity: 0, y: 8 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -8 }}
-                transition={{ duration: 0.2 }}
+            <div className="flex items-center gap-2 border-l-2 border-cyan/30 py-1.5 pl-4">
+              <span className="text-text-secondary/60 w-10 shrink-0">From:</span>
+              <input
+                type="email"
+                name="email"
+                value={form.email}
+                onChange={handleChange}
+                onFocus={() => setFocusField('email')}
+                onBlur={() => setFocusField(null)}
+                required
+                placeholder="you@domain.com"
+                className="flex-1 bg-transparent font-mono text-sm text-text-primary outline-none placeholder:text-text-secondary/30"
+              />
+              {cursor('email')}
+            </div>
+
+            <div className="flex gap-2 border-l-2 border-cyan/30 py-1.5 pl-4">
+              <span className="text-text-secondary/60 w-10 shrink-0 pt-0.5">
+                Body:
+              </span>
+              <textarea
+                name="message"
+                value={form.message}
+                onChange={handleChange}
+                onFocus={() => setFocusField('message')}
+                onBlur={() => setFocusField(null)}
+                required
+                rows={3}
+                placeholder="your message..."
+                className="flex-1 bg-transparent font-mono text-sm text-text-primary outline-none resize-none placeholder:text-text-secondary/30"
+              />
+              {cursor('message')}
+            </div>
+
+            <div className="mt-3 flex items-center gap-2 border-t border-white/10 pt-3">
+              <span className="text-green-400">$</span>
+              <button
+                type="submit"
+                disabled={status === 'sending'}
+                className="text-left transition-colors hover:text-cyan disabled:opacity-60"
               >
-                {STATUS[status]}
-              </motion.span>
-            </AnimatePresence>
-          </button>
+                {STATUS_LINE[status]}
+              </button>
+            </div>
 
-          <a
-            href={`${import.meta.env.BASE_URL}resume.pdf?v=${__BUILD_DATE__}`}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="btn-secondary mt-1"
-          >
-            View Résumé ↗
-          </a>
-        </form>
-
-        <ul className="mt-8 flex flex-wrap justify-center gap-3">
-          {SOCIALS.map((s) => (
-            <li key={s.label}>
+            <div className="mt-2 flex items-center gap-2 text-text-secondary/40">
+              <span className="text-green-400/60">$</span>
               <a
-                href={s.href}
+                href={`${import.meta.env.BASE_URL}resume.pdf?v=${__BUILD_DATE__}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="glass glass-hover inline-flex items-center rounded-pill px-4 py-2 font-mono text-xs text-text-primary"
+                className="text-text-secondary/60 transition-colors hover:text-cyan"
               >
-                {s.label}
+                cat resume.pdf
               </a>
-            </li>
-          ))}
-        </ul>
+            </div>
+          </div>
+
+          <div className="border-t border-white/10 px-4 py-3 font-mono text-xs">
+            <div className="flex flex-wrap items-center gap-x-1.5 gap-y-1 text-text-secondary">
+              <span className="text-green-400/60">$</span>
+              <span>Open ports:</span>
+              {SOCIALS.map((s, i) => (
+                <span key={s.label}>
+                  <a
+                    href={s.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-cyan transition-colors hover:text-violet"
+                  >
+                    {s.label.toLowerCase()}
+                  </a>
+                  {i < SOCIALS.length - 1 && (
+                    <span className="ml-1 text-text-secondary/30">·</span>
+                  )}
+                </span>
+              ))}
+            </div>
+          </div>
+        </form>
       </div>
     </section>
   )
