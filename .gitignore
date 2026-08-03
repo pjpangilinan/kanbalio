@@ -8,6 +8,8 @@ dist
 .vite
 .idea
 .vscode
+.opencode
+.serena
 resume/resume.pdf
 resume/*.aux
 resume/*.log
