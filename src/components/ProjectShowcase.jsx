@@ -2,6 +2,8 @@ import { useState, useEffect, useRef, useCallback } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import projects from '../../data/projects.json'
 
+const BASE = '/kanbalio/showcase'
+
 const SHOWCASE = [
   {
     id: 'dgos-restaurant-ordering',
@@ -19,7 +21,7 @@ const SHOWCASE = [
       API --> WS["WebSocket Kitchen"]
       L --> DDB["DynamoDB"]
       WS --> K`,
-    screenshots: 3,
+    screenshots: [`${BASE}/DGOS/customer.png`, `${BASE}/DGOS/kitchen.png`, `${BASE}/DGOS/admin.png`],
   },
   {
     id: 'votechain',
@@ -30,7 +32,7 @@ const SHOWCASE = [
       PI --> DASH["Public Dashboard<br/>(React)"]
       WS2 --> DASH
       ADMIN["Admin Panel<br/>(React)"] --> BACK`,
-    screenshots: 2,
+    screenshots: [`${BASE}/Votechain/screenshot-1.png`, `${BASE}/Votechain/screenshot-2.png`],
   },
   {
     id: 'muse-journ',
@@ -44,7 +46,7 @@ const SHOWCASE = [
         FE["Static Frontend<br/>(Tailwind)"]
       end
       SQL --> FE`,
-    screenshots: 2,
+    screenshots: [`${BASE}/Muse-Journ/image.png`],
   },
 ]
 
@@ -171,32 +173,6 @@ function Modal({ open, onClose, title, children }) {
   )
 }
 
-function ScreenshotPlaceholder({ index }) {
-  return (
-    <div className="flex aspect-video items-center justify-center rounded-card border-2 border-dashed border-white/10 bg-white/[0.02] transition-colors hover:border-cyan/30">
-      <div className="flex flex-col items-center gap-2 text-text-secondary">
-        <svg
-          width="28"
-          height="28"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="1.5"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        >
-          <rect x="3" y="3" width="18" height="18" rx="2" ry="2" />
-          <circle cx="8.5" cy="8.5" r="1.5" />
-          <polyline points="21 15 16 10 5 21" />
-        </svg>
-        <span className="font-mono text-xs uppercase tracking-widest text-text-secondary/60">
-          screenshot {index}
-        </span>
-      </div>
-    </div>
-  )
-}
-
 export default function ProjectShowcase() {
   const [active, setActive] = useState(0)
   const [direction, setDirection] = useState(1)
@@ -221,8 +197,8 @@ export default function ProjectShowcase() {
     const onKey = (e) => {
       if (e.key === 'Escape') { setModal(null); return }
       if (modal === 'screenshot') {
-        if (e.key === 'ArrowLeft') setScreenshotIdx(i => (i - 1 + item.screenshots) % item.screenshots)
-        if (e.key === 'ArrowRight') setScreenshotIdx(i => (i + 1) % item.screenshots)
+        if (e.key === 'ArrowLeft') setScreenshotIdx(i => (i - 1 + item.screenshots.length) % item.screenshots.length)
+        if (e.key === 'ArrowRight') setScreenshotIdx(i => (i + 1) % item.screenshots.length)
         return
       }
       if (e.key === 'ArrowLeft') prev()
@@ -230,7 +206,7 @@ export default function ProjectShowcase() {
     }
     window.addEventListener('keydown', onKey)
     return () => window.removeEventListener('keydown', onKey)
-  }, [prev, next, modal, item.screenshots])
+  }, [prev, next, modal, item.screenshots.length])
 
   return (
     <section id="showcase" className="px-4 py-20 md:px-20">
@@ -313,10 +289,16 @@ export default function ProjectShowcase() {
                     Screenshots
                   </p>
                   <span className="font-mono text-[10px] text-cyan/60">
-                    {item.screenshots} file{item.screenshots === 1 ? '' : 's'} · click to view
+                    {item.screenshots.length} file{item.screenshots.length === 1 ? '' : 's'} · click to view
                   </span>
                 </div>
-                <ScreenshotPlaceholder index={1} />
+                <div className="flex aspect-video items-center justify-center overflow-hidden rounded-card border border-white/10 bg-white/[0.02]">
+                  <img
+                    src={item.screenshots[0]}
+                    alt={`${project?.title} screenshot`}
+                    className="h-full w-full object-cover"
+                  />
+                </div>
               </div>
             </div>
           </motion.div>
@@ -360,33 +342,19 @@ export default function ProjectShowcase() {
       >
         <div className="flex min-w-[360px] flex-col gap-4 md:min-w-[600px]">
           <div className="relative">
-            <div className="flex aspect-video items-center justify-center rounded-card border-2 border-dashed border-white/10 bg-white/[0.02]">
-              <div className="flex flex-col items-center gap-3 text-text-secondary">
-                <svg
-                  width="48"
-                  height="48"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="1.5"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                >
-                  <rect x="3" y="3" width="18" height="18" rx="2" ry="2" />
-                  <circle cx="8.5" cy="8.5" r="1.5" />
-                  <polyline points="21 15 16 10 5 21" />
-                </svg>
-                <span className="font-mono text-sm uppercase tracking-widest text-text-secondary/60">
-                  screenshot {screenshotIdx + 1}
-                </span>
-              </div>
+            <div className="flex aspect-video items-center justify-center overflow-hidden rounded-card border border-white/10 bg-white/[0.02]">
+              <img
+                src={item.screenshots[screenshotIdx]}
+                alt={`${project?.title} screenshot ${screenshotIdx + 1}`}
+                className="h-full w-full object-contain"
+              />
             </div>
 
-            {item.screenshots > 1 && (
+            {item.screenshots.length > 1 && (
               <>
                 <button
                   type="button"
-                  onClick={(e) => { e.stopPropagation(); setScreenshotIdx(i => (i - 1 + item.screenshots) % item.screenshots) }}
+                  onClick={(e) => { e.stopPropagation(); setScreenshotIdx(i => (i - 1 + item.screenshots.length) % item.screenshots.length) }}
                   aria-label="Previous screenshot"
                   className="btn-secondary absolute left-2 top-1/2 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full p-0 text-lg"
                 >
@@ -394,7 +362,7 @@ export default function ProjectShowcase() {
                 </button>
                 <button
                   type="button"
-                  onClick={(e) => { e.stopPropagation(); setScreenshotIdx(i => (i + 1) % item.screenshots) }}
+                  onClick={(e) => { e.stopPropagation(); setScreenshotIdx(i => (i + 1) % item.screenshots.length) }}
                   aria-label="Next screenshot"
                   className="btn-secondary absolute right-2 top-1/2 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full p-0 text-lg"
                 >
@@ -405,7 +373,7 @@ export default function ProjectShowcase() {
           </div>
 
           <div className="flex items-center justify-center gap-2 font-mono text-xs tracking-widest text-text-secondary">
-            {Array.from({ length: item.screenshots }, (_, i) => (
+            {item.screenshots.map((_, i) => (
               <span
                 key={i}
                 className={`h-1.5 rounded-full transition-all ${
@@ -414,7 +382,7 @@ export default function ProjectShowcase() {
               />
             ))}
             <span className="ml-2">
-              {screenshotIdx + 1}/{item.screenshots}
+              {screenshotIdx + 1}/{item.screenshots.length}
             </span>
           </div>
         </div>

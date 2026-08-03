@@ -87,6 +87,7 @@
 - `npm run build` → 3.78s, 473 modules, 319.88 kB JS / 18.43 kB CSS (after Education section added)
 
 ## Handoff Notes
+- 2026-08-03 — ProjectShowcase screenshots wired. `showcase/{id}/*.png` copied to `public/showcase/{id}/` (Vite static assets). Component loads real images: DGOS (3), Votechain (2), Muse-Journ (1). Modal viewer shows `object-contain`, inline preview shows `object-cover`. `ScreenshotPlaceholder` removed. Build passes (19.73s, 2549 modules).
 - 2026-06-26 — Built initial portfolio per PLAN.md + DESIGN.md. Vite build passes, base path = `/kanbalio/`. Workflows use official Pages deploy action. No git init performed (per AGENTS rule: only on explicit request). Next: user to `git init`, push to GitHub, set Pages source to GitHub Actions, add EmailJS secrets, push `resume.tex` to trigger first PDF build.
 - 2026-06-26 — Refactored to consume JSON at `data/experience.json` + `data/projects.json`. Dropped `src/data/*.js`. `KanbanCard` branches on `item.type`: Project (cyan, Source/Live) vs Certification (violet, issuer/date/Credential). `KanbanBoard` groups flat project array by `status` at runtime.
 - 2026-06-26 — Identity update: name = Patrick James Pangilinan, navbar `<pjpangilinan />`, socials → real GitHub/LinkedIn/ProtonMail. Hero avatar removed; section paddings `py-32`→`py-20`. Skills pills + bio updated. Experience bullets rewritten in concise voice. Resume rewritten to match real data.
