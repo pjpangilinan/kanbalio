@@ -5,6 +5,7 @@ import Experience from './components/Experience.jsx'
 import KanbanBoard from './components/KanbanBoard.jsx'
 import ProjectShowcase from './components/ProjectShowcase.jsx'
 import Contact from './components/Contact.jsx'
+import ChatWidget from './components/ChatWidget.jsx'
 
 function MouseGlow() {
   const [pos, setPos] = useState({ x: -999, y: -999 })
@@ -91,6 +92,7 @@ export default function App() {
         <ProjectShowcase />
         <Contact />
       </main>
+      <ChatWidget />
       <footer className="border-t border-white/5 py-10 text-center font-mono text-xs text-text-secondary">
         <p>Built with React · Vite · Tailwind · Framer Motion</p>
         <p className="mt-2">

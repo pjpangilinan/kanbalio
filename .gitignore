@@ -10,6 +10,8 @@ dist
 .vscode
 .opencode
 .serena
+docs/
+rag-data/
 resume/resume.pdf
 resume/*.aux
 resume/*.log
