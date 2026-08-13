@@ -12,6 +12,8 @@ dist
 .serena
 docs/
 rag-data/
+scripts/
+lambda/
 resume/resume.pdf
 resume/*.aux
 resume/*.log
