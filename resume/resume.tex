@@ -58,116 +58,118 @@
 
 \begin{center}
 {\Huge \textbf{Patrick James A. Pangilinan}}\\[4pt]
-Cloud, DevOps \& Agentic Engineer \textbar\ Computer Engineering Student\\[4pt]
-0966-749-7052 \textbar\
+\textbf{Cloud, DevOps \& Agentic Engineer} \textbar\ Computer Engineering\\[4pt]
 \href{mailto:patrickjpangilinan@protonmail.com}{patrickjpangilinan@protonmail.com}
+\textbar\
+0966-749-7052
 \textbar\
 \href{https://github.com/pjpangilinan}{github.com/pjpangilinan}
 \textbar\
 \href{https://linkedin.com/in/patrick-james-pangilinan-490a41329}{linkedin.com/in/patrick-james-pangilinan-490a41329}
+\textbar\
+\href{https://pjpangilinan.github.io/kanbalio/}{Portfolio}
 \end{center}
 
 %-------------------------------------------
 
 \section*{Summary}
-
-Cloud, DevOps, and Agentic Engineer with experience in full-stack development, technical support, and systems troubleshooting. Skilled in Python, JavaScript, Go, React, FastAPI, Docker, Git, and REST APIs. Passionate about cloud infrastructure, AI-augmented systems, and building reliable software.
+Cloud, DevOps, and Agentic Engineer with Computer Engineering background. Proven experience engineering and deploying production serverless systems on AWS, high-performance Go microservices, and secure LLM workflows with Amazon Bedrock Guardrails. Specialized in IaC via AWS CDK, CI/CD automation, and low-cost, high-reliability cloud architectures.
 
 %-------------------------------------------
 
 \section{Technical Skills}
-
-\begin{itemize}[leftmargin=0.15in]
-\item \small \textbf{Languages:} Python, JavaScript, Go, C++, Bash
-\item \small \textbf{Tools:} Git, Docker, Postman, GitHub Actions, Linux
+\begin{itemize}[leftmargin=0.15in,itemsep=1pt]
+\item \small \textbf{Languages:} Go, Python, TypeScript, JavaScript, C++, SQL, Bash
+\item \small \textbf{Cloud \& DevOps:} AWS (Lambda, DynamoDB, Bedrock, API Gateway, CloudFront, S3, Cognito, EventBridge), AWS CDK, Docker, GitHub Actions, Linux, CI/CD
+\item \small \textbf{Frameworks \& Tools:} React 19, Node.js, Express, FastAPI, WebSockets, Deck.gl, MapLibre GL, Tailwind CSS, Vite, Postman
+\item \small \textbf{Architecture \& Security:} Serverless IaC, Bedrock Guardrails (Prompt Defense, PII Masking), Socket-Level SSRF Guard, RBAC, HMAC Webhooks
 \end{itemize}
+
+%-------------------------------------------
+
+\section{Featured Projects}
+\resumeSubHeadingListStart
+
+\resumeSubheading
+{AreWeUpYet --- Multi-Tenant Synthetic Uptime Monitoring SaaS}{\href{https://main.d3pikhz9umtg2m.amplifyapp.com/}{Live Demo}}
+{Go, AWS Amplify Gen 2, AWS CDK, Cognito, DynamoDB, React, TypeScript}{\href{https://github.com/pjpangilinan/areweupyet}{GitHub}}
+\begin{itemize}[leftmargin=0.18in,itemsep=0.5pt]
+\resumeItem{Engineered multi-tenant synthetic probing engine in Go Lambda with automated 1-minute EventBridge cron execution.}
+\resumeItem{Implemented custom socket-dial SSRF defense blocking DNS rebinding, private subnets, and AWS IMDS metadata IPs.}
+\resumeItem{Delivered HMAC-SHA256 signed webhook dispatching and public status pages with 30-second live polling and latency curve tracking.}
+\end{itemize}
+
+\resumeSubheading
+{Deony --- Generative AI Media Experience Archive}{\href{https://d1cdomhzh1pe4j.cloudfront.net}{Live Demo}}
+{React 19, TypeScript, AWS Bedrock, Bedrock Guardrails, Lambda ARM64, DynamoDB, AWS CDK}{\href{https://github.com/pjpangilinan/deony}{GitHub}}
+\begin{itemize}[leftmargin=0.18in,itemsep=0.5pt]
+\resumeItem{Architected serverless archival platform featuring ``Deonysus'', an AI critic agent powered by Amazon Bedrock (Claude 3 Haiku / Nova).}
+\resumeItem{Engineered Responsible AI defenses using Bedrock Guardrails: prompt injection interceptors, live PII redaction, and DynamoDB context grounding.}
+\resumeItem{Designed 4 on-demand DynamoDB tables with secondary indexes, Cognito JWT authentication, and automated Playwright E2E testing.}
+\end{itemize}
+
+\resumeSubheading
+{DGOS --- Digital Guest Ordering System}{\href{https://dyk5iqkiyeb4c.cloudfront.net}{Live Demo}}
+{React, TypeScript, AWS Lambda, API Gateway WebSockets, DynamoDB, Cognito RBAC, AWS CDK}{\href{https://github.com/pjpangilinan/dgos}{GitHub}}
+\begin{itemize}[leftmargin=0.18in,itemsep=0.5pt]
+\resumeItem{Built production restaurant ordering platform with 3 independent SPAs (Customer, Kitchen, Admin) running on AWS at $\sim$\$0.80/month.}
+\resumeItem{Implemented real-time bidirectional order updates via API Gateway WebSockets with exponential backoff and heartbeat reconnects.}
+\resumeItem{Provisioned IaC via AWS CDK: 7 DynamoDB tables with PITR, S3 presigned upload flows, 9 CloudWatch alarms, and DLQ pipelines.}
+\end{itemize}
+
+\resumeSubheading
+{maylupa --- Philippine Geospatial Infrastructure \& Methodology-Cited AI}{\href{https://d251rdq8bbiuc2.cloudfront.net}{Live Demo}}
+{Python 3.12, AWS Lambda, Amazon Bedrock, Deck.gl, MapLibre GL, S3, CloudFront}{\href{https://github.com/pjpangilinan/maylupa}{GitHub}}
+\begin{itemize}[leftmargin=0.18in,itemsep=0.5pt]
+\resumeItem{Visualized 1,613 Philippine cities and municipalities at 60 FPS using Deck.gl WebGL and MapLibre GL linked via 10-digit PSGC codes.}
+\resumeItem{Integrated Amazon Bedrock assistant grounded in official government methodology documents citing exact section anchors at \$0.00/mo cost.}
+\end{itemize}
+
+\resumeSubHeadingListEnd
 
 %-------------------------------------------
 
 \section{Experience}
-
 \resumeSubHeadingListStart
 
 \resumeSubheading
-{Tech Support Intern}
-{Jul 2025 -- Sep 2025}
-{City Government of Trece Martires -- ICT Division}
-{Trece Martires City}
-
-\begin{itemize}[leftmargin=0.18in]
-\resumeItem{Verified and normalized large-scale citizen records, improving archive accuracy and consistency.}
-\resumeItem{Supported deployment of a Document Tracking System through validation, onboarding, and issue resolution.}
-\resumeItem{Troubleshot hardware, software, network, and workstation issues across multiple government departments.}
+{Tech Support Intern}{Jul 2025 -- Sep 2025}
+{City Government of Trece Martires --- ICT Division}{Trece Martires City}
+\begin{itemize}[leftmargin=0.18in,itemsep=0.5pt]
+\resumeItem{Validated and normalized ~13,000 legacy citizen records, improving municipal data accuracy and retrieval integrity.}
+\resumeItem{Supported inter-department rollout of Document Tracking System through validation, onboarding, and issue resolution.}
+\resumeItem{Diagnosed hardware, network topology, and workstation incidents across government office endpoints.}
 \end{itemize}
 
 \resumeSubheading
-{Part-Time IT Support}
-{2021 -- Present}
-{NLMontano Accounting Firm}
-{Trece Martires City}
-
-\begin{itemize}[leftmargin=0.18in]
-\resumeItem{Processed SSS, PhilHealth, and Pag-IBIG remittances with high accuracy.}
-\resumeItem{Maintained office PCs, printers, and small office networks through setup and troubleshooting.}
-\resumeItem{Ensured reliable day-to-day IT operations in a small business environment.}
+{Part-Time Systems Support}{2021 -- Present}
+{NLMontano Accounting Firm}{Trece Martires City}
+\begin{itemize}[leftmargin=0.18in,itemsep=0.5pt]
+\resumeItem{Managed electronic government remittance filings (SSS, PhilHealth, Pag-IBIG) with zero audit discrepancies.}
+\resumeItem{Administered workstation provisioning, local network maintenance, and data backups for accounting workflows.}
 \end{itemize}
 
 \resumeSubHeadingListEnd
 
 %-------------------------------------------
 
-\section{Projects}
-
+\section{Education \& Certifications}
 \resumeSubHeadingListStart
 
 \resumeSubheading
-{VOTECHAIN}
-{}
-{Python, React, Raspberry Pi, Blockchain, WebSockets}
-{\href{https://github.com/pjpangilinan/votechain}{GitHub}}
-
-\begin{itemize}[leftmargin=0.18in]
-\resumeItem{Developed a blockchain-based electronic voting system using Raspberry Pi and Python.}
-\resumeItem{Implemented SHA-256 hashing and immutable blockchain storage for tamper-evident vote records.}
-\resumeItem{Built a React dashboard with real-time vote monitoring using WebSockets.}
-\end{itemize}
-
-\resumeSubheading
-{Up To Date -- AI-Powered News Dashboard}
-{}
-{React, FastAPI, Docker, Groq API}
-{\href{https://github.com/pjpangilinan/tech-dashboard}{GitHub}}
-
-\begin{itemize}[leftmargin=0.18in]
-\resumeItem{Built a full-stack news dashboard using React and FastAPI.}
-\resumeItem{Integrated AI-powered article summarization using the Groq API.}
-\resumeItem{Implemented RSS aggregation, Progressive Web App support, and Docker deployment.}
-\end{itemize}
+{Cavite State University}{2022 -- Present}
+{Bachelor of Science in Computer Engineering}{Cavite, Philippines}
 
 \resumeSubHeadingListEnd
 
-%-------------------------------------------
-
-\section{Education}
-
-\resumeSubHeadingListStart
-
-\resumeSubheading
-{Cavite State University}
-{2022 -- Present}
-{Bachelor of Science in Computer Engineering}
-{}
-
-\resumeSubHeadingListEnd
-
-%-------------------------------------------
-
-\section{Certifications}
-
-\begin{itemize}[leftmargin=0.15in]
-\item \small \textbf{AWS Cloud Solutions Architect} --- {\href{https://www.coursera.org/account/accomplishments/specialization/ZRPNWECCUPUC}{Coursera}} \hfill June 2026
-\item \small \textbf{IBM DevOps, Cloud, and Agile Foundations} --- {\href{https://www.coursera.org/account/accomplishments/specialization/O6FGFWOS2HH9}{Coursera}} \hfill May 2026
+\vspace{-4pt}
+\begin{itemize}[leftmargin=0.15in,itemsep=1pt]
+\item \small \textbf{AWS Cloud Solutions Architect Professional Certificate} --- Amazon Web Services \hfill June 2026
+\item \small \textbf{Go (GoLang) Specialization} --- Packt \hfill June 2026
+\item \small \textbf{Cisco Network Automation Engineering Fundamentals Specialization} --- Cisco \hfill May 2026
+\item \small \textbf{IBM DevOps, Cloud, and Agile Foundations Specialization} --- IBM \hfill May 2026
+\item \small \textbf{Google AI Professional Certificate} --- Google \hfill April 2026
+\item \small \textbf{Google Advanced Data Analytics Professional Certificate} --- Google \hfill May 2025
 \end{itemize}
 
 \end{document}
-```
