@@ -6,6 +6,40 @@ const BASE = '/kanbalio/showcase'
 
 const SHOWCASE = [
   {
+    id: 'areweupyet',
+    chart: `graph TB
+      PUSH["GitHub Push"] --> AMP["AWS Amplify Gen 2 (CDK)"]
+      AMP --> CF["CloudFront + React SPA"]
+      AMP --> COG["Cognito User Pool"]
+      AMP --> DDB[("DynamoDB<br/>Endpoints & TTL")]
+      EB["EventBridge rate(1m)"] --> DISP["Go Lambda: Dispatcher"]
+      DISP -->|Socket-Dial SSRF Guard| EXT["External Targets"]
+      DISP --> DDB
+      DDB --> NOTIF["Go Lambda: Notifier"]
+      NOTIF -->|HMAC-SHA256| HOOK["Customer Webhooks"]`,
+    screenshots: [
+      `${BASE}/AreWeUpYet/dashboard.png`,
+      `${BASE}/AreWeUpYet/status-page.png`,
+      `${BASE}/AreWeUpYet/detail.png`,
+    ],
+  },
+  {
+    id: 'deony',
+    chart: `graph LR
+      CLIENT["React 19 PWA"] --> CF["CloudFront"]
+      CF --> APIGW["API Gateway"]
+      APIGW --> LAMBDA["Lambda Node.js 20 (ARM64)"]
+      LAMBDA --> DDB[("DynamoDB")]
+      LAMBDA -->|ConverseCommand| BEDROCK["Amazon Bedrock<br/>Claude 3 Haiku"]
+      BEDROCK -.->|Prompt Defense & PII Mask| GUARD["Bedrock Guardrails"]
+      CLIENT -.->|JWT Auth| COG["Cognito User Pool"]`,
+    screenshots: [
+      `${BASE}/Deony/chat-roast.png`,
+      `${BASE}/Deony/guardrails.png`,
+      `${BASE}/Deony/library.png`,
+    ],
+  },
+  {
     id: 'dgos-restaurant-ordering',
     chart: `graph TB
       QR["Customer QR Code"] --> CF["CloudFront × 3"]
@@ -22,6 +56,21 @@ const SHOWCASE = [
       L --> DDB["DynamoDB"]
       WS --> K`,
     screenshots: [`${BASE}/DGOS/customer.png`, `${BASE}/DGOS/kitchen.png`, `${BASE}/DGOS/admin.png`],
+  },
+  {
+    id: 'maylupa',
+    chart: `graph TB
+      USER["User Browser"] --> CF["CloudFront CDN"]
+      CF --> MAP["MapLibre + Deck.gl<br/>(60 FPS WebGL)"]
+      MAP --> APIGW["HTTP API Gateway"]
+      APIGW --> LAMBDA["Python 3.12 Lambda (ARM64)"]
+      LAMBDA --> PSGC["1,613 LGUs PSGC Store"]
+      LAMBDA -->|Methodology Citations| BEDROCK["Amazon Bedrock<br/>Nova Lite / Claude"]`,
+    screenshots: [
+      `${BASE}/maylupa/map.png`,
+      `${BASE}/maylupa/chat.png`,
+      `${BASE}/maylupa/composite.png`,
+    ],
   },
   {
     id: 'votechain',
@@ -49,6 +98,7 @@ const SHOWCASE = [
     screenshots: [`${BASE}/Muse-Journ/image.png`],
   },
 ]
+
 
 const slideVariants = {
   enter: (dir) => ({ x: dir > 0 ? 200 : -200, opacity: 0 }),
