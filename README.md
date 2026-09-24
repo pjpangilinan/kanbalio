@@ -11,7 +11,6 @@ I design and deploy full-stack applications with Python, React, and Docker, with
 [![Email](https://img.shields.io/badge/ProtonMail-6D4AFF?style=flat-square&logo=protonmail&logoColor=white)](mailto:patrickjpangilinan@protonmail.com)
 [![Deploy](https://img.shields.io/github/actions/workflow/status/pjpangilinan/kanbalio/deploy.yml?branch=main&label=deploy&style=flat-square)](https://github.com/pjpangilinan/kanbalio/actions)
 [![Résumé](https://img.shields.io/github/actions/workflow/status/pjpangilinan/kanbalio/build-resume.yml?branch=main&label=r%C3%A9sum%C3%A9&style=flat-square)](https://github.com/pjpangilinan/kanbalio/actions)
-[![License](https://img.shields.io/github/license/pjpangilinan/kanbalio?style=flat-square)](LICENSE)
 [![Last Commit](https://img.shields.io/github/last-commit/pjpangilinan/kanbalio?style=flat-square)](https://github.com/pjpangilinan/kanbalio/commits)
 
 </div>
