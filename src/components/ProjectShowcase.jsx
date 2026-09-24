@@ -271,81 +271,158 @@ export default function ProjectShowcase() {
   }, [prev, next, modal, item.screenshots.length])
 
   return (
-    <section id="showcase" className="px-4 py-20 sm:px-6 lg:px-12 xl:px-16">
-      <div className="mx-auto max-w-[1400px]">
+    <section id="showcase" className="relative px-6 py-20 md:px-20">
+      <div className="mx-auto max-w-container">
         {/* Section Header */}
-        <div className="mb-10 flex flex-col items-center gap-2 text-center">
+        <div className="mb-10 flex flex-col items-center gap-3 text-center">
           <p className="font-mono text-xs uppercase tracking-[0.3em] text-cyan">
             02 · Showcase
           </p>
-          <h2 className="text-3xl font-bold tracking-tight text-text-primary sm:text-4xl">
-            Flagship System Architectures
+          <h2 className="text-4xl font-bold tracking-tight text-text-primary md:text-5xl">
+            Flagship Systems
           </h2>
-          <p className="max-w-2xl text-xs text-text-secondary sm:text-sm">
-            Interactive deep-dives into production cloud systems, event-driven backends, and agentic workflows.
+          <p className="max-w-xl text-sm text-text-secondary">
+            Production cloud architectures and real-time interfaces. Switch systems with ‹ ›, keyboard arrows, or the indicators.
           </p>
         </div>
 
-        {/* Side + Showcase Layout */}
-        <div className="grid grid-cols-1 items-start gap-8 lg:grid-cols-12">
-          {/* Left Rail: System Index */}
-          <aside className="lg:col-span-4 xl:col-span-3 lg:sticky lg:top-24">
-            <div className="mb-3 flex items-center justify-between px-1">
-              <span className="font-mono text-xs uppercase tracking-widest text-text-secondary">
-                Select System
-              </span>
-              <span className="font-mono text-xs text-cyan">
-                0{active + 1} / 0{SHOWCASE.length}
-              </span>
-            </div>
+        {/* Framed Container Matching Kanban Board */}
+        <div className="glass mx-auto flex max-w-5xl flex-col p-6 md:p-10">
+          {/* Top Switcher Bar (Mirrors Kanban Board Navigation) */}
+          <div className="mb-8 flex items-center justify-between">
+            <button
+              type="button"
+              onClick={prev}
+              aria-label="Previous system"
+              className="btn-secondary h-10 w-10 rounded-full p-0 text-lg"
+            >
+              ‹
+            </button>
 
-            <div className="flex gap-2.5 overflow-x-auto pb-2 lg:flex-col lg:overflow-visible lg:pb-0">
-              {SHOWCASE.map((s, idx) => {
-                const p = projects.find((proj) => proj.id === s.id)
-                const isActive = idx === active
-                const shortTitle = p ? p.title.split('—')[0].trim() : s.id
-                const subtitle = p ? (p.title.split('—')[1]?.trim() || p.description) : ''
+            <div className="flex flex-col items-center gap-2">
+              <div className="flex items-center gap-2">
+                <span className="font-mono text-xs uppercase tracking-[0.3em] text-text-secondary">
+                  System 0{active + 1} of 0{SHOWCASE.length} · {project?.title.split('—')[0].trim()}
+                </span>
+                {active === 0 && (
+                  <span className="rounded bg-cyan/20 px-1.5 py-0.5 font-mono text-[9px] uppercase tracking-wider text-cyan">
+                    Lead
+                  </span>
+                )}
+              </div>
 
-                return (
+              <div className="flex items-center gap-2">
+                {SHOWCASE.map((s, i) => (
                   <button
                     key={s.id}
                     type="button"
-                    onClick={() => selectProject(idx)}
-                    className={`flex shrink-0 flex-col items-start gap-1 rounded-card border p-3.5 text-left transition-all duration-200 w-64 lg:w-full ${
-                      isActive
-                        ? 'border-cyan/70 bg-cyan/10 shadow-[0_0_24px_rgba(0,212,255,0.18)]'
-                        : 'border-white/10 bg-white/[0.02] text-text-secondary hover:border-white/20 hover:bg-white/[0.05] hover:text-text-primary'
+                    onClick={() => selectProject(i)}
+                    aria-label={`Switch to system 0${i + 1}`}
+                    className={`h-2 rounded-full transition-all ${
+                      i === active ? 'w-8 bg-cyan' : 'w-4 bg-white/20 hover:bg-white/40'
                     }`}
+                  />
+                ))}
+              </div>
+            </div>
+
+            <button
+              type="button"
+              onClick={next}
+              aria-label="Next system"
+              className="btn-secondary h-10 w-10 rounded-full p-0 text-lg"
+            >
+              ›
+            </button>
+          </div>
+
+          {/* Active System Details & Controls */}
+          <div className="mb-6 flex flex-col gap-4 border-b border-white/10 pb-6 md:flex-row md:items-start md:justify-between">
+            <div className="flex-1">
+              <h3 className="text-xl font-bold text-text-primary sm:text-2xl">
+                {project?.title}
+              </h3>
+              <p className="mt-1 text-xs leading-relaxed text-text-secondary sm:text-sm">
+                {project?.description}
+              </p>
+
+              {project?.tech_stack && (
+                <div className="mt-3 flex flex-wrap gap-1.5">
+                  {project.tech_stack.map((t) => (
+                    <span key={t} className="label-tech py-0.5 px-2 text-[10px]">
+                      {t}
+                    </span>
+                  ))}
+                </div>
+              )}
+            </div>
+
+            {/* Actions & View Mode Toggle */}
+            <div className="flex flex-col items-start gap-3 pt-2 md:items-end md:pt-0">
+              <div className="flex flex-wrap items-center gap-2">
+                {project?.live_url && (
+                  <a
+                    href={project.live_url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="btn-primary py-1.5 px-3.5 font-mono text-xs"
                   >
-                    <div className="flex w-full items-center justify-between">
-                      <span className={`font-mono text-xs ${isActive ? 'font-bold text-cyan' : 'text-text-secondary/60'}`}>
-                        0{idx + 1}
-                      </span>
-                      {idx === 0 && (
-                        <span className="rounded bg-cyan/20 px-1.5 py-0.5 font-mono text-[9px] uppercase tracking-wider text-cyan">
-                          Lead
-                        </span>
-                      )}
-                    </div>
-                    <span className={`text-sm font-semibold leading-snug ${isActive ? 'text-text-primary' : 'text-text-secondary'}`}>
-                      {shortTitle}
-                    </span>
-                    <span className="line-clamp-1 text-[11px] text-text-secondary/70">
-                      {subtitle}
-                    </span>
-                  </button>
-                )
-              })}
-            </div>
+                    Live Demo ↗
+                  </a>
+                )}
+                {project?.github_url && (
+                  <a
+                    href={project.github_url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="btn-secondary py-1.5 px-3.5 font-mono text-xs"
+                  >
+                    Source ↗
+                  </a>
+                )}
+              </div>
 
-            <div className="mt-4 hidden items-center justify-between px-1 font-mono text-[11px] text-text-secondary/50 lg:flex">
-              <span>Navigate: ← → keys</span>
-              <span>{SHOWCASE.length} systems</span>
+              {/* View Mode Switcher */}
+              <div className="flex items-center rounded-lg border border-white/10 bg-black/40 p-0.5">
+                <button
+                  type="button"
+                  onClick={() => setViewMode('dual')}
+                  className={`rounded px-2.5 py-1 font-mono text-[11px] transition-colors ${
+                    viewMode === 'dual'
+                      ? 'bg-cyan text-bg font-semibold'
+                      : 'text-text-secondary hover:text-text-primary'
+                  }`}
+                >
+                  Side-by-Side
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setViewMode('architecture')}
+                  className={`rounded px-2.5 py-1 font-mono text-[11px] transition-colors ${
+                    viewMode === 'architecture'
+                      ? 'bg-cyan text-bg font-semibold'
+                      : 'text-text-secondary hover:text-text-primary'
+                  }`}
+                >
+                  Architecture
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setViewMode('screenshots')}
+                  className={`rounded px-2.5 py-1 font-mono text-[11px] transition-colors ${
+                    viewMode === 'screenshots'
+                      ? 'bg-cyan text-bg font-semibold'
+                      : 'text-text-secondary hover:text-text-primary'
+                  }`}
+                >
+                  Interface ({item.screenshots.length})
+                </button>
+              </div>
             </div>
-          </aside>
+          </div>
 
-          {/* Right Stage: Interactive Showcase Canvas */}
-          <main className="lg:col-span-8 xl:col-span-9">
+          {/* Main Visual Stage */}
+          <div className="relative min-h-[460px]">
             <AnimatePresence mode="wait" custom={direction} initial={false}>
               <motion.div
                 key={item.id}
@@ -354,139 +431,39 @@ export default function ProjectShowcase() {
                 initial="enter"
                 animate="center"
                 exit="exit"
-                transition={{ duration: 0.3, ease: 'easeInOut' }}
-                className="glass flex flex-col gap-6 p-6 sm:p-8"
+                transition={{ duration: 0.35, ease: 'easeInOut' }}
               >
-                {/* Active System Header Bar */}
-                <div className="flex flex-col gap-4 border-b border-white/10 pb-6 md:flex-row md:items-start md:justify-between">
-                  <div className="flex-1">
-                    <div className="flex items-center gap-2.5">
-                      <span className="font-mono text-xs font-semibold uppercase tracking-widest text-cyan">
-                        System 0{active + 1}
-                      </span>
-                      <span className="h-1 w-1 rounded-full bg-cyan/60" />
-                      <span className="font-mono text-xs text-text-secondary">
-                        {project?.date || '2026'}
-                      </span>
-                    </div>
-
-                    <h3 className="mt-1 text-2xl font-bold tracking-tight text-text-primary sm:text-3xl">
-                      {project?.title}
-                    </h3>
-                    <p className="mt-2 text-sm leading-relaxed text-text-secondary">
-                      {project?.description}
-                    </p>
-
-                    {project?.tech_stack && (
-                      <div className="mt-4 flex flex-wrap gap-1.5">
-                        {project.tech_stack.map((t) => (
-                          <span key={t} className="label-tech py-0.5 px-2.5 text-[11px]">
-                            {t}
-                          </span>
-                        ))}
-                      </div>
-                    )}
-                  </div>
-
-                  {/* Actions & Links */}
-                  <div className="flex shrink-0 flex-wrap items-center gap-2 pt-2 md:pt-0">
-                    {project?.live_url && (
-                      <a
-                        href={project.live_url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="btn-primary py-2 px-4 font-mono text-xs"
-                      >
-                        Live System ↗
-                      </a>
-                    )}
-                    {project?.github_url && (
-                      <a
-                        href={project.github_url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="btn-secondary py-2 px-4 font-mono text-xs"
-                      >
-                        Repository ↗
-                      </a>
-                    )}
-                  </div>
-                </div>
-
-                {/* View Switcher Controls */}
-                <div className="flex flex-wrap items-center justify-between gap-3">
-                  <div className="flex items-center rounded-lg border border-white/10 bg-black/40 p-1">
-                    <button
-                      type="button"
-                      onClick={() => setViewMode('dual')}
-                      className={`rounded-md px-3 py-1.5 font-mono text-xs transition-colors ${
-                        viewMode === 'dual'
-                          ? 'bg-cyan text-bg font-semibold shadow'
-                          : 'text-text-secondary hover:text-text-primary'
-                      }`}
-                    >
-                      Side-by-Side
-                    </button>
-                    <button
-                      type="button"
-                      onClick={() => setViewMode('architecture')}
-                      className={`rounded-md px-3 py-1.5 font-mono text-xs transition-colors ${
-                        viewMode === 'architecture'
-                          ? 'bg-cyan text-bg font-semibold shadow'
-                          : 'text-text-secondary hover:text-text-primary'
-                      }`}
-                    >
-                      Architecture
-                    </button>
-                    <button
-                      type="button"
-                      onClick={() => setViewMode('screenshots')}
-                      className={`rounded-md px-3 py-1.5 font-mono text-xs transition-colors ${
-                        viewMode === 'screenshots'
-                          ? 'bg-cyan text-bg font-semibold shadow'
-                          : 'text-text-secondary hover:text-text-primary'
-                      }`}
-                    >
-                      Screenshots ({item.screenshots.length})
-                    </button>
-                  </div>
-
-                  <span className="font-mono text-xs text-text-secondary/60">
-                    Click cards to expand full-screen
-                  </span>
-                </div>
-
-                {/* Main Content Area */}
+                {/* Side-by-Side View */}
                 {viewMode === 'dual' && (
-                  <div className="grid grid-cols-1 gap-6 xl:grid-cols-2">
-                    {/* Architecture Card */}
+                  <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
+                    {/* Left: Architecture */}
                     <div
-                      className="glass group flex cursor-pointer flex-col overflow-hidden border border-white/10 p-5 transition-all hover:border-cyan/40"
+                      className="glass group flex cursor-pointer flex-col overflow-hidden border border-white/10 p-4 transition-all hover:border-cyan/40"
                       onClick={() => setModal('architecture')}
                     >
-                      <div className="mb-3 flex items-center justify-between">
+                      <div className="mb-2.5 flex items-center justify-between">
                         <span className="font-mono text-xs uppercase tracking-widest text-text-secondary">
-                          Architecture Diagram
+                          Architecture Flow
                         </span>
-                        <span className="font-mono text-[11px] text-cyan/70 transition-colors group-hover:text-cyan">
+                        <span className="font-mono text-[10px] text-cyan/70 transition-colors group-hover:text-cyan">
                           Full View ↗
                         </span>
                       </div>
                       <div className="flex flex-1 items-center justify-center">
-                        <MermaidChart chart={item.chart} id={`${item.id}-dual`} minHeight="360px" />
+                        <MermaidChart chart={item.chart} id={`${item.id}-dual`} minHeight="320px" />
                       </div>
                     </div>
 
-                    {/* Screenshot Card */}
-                    <div className="glass group flex flex-col overflow-hidden border border-white/10 p-5 transition-all hover:border-cyan/40">
-                      <div className="mb-3 flex items-center justify-between">
+                    {/* Right: Interface Preview */}
+                    <div className="glass group flex flex-col overflow-hidden border border-white/10 p-4 transition-all hover:border-cyan/40">
+                      <div className="mb-2.5 flex items-center justify-between">
                         <span className="font-mono text-xs uppercase tracking-widest text-text-secondary">
-                          Interface Preview ({screenshotIdx + 1}/{item.screenshots.length})
+                          Interface ({screenshotIdx + 1}/{item.screenshots.length})
                         </span>
                         <button
                           type="button"
                           onClick={() => setModal('screenshot')}
-                          className="font-mono text-[11px] text-cyan/70 transition-colors hover:text-cyan"
+                          className="font-mono text-[10px] text-cyan/70 transition-colors hover:text-cyan"
                         >
                           Fullscreen ↗
                         </button>
@@ -537,7 +514,7 @@ export default function ProjectShowcase() {
                               key={s}
                               type="button"
                               onClick={() => setScreenshotIdx(idx)}
-                              className={`relative h-12 w-20 shrink-0 overflow-hidden rounded border transition-all ${
+                              className={`relative h-11 w-18 shrink-0 overflow-hidden rounded border transition-all ${
                                 idx === screenshotIdx
                                   ? 'border-cyan ring-1 ring-cyan'
                                   : 'border-white/10 opacity-60 hover:opacity-100'
@@ -552,42 +529,44 @@ export default function ProjectShowcase() {
                   </div>
                 )}
 
+                {/* Architecture Single Focus View */}
                 {viewMode === 'architecture' && (
                   <div
-                    className="glass group flex cursor-pointer flex-col overflow-hidden border border-white/10 p-6 transition-all hover:border-cyan/40"
+                    className="glass group flex cursor-pointer flex-col overflow-hidden border border-white/10 p-5 transition-all hover:border-cyan/40"
                     onClick={() => setModal('architecture')}
                   >
-                    <div className="mb-4 flex items-center justify-between">
+                    <div className="mb-3 flex items-center justify-between">
                       <span className="font-mono text-xs uppercase tracking-widest text-text-secondary">
                         Architecture & Data Flow
                       </span>
-                      <span className="font-mono text-[11px] text-cyan/70 transition-colors group-hover:text-cyan">
+                      <span className="font-mono text-[10px] text-cyan/70 transition-colors group-hover:text-cyan">
                         Expand full-screen ↗
                       </span>
                     </div>
                     <div className="flex flex-1 items-center justify-center">
-                      <MermaidChart chart={item.chart} id={`${item.id}-single`} minHeight="460px" />
+                      <MermaidChart chart={item.chart} id={`${item.id}-single`} minHeight="420px" />
                     </div>
                   </div>
                 )}
 
+                {/* Interface Single Focus View */}
                 {viewMode === 'screenshots' && (
-                  <div className="glass group flex flex-col overflow-hidden border border-white/10 p-6 transition-all hover:border-cyan/40">
-                    <div className="mb-4 flex items-center justify-between">
+                  <div className="glass group flex flex-col overflow-hidden border border-white/10 p-5 transition-all hover:border-cyan/40">
+                    <div className="mb-3 flex items-center justify-between">
                       <span className="font-mono text-xs uppercase tracking-widest text-text-secondary">
-                        Screenshots & UI ({screenshotIdx + 1}/{item.screenshots.length})
+                        Interface ({screenshotIdx + 1}/{item.screenshots.length})
                       </span>
                       <button
                         type="button"
                         onClick={() => setModal('screenshot')}
-                        className="font-mono text-[11px] text-cyan/70 transition-colors hover:text-cyan"
+                        className="font-mono text-[10px] text-cyan/70 transition-colors hover:text-cyan"
                       >
                         Fullscreen ↗
                       </button>
                     </div>
 
                     <div
-                      className="relative flex aspect-video max-h-[560px] cursor-pointer items-center justify-center overflow-hidden rounded-card border border-white/10 bg-black/40"
+                      className="relative flex aspect-video max-h-[500px] cursor-pointer items-center justify-center overflow-hidden rounded-card border border-white/10 bg-black/40"
                       onClick={() => setModal('screenshot')}
                     >
                       <img
@@ -603,7 +582,7 @@ export default function ProjectShowcase() {
                               e.stopPropagation()
                               setScreenshotIdx((i) => (i - 1 + item.screenshots.length) % item.screenshots.length)
                             }}
-                            className="btn-secondary absolute left-3 top-1/2 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full p-0 text-xl backdrop-blur"
+                            className="btn-secondary absolute left-3 top-1/2 flex h-9 w-9 -translate-y-1/2 items-center justify-center rounded-full p-0 text-lg backdrop-blur"
                             aria-label="Previous screenshot"
                           >
                             ‹
@@ -614,7 +593,7 @@ export default function ProjectShowcase() {
                               e.stopPropagation()
                               setScreenshotIdx((i) => (i + 1) % item.screenshots.length)
                             }}
-                            className="btn-secondary absolute right-3 top-1/2 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full p-0 text-xl backdrop-blur"
+                            className="btn-secondary absolute right-3 top-1/2 flex h-9 w-9 -translate-y-1/2 items-center justify-center rounded-full p-0 text-lg backdrop-blur"
                             aria-label="Next screenshot"
                           >
                             ›
@@ -624,13 +603,13 @@ export default function ProjectShowcase() {
                     </div>
 
                     {item.screenshots.length > 1 && (
-                      <div className="mt-4 flex gap-3 overflow-x-auto pb-1">
+                      <div className="mt-3 flex gap-2 overflow-x-auto pb-1">
                         {item.screenshots.map((s, idx) => (
                           <button
                             key={s}
                             type="button"
                             onClick={() => setScreenshotIdx(idx)}
-                            className={`relative h-16 w-28 shrink-0 overflow-hidden rounded-card border transition-all ${
+                            className={`relative h-14 w-24 shrink-0 overflow-hidden rounded border transition-all ${
                               idx === screenshotIdx
                                 ? 'border-cyan ring-1 ring-cyan'
                                 : 'border-white/10 opacity-60 hover:opacity-100'
@@ -645,7 +624,7 @@ export default function ProjectShowcase() {
                 )}
               </motion.div>
             </AnimatePresence>
-          </main>
+          </div>
         </div>
       </div>
 
