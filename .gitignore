@@ -12,8 +12,8 @@ dist
 .serena
 docs/
 rag-data/
-scripts/
-lambda/
+/scripts/
+/lambda/
 resume/resume.pdf
 resume/*.aux
 resume/*.log
@@ -24,3 +24,7 @@ resume/*.fdb_latexmk
 coverage
 *.tsbuildinfo
 *.bak
+
+# Backend / CDK
+backend/cdk.out/
+backend/dist/

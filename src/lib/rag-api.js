@@ -1,4 +1,5 @@
 const API_URL = import.meta.env.VITE_RAG_API_URL
+const API_KEY = import.meta.env.VITE_RAG_API_KEY
 
 export async function sendChatMessage(message) {
   if (!API_URL) {
@@ -7,7 +8,10 @@ export async function sendChatMessage(message) {
 
   const res = await fetch(`${API_URL}/chat`, {
     method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
+    headers: {
+      'Content-Type': 'application/json',
+      ...(API_KEY ? { 'X-Portfolio-Key': API_KEY } : {}),
+    },
     body: JSON.stringify({ message }),
   })
 
