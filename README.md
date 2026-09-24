@@ -27,8 +27,6 @@ I design and deploy full-stack applications with Python, React, and Docker, with
 3. Push to `resume/` → separate **GitHub Actions** workflow compiles `resume.tex` via `pdflatex` → commits `public/resume.pdf`
 4. That commit triggers another deploy → live site always has the latest résumé
 
-No server. No backend. Two workflows. One JSON-driven content layer.
-
 ---
 
 ## 🚀 Featured Projects
