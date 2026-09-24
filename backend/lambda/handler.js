@@ -117,9 +117,19 @@ const handler = async (event) => {
         'Access-Control-Allow-Headers': 'Content-Type, X-Portfolio-Key',
         'Access-Control-Allow-Methods': 'POST, OPTIONS',
     };
+    const ALLOWED_ORIGIN = 'https://pjpangilinan.github.io';
     // Handle preflight
     if (!event.body) {
         return { statusCode: 200, headers: corsHeaders, body: '' };
+    }
+    // Server-side origin check — CORS is browser-only; this blocks direct curl/API calls
+    const origin = event.headers?.['origin'] ?? event.headers?.['Origin'] ?? '';
+    if (origin !== ALLOWED_ORIGIN) {
+        return {
+            statusCode: 403,
+            headers: corsHeaders,
+            body: JSON.stringify({ error: 'Forbidden' }),
+        };
     }
     // Validate secret header
     const providedKey = event.headers?.['x-portfolio-key'] ?? event.headers?.['X-Portfolio-Key'] ?? '';
