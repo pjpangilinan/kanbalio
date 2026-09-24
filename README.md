@@ -20,8 +20,6 @@ I design and deploy full-stack applications with Python, React, and Docker, with
 
 ## ⚙️ This Site
 
-[**Kanbalio**](https://pjpangilinan.github.io/kanbalio/) — my glassmorphic portfolio. It deploys itself:
-
 1. Push to `main` → **GitHub Actions** builds the Vite site
 2. Static assets go to **GitHub Pages**
 3. Push to `resume/` → separate **GitHub Actions** workflow compiles `resume.tex` via `pdflatex` → commits `public/resume.pdf`
