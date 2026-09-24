@@ -94,7 +94,7 @@ export default function Contact() {
       <div className="mx-auto max-w-[640px]">
         <div className="mb-8 flex flex-col items-center gap-2 text-center">
           <p className="font-mono text-xs uppercase tracking-[0.3em] text-cyan">
-            04 · Contact
+            05 · Contact
           </p>
           <h2 className="text-4xl font-bold tracking-tight text-text-primary md:text-5xl">
             Let's talk.

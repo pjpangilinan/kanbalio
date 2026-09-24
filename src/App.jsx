@@ -87,9 +87,9 @@ export default function App() {
       <Navbar />
       <main>
         <Hero />
-        <Experience />
-        <KanbanBoard />
         <ProjectShowcase />
+        <KanbanBoard />
+        <Experience />
         <Contact />
       </main>
       <ChatWidget />

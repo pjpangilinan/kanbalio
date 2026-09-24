@@ -26,7 +26,7 @@ export default function Experience() {
       <div className="mx-auto max-w-container">
         <div className="mb-12 flex flex-col items-center gap-3 text-center">
           <p className="font-mono text-xs uppercase tracking-[0.3em] text-cyan">
-            02 · Experience
+            04 · Experience
           </p>
           <h2 className="text-4xl font-bold tracking-tight text-text-primary md:text-5xl">
             Career Trajectory

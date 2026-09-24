@@ -31,50 +31,51 @@ I design and deploy full-stack applications with Python, React, and Docker, with
 <table>
   <tr>
     <td colspan="2">
-      <h3 align="center">⭐ Lead Project — <a href="https://github.com/pjpangilinan/dgos">DGOS — Digital Guest Ordering System</a></h3>
-      <p align="center"><strong>Production restaurant ordering platform on AWS · ~$0.80/month · 255+ unit tests</strong></p>
-      <p align="center">Customers scan QR codes → browse menus → place orders → see real-time kitchen status. 3 SPAs (customer, kitchen, admin) backed by Cognito, DynamoDB, Lambda, and WebSocket push. IaC via AWS CDK in TypeScript.</p>
+      <h3 align="center">⭐ Lead Project — <a href="https://github.com/pjpangilinan/areweupyet">AreWeUpYet — Multi-Tenant Synthetic Uptime SaaS</a></h3>
+      <p align="center"><strong>Production synthetic uptime monitor in Go on AWS · Socket-level SSRF defense · EventBridge cron</strong></p>
+      <p align="center">Multi-tenant uptime probing engine with 1-minute automated checks. Features custom socket-dial SSRF defense blocking DNS rebinding and AWS IMDS (169.254.0.0/16), HMAC-SHA256 signed webhooks, DynamoDB TTL auto-expiry, and public status pages with 30s live polling.</p>
       <p align="center">
+        <img src="https://img.shields.io/badge/Go-00ADD8?style=flat-square&logo=go&logoColor=white" />
+        <img src="https://img.shields.io/badge/AWS%20Amplify%20Gen%202-FF9900?style=flat-square&logo=awsamplify&logoColor=white" />
+        <img src="https://img.shields.io/badge/AWS%20CDK-FF9900?style=flat-square&logo=amazonwebservices&logoColor=white" />
+        <img src="https://img.shields.io/badge/DynamoDB-4053D6?style=flat-square&logo=amazondynamodb&logoColor=white" />
+        <img src="https://img.shields.io/badge/EventBridge-FF4F8B?style=flat-square&logo=amazoneventbridge&logoColor=white" />
+        <img src="https://img.shields.io/badge/Cognito-DD344C?style=flat-square&logo=amazoncognito&logoColor=white" />
         <img src="https://img.shields.io/badge/React-61DAFB?style=flat-square&logo=react&logoColor=black" />
         <img src="https://img.shields.io/badge/TypeScript-3178C6?style=flat-square&logo=typescript&logoColor=white" />
-        <img src="https://img.shields.io/badge/AWS%20Lambda-FF9900?style=flat-square&logo=awslambda&logoColor=white" />
-        <img src="https://img.shields.io/badge/API%20Gateway-FF4F8B?style=flat-square&logo=amazonapigateway&logoColor=white" />
-        <img src="https://img.shields.io/badge/DynamoDB-4053D6?style=flat-square&logo=amazondynamodb&logoColor=white" />
-        <img src="https://img.shields.io/badge/CloudFront-FF4F8B?style=flat-square&logo=amazoncloudfront&logoColor=white" />
-        <img src="https://img.shields.io/badge/Cognito-DD344C?style=flat-square&logo=amazoncognito&logoColor=white" />
-        <img src="https://img.shields.io/badge/AWS%20CDK-FF9900?style=flat-square&logo=amazonwebservices&logoColor=white" />
       </p>
       <p align="center">
-        <a href="https://github.com/pjpangilinan/dgos"><strong>Repo »</strong></a> ·
-        <a href="https://dyk5iqkiyeb4c.cloudfront.net"><strong>Customer »</strong></a> ·
-        <a href="https://dkykxlzz4d0zi.cloudfront.net"><strong>Kitchen »</strong></a> ·
-        <a href="https://d2n6ostm7w9jzu.cloudfront.net"><strong>Admin »</strong></a>
+        <a href="https://github.com/pjpangilinan/areweupyet"><strong>Repo »</strong></a> ·
+        <a href="https://main.d3pikhz9umtg2m.amplifyapp.com/"><strong>Live Demo »</strong></a>
       </p>
     </td>
   </tr>
   <tr>
     <td width="50%">
-      <h3 align="center"><a href="https://github.com/pjpangilinan/votechain">VOTECHAIN</a></h3>
-      <p align="center">Blockchain-based e-voting with multi-factor auth and a real-time public transparency dashboard.</p>
+      <h3 align="center"><a href="https://github.com/pjpangilinan/deony">Deony</a></h3>
+      <p align="center">Serverless generative AI media archive with "Deonysus" critic. Prompt defense & PII masking via Bedrock Guardrails.</p>
       <p align="center">
-        <img src="https://img.shields.io/badge/Python-3776AB?style=flat-square&logo=python&logoColor=white" />
-        <img src="https://img.shields.io/badge/React-61DAFB?style=flat-square&logo=react&logoColor=black" />
-        <img src="https://img.shields.io/badge/WebSockets-010101?style=flat-square&logo=socketdotio&logoColor=white" />
-        <img src="https://img.shields.io/badge/Raspberry%20Pi-A22846?style=flat-square&logo=raspberrypi&logoColor=white" />
-        <img src="https://img.shields.io/badge/Blockchain-121D33?style=flat-square&logo=bitcoin&logoColor=white" />
+        <img src="https://img.shields.io/badge/React%2019-61DAFB?style=flat-square&logo=react&logoColor=black" />
+        <img src="https://img.shields.io/badge/Amazon%20Bedrock-FF9900?style=flat-square&logo=amazonaws&logoColor=white" />
+        <img src="https://img.shields.io/badge/Bedrock%20Guardrails-22C55E?style=flat-square&logo=security&logoColor=white" />
+        <img src="https://img.shields.io/badge/AWS%20Lambda-FF9900?style=flat-square&logo=awslambda&logoColor=white" />
+        <img src="https://img.shields.io/badge/DynamoDB-4053D6?style=flat-square&logo=amazondynamodb&logoColor=white" />
+        <img src="https://img.shields.io/badge/AWS%20CDK-FF9900?style=flat-square&logo=amazonwebservices&logoColor=white" />
       </p>
-      <p align="center"><a href="https://github.com/pjpangilinan/votechain"><strong>Repo »</strong></a> · <a href="https://votechain-7b4va.ondigitalocean.app"><strong>Live »</strong></a></p>
+      <p align="center"><a href="https://github.com/pjpangilinan/deony"><strong>Repo »</strong></a> · <a href="https://d1cdomhzh1pe4j.cloudfront.net"><strong>Live »</strong></a></p>
     </td>
     <td width="50%">
-      <h3 align="center"><a href="https://github.com/pjpangilinan/muse-journ">Muse Journal</a></h3>
-      <p align="center">Automated personal Spotify listening history archive. Self-hosted via GitHub Actions, permanent, searchable.</p>
+      <h3 align="center"><a href="https://github.com/pjpangilinan/dgos">DGOS</a></h3>
+      <p align="center">Production restaurant ordering platform on AWS (~$0.80/mo). 3 SPAs with WebSockets, Cognito auth, and DynamoDB.</p>
       <p align="center">
-        <img src="https://img.shields.io/badge/Go-00ADD8?style=flat-square&logo=go&logoColor=white" />
-        <img src="https://img.shields.io/badge/SQLite-003B57?style=flat-square&logo=sqlite&logoColor=white" />
-        <img src="https://img.shields.io/badge/Tailwind-38B2AC?style=flat-square&logo=tailwindcss&logoColor=white" />
-        <img src="https://img.shields.io/badge/GitHub%20Actions-2088FF?style=flat-square&logo=githubactions&logoColor=white" />
+        <img src="https://img.shields.io/badge/React-61DAFB?style=flat-square&logo=react&logoColor=black" />
+        <img src="https://img.shields.io/badge/TypeScript-3178C6?style=flat-square&logo=typescript&logoColor=white" />
+        <img src="https://img.shields.io/badge/AWS%20Lambda-FF9900?style=flat-square&logo=awslambda&logoColor=white" />
+        <img src="https://img.shields.io/badge/WebSockets-010101?style=flat-square&logo=socketdotio&logoColor=white" />
+        <img src="https://img.shields.io/badge/DynamoDB-4053D6?style=flat-square&logo=amazondynamodb&logoColor=white" />
+        <img src="https://img.shields.io/badge/AWS%20CDK-FF9900?style=flat-square&logo=amazonwebservices&logoColor=white" />
       </p>
-      <p align="center"><a href="https://github.com/pjpangilinan/muse-journ"><strong>Repo »</strong></a> · <a href="https://pjpangilinan.github.io/muse-journ/"><strong>Live »</strong></a></p>
+      <p align="center"><a href="https://github.com/pjpangilinan/dgos"><strong>Repo »</strong></a> · <a href="https://dyk5iqkiyeb4c.cloudfront.net"><strong>Customer »</strong></a> · <a href="https://dkykxlzz4d0zi.cloudfront.net"><strong>Kitchen »</strong></a></p>
     </td>
   </tr>
 </table>
@@ -89,6 +90,9 @@ I design and deploy full-stack applications with Python, React, and Docker, with
   <img src="https://img.shields.io/badge/Bash-4EAA25?style=for-the-badge&logo=gnubash&logoColor=white" />
   <img src="https://img.shields.io/badge/React-61DAFB?style=for-the-badge&logo=react&logoColor=black" />
   <img src="https://img.shields.io/badge/FastAPI-009688?style=for-the-badge&logo=fastapi&logoColor=white" />
+  <img src="https://img.shields.io/badge/AWS-FF9900?style=for-the-badge&logo=amazonaws&logoColor=white" />
+  <img src="https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white" />
+  <img src="https://img.shields.io/badge/CI%2FCD-2088FF?style=for-the-badge&logo=githubactions&logoColor=white" />
   <img src="https://img.shields.io/badge/Git-F05032?style=for-the-badge&logo=git&logoColor=white" />
   <img src="https://img.shields.io/badge/Postman-FF6C37?style=for-the-badge&logo=postman&logoColor=white" />
 </p>
@@ -96,10 +100,8 @@ I design and deploy full-stack applications with Python, React, and Docker, with
 **Currently Learning & Using**
 <p>
   <img src="https://img.shields.io/badge/Go-00ADD8?style=for-the-badge&logo=go&logoColor=white" />
-  <img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black" />
-  <img src="https://img.shields.io/badge/AWS-FF9900?style=for-the-badge&logo=amazonaws&logoColor=white" />
-  <img src="https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white" />
-  <img src="https://img.shields.io/badge/CI%2FCD-2088FF?style=for-the-badge&logo=githubactions&logoColor=white" />
+  <img src="https://img.shields.io/badge/Kubernetes-326CE5?style=for-the-badge&logo=kubernetes&logoColor=white" />
+  <img src="https://img.shields.io/badge/Terraform-844FBA?style=for-the-badge&logo=terraform&logoColor=white" />
 </p>
 
 ---

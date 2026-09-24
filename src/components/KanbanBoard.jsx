@@ -16,7 +16,7 @@ const slideVariants = {
 }
 
 export default function KanbanBoard() {
-  const [active, setActive] = useState(0)
+  const [active, setActive] = useState(1)
   const [direction, setDirection] = useState(1)
 
   const grouped = useMemo(() => {
@@ -79,12 +79,18 @@ export default function KanbanBoard() {
               <span className="font-mono text-xs uppercase tracking-[0.3em] text-text-secondary">
                 {col.label} · {items.length}
               </span>
-              <div className="flex gap-2">
+              <div className="flex items-center gap-2">
                 {COLUMNS.map((c, i) => (
-                  <span
+                  <button
                     key={c.key}
-                    className={`h-1.5 w-6 rounded-full transition-colors ${
-                      i === active ? 'bg-cyan' : 'bg-white/10'
+                    type="button"
+                    onClick={() => {
+                      setDirection(i > active ? 1 : -1)
+                      setActive(i)
+                    }}
+                    aria-label={`Switch to ${c.label}`}
+                    className={`h-2 rounded-full transition-all ${
+                      i === active ? 'w-8 bg-cyan' : 'w-4 bg-white/20 hover:bg-white/40'
                     }`}
                   />
                 ))}

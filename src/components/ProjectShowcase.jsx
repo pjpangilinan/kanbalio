@@ -2,7 +2,7 @@ import { useState, useEffect, useRef, useCallback } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import projects from '../../data/projects.json'
 
-const BASE = '/kanbalio/showcase'
+const BASE = `${import.meta.env.BASE_URL}showcase`
 
 const SHOWCASE = [
   {
@@ -263,7 +263,7 @@ export default function ProjectShowcase() {
       <div className="mx-auto max-w-5xl">
         <div className="mb-6 flex flex-col items-center gap-2 text-center">
           <p className="font-mono text-xs uppercase tracking-[0.3em] text-cyan">
-            Showcase
+            02 · Showcase
           </p>
           <h2 className="text-2xl font-bold tracking-tight text-text-primary sm:text-3xl md:text-4xl">
             {project ? project.title : ''}

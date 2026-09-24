@@ -14,8 +14,8 @@ const item = {
   show: { opacity: 1, y: 0, transition: { duration: 0.5, ease: 'easeOut' } },
 }
 
-const PRIMARY = ['Python', 'Bash', 'React', 'FastAPI', 'Git', 'Postman']
-const LEARNING = ['Go', 'JavaScript', 'AWS', 'Docker', 'CI/CD']
+const PRIMARY = ['Python', 'Bash', 'React', 'FastAPI', 'AWS', 'Docker', 'CI/CD', 'Git', 'Postman']
+const LEARNING = ['Go', 'Kubernetes', 'Terraform']
 
 export default function Hero() {
   const [roleIndex, setRoleIndex] = useState(0)
