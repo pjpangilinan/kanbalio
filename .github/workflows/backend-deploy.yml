@@ -45,7 +45,7 @@ jobs:
       - name: CDK Bootstrap (safe to run repeatedly)
         run: |
           ACCOUNT_ID=$(aws sts get-caller-identity --query Account --output text)
-          npx cdk bootstrap aws://${ACCOUNT_ID}/ap-southeast-1
+          npx cdk bootstrap aws://${ACCOUNT_ID}/us-east-1
         working-directory: backend
         env:
           RAG_API_SECRET: ${{ secrets.RAG_API_SECRET }}
