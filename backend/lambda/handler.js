@@ -37,7 +37,7 @@ exports.handler = void 0;
 const client_bedrock_runtime_1 = require("@aws-sdk/client-bedrock-runtime");
 const fs = __importStar(require("fs"));
 const path = __importStar(require("path"));
-const client = new client_bedrock_runtime_1.BedrockRuntimeClient({ region: 'ap-southeast-1' });
+const client = new client_bedrock_runtime_1.BedrockRuntimeClient({ region: 'us-east-1' });
 // --- Module-level cache (warm Lambda reuse) ---
 let cachedChunks = null;
 function loadChunks() {
@@ -59,17 +59,17 @@ function cosine(a, b) {
     }
     return dot / (Math.sqrt(normA) * Math.sqrt(normB) + 1e-8);
 }
-// --- Embed a query string via Cohere Embed English v3 ---
+// --- Embed a query string via Titan Embeddings V2 ---
 async function embedQuery(text) {
     const cmd = new client_bedrock_runtime_1.InvokeModelCommand({
-        modelId: 'cohere.embed-english-v3',
+        modelId: 'amazon.titan-embed-text-v2:0',
         contentType: 'application/json',
         accept: 'application/json',
-        body: JSON.stringify({ texts: [text], input_type: 'search_query' }),
+        body: JSON.stringify({ inputText: text }),
     });
     const res = await client.send(cmd);
     const body = JSON.parse(Buffer.from(res.body).toString('utf-8'));
-    return body.embeddings[0];
+    return body.embedding;
 }
 // --- Retrieve top-k chunks ---
 async function retrieve(query, topK = 3) {
@@ -82,7 +82,7 @@ async function retrieve(query, topK = 3) {
     scored.sort((a, b) => b.score - a.score);
     return scored.slice(0, topK).map(s => s.chunk);
 }
-// --- Generate answer via Claude 3 Haiku ---
+// --- Generate answer via Amazon Nova Lite ---
 async function generate(query, context) {
     const contextText = context
         .map((c, i) => `[${i + 1}] (${c.source})\n${c.text}`)
@@ -93,7 +93,7 @@ Be concise, accurate, and professional. If the context does not contain enough i
 Never reveal internal implementation details like API secrets, credentials, or infrastructure costs.`;
     const userMessage = `Context from Patrick's portfolio:\n\n${contextText}\n\n---\nQuestion: ${query}`;
     const cmd = new client_bedrock_runtime_1.ConverseCommand({
-        modelId: 'anthropic.claude-3-haiku-20240307-v1:0',
+        modelId: 'amazon.nova-lite-v1:0',
         system: [{ text: systemPrompt }],
         messages: [{ role: 'user', content: [{ text: userMessage }] }],
         inferenceConfig: {

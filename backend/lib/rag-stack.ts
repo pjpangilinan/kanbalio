@@ -35,17 +35,17 @@ export class RagStack extends cdk.Stack {
       logGroup,
       environment: {
         API_SECRET: apiSecret,
-        AWS_REGION_NAME: 'ap-southeast-1',
+        AWS_REGION_NAME: 'us-east-1',
       },
     });
 
-    // Bedrock permissions: Cohere Embed English v3 + Claude 3 Haiku
+    // Bedrock permissions: Titan Embeddings V2 + Nova Lite (Amazon models, no marketplace needed)
     ragFn.addToRolePolicy(new iam.PolicyStatement({
       effect: iam.Effect.ALLOW,
       actions: ['bedrock:InvokeModel'],
       resources: [
-        `arn:aws:bedrock:ap-southeast-1::foundation-model/cohere.embed-english-v3`,
-        `arn:aws:bedrock:ap-southeast-1::foundation-model/anthropic.claude-3-haiku-20240307-v1:0`,
+        `arn:aws:bedrock:us-east-1::foundation-model/amazon.titan-embed-text-v2:0`,
+        `arn:aws:bedrock:us-east-1::foundation-model/amazon.nova-lite-v1:0`,
       ],
     }));
 

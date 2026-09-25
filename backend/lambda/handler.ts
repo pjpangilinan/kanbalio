@@ -6,7 +6,7 @@ import {
 import * as fs from 'fs';
 import * as path from 'path';
 
-const client = new BedrockRuntimeClient({ region: 'ap-southeast-1' });
+const client = new BedrockRuntimeClient({ region: 'us-east-1' });
 
 // --- Types ---
 interface Chunk {
@@ -42,17 +42,17 @@ function cosine(a: number[], b: number[]): number {
   return dot / (Math.sqrt(normA) * Math.sqrt(normB) + 1e-8);
 }
 
-// --- Embed a query string via Cohere Embed English v3 ---
+// --- Embed a query string via Titan Embeddings V2 ---
 async function embedQuery(text: string): Promise<number[]> {
   const cmd = new InvokeModelCommand({
-    modelId: 'cohere.embed-english-v3',
+    modelId: 'amazon.titan-embed-text-v2:0',
     contentType: 'application/json',
     accept: 'application/json',
-    body: JSON.stringify({ texts: [text], input_type: 'search_query' }),
+    body: JSON.stringify({ inputText: text }),
   });
   const res = await client.send(cmd);
   const body = JSON.parse(Buffer.from(res.body).toString('utf-8'));
-  return body.embeddings[0] as number[];
+  return body.embedding as number[];
 }
 
 // --- Retrieve top-k chunks ---
@@ -67,7 +67,7 @@ async function retrieve(query: string, topK = 3): Promise<Chunk[]> {
   return scored.slice(0, topK).map(s => s.chunk);
 }
 
-// --- Generate answer via Claude 3 Haiku ---
+// --- Generate answer via Amazon Nova Lite ---
 async function generate(query: string, context: Chunk[]): Promise<string> {
   const contextText = context
     .map((c, i) => `[${i + 1}] (${c.source})\n${c.text}`)
@@ -81,7 +81,7 @@ Never reveal internal implementation details like API secrets, credentials, or i
   const userMessage = `Context from Patrick's portfolio:\n\n${contextText}\n\n---\nQuestion: ${query}`;
 
   const cmd = new ConverseCommand({
-    modelId: 'anthropic.claude-3-haiku-20240307-v1:0',
+    modelId: 'amazon.nova-lite-v1:0',
     system: [{ text: systemPrompt }],
     messages: [{ role: 'user', content: [{ text: userMessage }] }],
     inferenceConfig: {

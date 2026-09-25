@@ -21,7 +21,7 @@ import * as fs from 'fs';
 import * as path from 'path';
 import * as https from 'https';
 
-const client = new BedrockRuntimeClient({ region: 'ap-southeast-1' });
+const client = new BedrockRuntimeClient({ region: 'us-east-1' });
 
 const REPO_ROOT = path.join(__dirname, '../../');
 const OUTPUT_FILE = path.join(__dirname, '../lambda/embeddings.json');
@@ -84,17 +84,17 @@ async function httpsGet(url: string): Promise<string> {
   });
 }
 
-async function embedText(text: string, inputType: 'search_document' | 'search_query' = 'search_document'): Promise<number[]> {
+async function embedText(text: string): Promise<number[]> {
   const truncated = text.slice(0, 20000);
   const cmd = new InvokeModelCommand({
-    modelId: 'cohere.embed-english-v3',
+    modelId: 'amazon.titan-embed-text-v2:0',
     contentType: 'application/json',
     accept: 'application/json',
-    body: JSON.stringify({ texts: [truncated], input_type: inputType }),
+    body: JSON.stringify({ inputText: truncated }),
   });
   const res = await client.send(cmd);
   const body = JSON.parse(Buffer.from(res.body).toString('utf-8'));
-  return body.embeddings[0] as number[];
+  return body.embedding as number[];
 }
 
 // --- Corpus sources ---
@@ -181,7 +181,7 @@ async function main() {
   for (let i = 0; i < allChunks.length; i++) {
     const chunk = allChunks[i];
     process.stdout.write(`\rEmbedding ${i + 1}/${allChunks.length}: ${chunk.source.slice(0, 40).padEnd(40)}`);
-    const embedding = await embedText(chunk.text, 'search_document');
+    const embedding = await embedText(chunk.text);
     embedded.push({ ...chunk, embedding });
     // Small delay to avoid Bedrock throttling
     await new Promise(r => setTimeout(r, 100));
