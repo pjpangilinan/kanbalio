@@ -21,14 +21,14 @@ export default function Experience() {
     <section
       id="experience"
       ref={ref}
-      className="relative px-6 py-20 md:px-20"
+      className="relative px-6 py-16 md:px-16 lg:px-20"
     >
       <div className="mx-auto max-w-container">
-        <div className="mb-12 flex flex-col items-center gap-3 text-center">
-          <p className="font-mono text-xs uppercase tracking-[0.3em] text-cyan">
+        <div className="mb-10 flex flex-col items-center gap-2.5 text-center">
+          <p className="font-mono text-xs uppercase tracking-[0.25em] text-cyan">
             04 · Experience
           </p>
-          <h2 className="text-4xl font-bold tracking-tight text-text-primary md:text-5xl">
+          <h2 className="text-3xl font-bold tracking-tight text-text-primary md:text-4xl">
             Career Trajectory
           </h2>
         </div>
@@ -41,39 +41,41 @@ export default function Experience() {
             />
           </div>
 
-          <ol className="flex flex-col gap-12 md:gap-16">
+          <ol className="flex flex-col gap-10 md:gap-12">
             {experience.map((entry, idx) => {
               const isEven = idx % 2 === 0
               return (
                 <motion.li
                   key={`${entry.company}-${entry.start_date}-${idx}`}
-                  initial={{ opacity: 0, x: isEven ? -60 : 60 }}
-                  whileInView={{ opacity: 1, x: 0 }}
+                  initial={{ opacity: 0, y: 24 }}
+                  whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, margin: '-80px' }}
-                  transition={{ duration: 0.6, ease: 'easeOut' }}
-                  className="relative md:grid md:grid-cols-2 md:gap-12"
+                  transition={{ duration: 0.45, ease: 'easeOut' }}
+                  className="relative md:grid md:grid-cols-2 md:gap-10"
                 >
                   <div
                     className={`hidden md:block ${
-                      isEven ? 'md:col-start-1 md:text-right' : 'md:col-start-2'
+                      isEven ? 'md:col-start-1' : 'md:col-start-2'
                     }`}
                   >
-                    <div className="glass glass-hover inline-block p-6 text-left">
-                      <CardBody entry={entry} align={isEven ? 'right' : 'left'} />
+                    <div className="glass glass-hover p-6 text-left">
+                      <CardBody entry={entry} />
                     </div>
                   </div>
 
                   <div
                     className={`hidden md:flex md:items-center md:justify-center ${
-                      isEven ? 'md:col-start-2' : 'md:col-start-1 md:row-start-1'
+                      isEven
+                        ? 'md:col-start-2'
+                        : 'md:col-start-1 md:row-start-1'
                     }`}
                   >
-                    <span className="h-3 w-3 rounded-full bg-cyan shadow-[0_0_18px_rgba(0,212,255,0.7)]" />
+                    <span className="h-3 w-3 rounded-full bg-cyan shadow-[0_0_16px_rgba(0,212,255,0.7)]" />
                   </div>
 
                   <div className="md:hidden">
                     <div className="glass glass-hover p-6">
-                      <CardBody entry={entry} align="left" />
+                      <CardBody entry={entry} />
                     </div>
                   </div>
                 </motion.li>
@@ -86,32 +88,30 @@ export default function Experience() {
   )
 }
 
-function CardBody({ entry, align }) {
+function CardBody({ entry }) {
   const dates = formatRange(entry.start_date, entry.end_date)
-  const isRight = align === 'right'
 
   return (
-    <div className={`flex flex-col gap-3 ${isRight ? 'items-end' : 'items-start'}`}>
+    <div className="flex flex-col items-start gap-2.5 text-left">
       {dates && (
         <p className="font-mono text-xs uppercase tracking-widest text-cyan">
           {dates}
         </p>
       )}
-      <h3 className="text-xl font-semibold text-text-primary">{entry.role}</h3>
-      <p className="text-sm text-text-secondary">
+      <h3 className="text-lg font-semibold text-text-primary sm:text-xl">
+        {entry.role}
+      </h3>
+      <p className="text-xs text-text-secondary sm:text-sm">
         {entry.company}
         {entry.location && (
           <span className="text-text-secondary/70"> · {entry.location}</span>
         )}
       </p>
-      <ul
-        className={`mt-2 flex flex-col gap-2 text-sm text-text-secondary ${
-          isRight ? 'items-end text-right' : 'items-start text-left'
-        }`}
-      >
+      <ul className="mt-1.5 flex flex-col gap-2 text-xs leading-relaxed text-text-secondary sm:text-sm">
         {entry.bullets.map((b) => (
-          <li key={b} className="max-w-md">
-            {b}
+          <li key={b} className="flex gap-2">
+            <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-cyan/60" />
+            <span>{b}</span>
           </li>
         ))}
       </ul>
