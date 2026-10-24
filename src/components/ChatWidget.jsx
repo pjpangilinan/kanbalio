@@ -23,6 +23,125 @@ function Dots() {
   )
 }
 
+function renderInline(str) {
+  const tokenRegex = /(\*\*[^*]+\*\*|`[^`]+`|\[[^\]]+\]\([^)]+\))/g
+  const parts = str.split(tokenRegex)
+
+  return parts.map((part, idx) => {
+    if (!part) return null
+    if (part.startsWith('**') && part.endsWith('**') && part.length > 4) {
+      return (
+        <strong key={idx} className="font-semibold text-text-primary">
+          {part.slice(2, -2)}
+        </strong>
+      )
+    }
+    if (part.startsWith('`') && part.endsWith('`') && part.length > 2) {
+      return (
+        <code
+          key={idx}
+          className="rounded bg-black/40 px-1.5 py-0.5 font-mono text-[11px] text-cyan"
+        >
+          {part.slice(1, -1)}
+        </code>
+      )
+    }
+    const linkMatch = part.match(/^\[([^\]]+)\]\(([^)]+)\)$/)
+    if (linkMatch) {
+      return (
+        <a
+          key={idx}
+          href={linkMatch[2]}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-cyan underline hover:text-violet"
+        >
+          {linkMatch[1]}
+        </a>
+      )
+    }
+    return part
+  })
+}
+
+function FormattedMessage({ text }) {
+  if (!text) return null
+
+  // Normalize single-line flattened markdown (headings and inline bullets)
+  const normalized = text
+    .replace(/\r\n/g, '\n')
+    .replace(/([^\n])\s*(#{1,4}\s+)/g, '$1\n$2')
+    .replace(/(:\s*|\.\s+|\?\s+|!\s+|;\s+|"\s+)-\s+(\*\*|[A-Z])/g, '$1\n- $2')
+    .replace(/([^\n])\s+-\s+(\*\*[^*]+\*\*:)/g, '$1\n- $2')
+
+  const lines = normalized.split('\n').map((l) => l.trim()).filter(Boolean)
+  const blocks = []
+  let currentList = []
+
+  const flushList = () => {
+    if (currentList.length > 0) {
+      blocks.push({ type: 'list', items: currentList })
+      currentList = []
+    }
+  }
+
+  lines.forEach((line) => {
+    const headingMatch = line.match(/^(#{1,4})\s+(.*)$/)
+    if (headingMatch) {
+      flushList()
+      blocks.push({
+        type: 'heading',
+        content: headingMatch[2].replace(/:$/, ''),
+      })
+      return
+    }
+
+    const bulletMatch = line.match(/^[-*•]\s+(.*)$/) || line.match(/^\d+\.\s+(.*)$/)
+    if (bulletMatch) {
+      currentList.push(bulletMatch[1])
+      return
+    }
+
+    flushList()
+    blocks.push({ type: 'paragraph', content: line })
+  })
+  flushList()
+
+  return (
+    <div className="flex flex-col gap-2 text-xs leading-relaxed sm:text-sm">
+      {blocks.map((b, i) => {
+        if (b.type === 'heading') {
+          return (
+            <p
+              key={i}
+              className="mt-1 border-b border-white/10 pb-1 font-mono text-xs font-semibold uppercase tracking-wider text-cyan"
+            >
+              {renderInline(b.content)}
+            </p>
+          )
+        }
+        if (b.type === 'list') {
+          return (
+            <ul key={i} className="flex flex-col gap-1.5 pl-1">
+              {b.items.map((itemText, j) => (
+                <li key={j} className="flex items-start gap-2">
+                  <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-cyan/70" />
+                  <span className="flex-1">{renderInline(itemText)}</span>
+                </li>
+              ))}
+            </ul>
+          )
+        }
+        return (
+          <p key={i} className="leading-relaxed">
+            {renderInline(b.content)}
+          </p>
+        )
+      })}
+    </div>
+  )
+}
+
 export default function ChatWidget() {
   const [open, setOpen] = useState(false)
   const [messages, setMessages] = useState([WELCOME])
@@ -105,7 +224,7 @@ export default function ChatWidget() {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 20, scale: 0.95 }}
             transition={{ duration: 0.2 }}
-            className="fixed bottom-24 right-6 z-[80] flex w-[360px] max-w-[calc(100vw-3rem)] flex-col overflow-hidden rounded-xl border border-white/10 bg-bg/95 shadow-2xl backdrop-blur-xl sm:w-[400px]"
+            className="fixed bottom-24 right-6 z-[80] flex w-[360px] max-w-[calc(100vw-3rem)] flex-col overflow-hidden rounded-xl border border-white/10 bg-bg/95 shadow-2xl backdrop-blur-xl sm:w-[420px]"
           >
             {/* Header */}
             <div className="border-b border-white/10 px-4 py-3">
@@ -120,8 +239,8 @@ export default function ChatWidget() {
             {/* Messages */}
             <div
               ref={scrollRef}
-              className="flex-1 overflow-y-auto px-4 py-3 space-y-3"
-              style={{ maxHeight: '400px' }}
+              className="flex-1 space-y-3 overflow-y-auto px-4 py-3"
+              style={{ maxHeight: '420px' }}
             >
               {messages.map((m, i) => (
                 <div
@@ -129,13 +248,13 @@ export default function ChatWidget() {
                   className={`flex ${m.role === 'user' ? 'justify-end' : 'justify-start'}`}
                 >
                   <div
-                    className={`max-w-[85%] rounded-xl px-3 py-2 text-sm leading-relaxed ${
+                    className={`max-w-[90%] rounded-xl px-3.5 py-2.5 text-sm leading-relaxed ${
                       m.role === 'user'
                         ? 'bg-cyan/20 text-text-primary'
                         : 'border border-white/10 bg-white/5 text-text-secondary'
                     }`}
                   >
-                    {m.text}
+                    {m.role === 'user' ? m.text : <FormattedMessage text={m.text} />}
                   </div>
                 </div>
               ))}
