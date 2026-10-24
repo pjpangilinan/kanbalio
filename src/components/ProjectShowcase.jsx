@@ -133,7 +133,7 @@ function getMermaid() {
   return mermaidPromise
 }
 
-function MermaidChart({ chart, id, minHeight = '340px' }) {
+function MermaidChart({ chart, id, minHeight = '340px', fitBox = false }) {
   const ref = useRef(null)
   const [error, setError] = useState(false)
 
@@ -148,9 +148,12 @@ function MermaidChart({ chart, id, minHeight = '340px' }) {
         ref.current.innerHTML = ''
         m.render(uid, chart).then(({ svg }) => {
           if (!cancelled && ref.current) {
+            const svgStyle = fitBox
+              ? 'max-width:100%;max-height:100%;width:auto;height:auto;margin:auto'
+              : 'max-width:100%;height:auto;margin:auto'
             ref.current.innerHTML = svg.replace(
               '<svg ',
-              '<svg style="max-width:100%;height:auto;margin:auto" ',
+              `<svg style="${svgStyle}" `,
             )
           }
         })
@@ -162,13 +165,15 @@ function MermaidChart({ chart, id, minHeight = '340px' }) {
     return () => {
       cancelled = true
     }
-  }, [chart, id])
+  }, [chart, id, fitBox])
 
   if (error) {
     return (
       <div
-        style={{ minHeight }}
-        className="flex w-full items-center justify-center rounded-card border border-white/10 bg-bg/60 p-6 text-sm text-text-secondary"
+        style={fitBox ? undefined : { minHeight }}
+        className={`flex w-full items-center justify-center rounded-card border border-white/10 bg-bg/60 p-6 text-sm text-text-secondary ${
+          fitBox ? 'h-full' : ''
+        }`}
       >
         Failed to load architecture diagram.
       </div>
@@ -178,8 +183,10 @@ function MermaidChart({ chart, id, minHeight = '340px' }) {
   return (
     <div
       ref={ref}
-      style={{ minHeight }}
-      className="flex w-full items-center justify-center overflow-x-auto rounded-card bg-black/40 p-6 transition-all"
+      style={fitBox ? undefined : { minHeight }}
+      className={`flex w-full items-center justify-center overflow-hidden rounded-card bg-black/50 p-4 transition-all ${
+        fitBox ? 'h-full' : ''
+      }`}
     />
   )
 }
@@ -490,15 +497,24 @@ export default function ProjectShowcase() {
                   )}
                 </div>
               ) : (
-                <div
-                  className="cursor-pointer overflow-hidden rounded-card border border-white/10 transition-colors hover:border-cyan/40"
-                  onClick={() => setModal('architecture')}
-                >
-                  <MermaidChart
-                    chart={item.chart}
-                    id={`${item.id}-stage`}
-                    minHeight="310px"
-                  />
+                <div className="flex flex-col gap-3">
+                  <div
+                    className="relative flex aspect-video cursor-pointer items-center justify-center overflow-hidden rounded-card border border-white/10 bg-black/50 transition-colors hover:border-cyan/40"
+                    onClick={() => setModal('architecture')}
+                  >
+                    <MermaidChart
+                      chart={item.chart}
+                      id={`${item.id}-stage`}
+                      fitBox
+                    />
+                  </div>
+                  {item.screenshots.length > 1 && (
+                    <div className="flex h-1.5 items-center justify-center">
+                      <span className="font-mono text-[10px] text-text-secondary/60">
+                        Click diagram to expand full-screen
+                      </span>
+                    </div>
+                  )}
                 </div>
               )}
             </div>
