@@ -23,9 +23,35 @@ function Dots() {
   )
 }
 
+function prettyUrlLabel(label, url) {
+  const trimmed = (label || '').trim()
+  // If label is a raw URL, turn it into a clean human-friendly chip label
+  if (/^https?:\/\//i.test(trimmed)) {
+    if (trimmed.includes('github.com')) {
+      const parts = trimmed.replace(/\/$/, '').split('/')
+      const repo = parts[parts.length - 1]
+      return repo ? `GitHub (${repo}) ↗` : 'GitHub Repo ↗'
+    }
+    if (trimmed.includes('coursera.org')) return 'Credential ↗'
+    return 'Live Demo ↗'
+  }
+  return `${trimmed} ↗`
+}
+
 function renderInline(str) {
+  if (!str) return null
+  // Convert bare URLs that aren't already inside markdown links into markdown links
+  const withLinks = str.replace(
+    /(?<!\]\()(?<!\[)(https?:\/\/[^\s)]+)/g,
+    (match) => {
+      const cleanUrl = match.replace(/[.,;!?]+$/, '')
+      const trailing = match.slice(cleanUrl.length)
+      return `[${cleanUrl}](${cleanUrl})${trailing}`
+    },
+  )
+
   const tokenRegex = /(\*\*[^*]+\*\*|`[^`]+`|\[[^\]]+\]\([^)]+\))/g
-  const parts = str.split(tokenRegex)
+  const parts = withLinks.split(tokenRegex)
 
   return parts.map((part, idx) => {
     if (!part) return null
@@ -48,33 +74,44 @@ function renderInline(str) {
     }
     const linkMatch = part.match(/^\[([^\]]+)\]\(([^)]+)\)$/)
     if (linkMatch) {
+      const label = prettyUrlLabel(linkMatch[1], linkMatch[2])
       return (
         <a
           key={idx}
           href={linkMatch[2]}
           target="_blank"
           rel="noopener noreferrer"
-          className="text-cyan underline hover:text-violet"
+          className="inline-flex items-center rounded border border-cyan/30 bg-cyan/10 px-1.5 py-0.5 font-mono text-[11px] text-cyan transition-colors hover:border-cyan hover:bg-cyan/20"
         >
-          {linkMatch[1]}
+          {label}
         </a>
       )
     }
-    return part
+    // Strip any stray unmatched '**'
+    return part.replace(/\*\*/g, '')
   })
 }
 
 function FormattedMessage({ text }) {
   if (!text) return null
 
-  // Normalize single-line flattened markdown (headings and inline bullets)
+  // Normalize single-line flattened markdown (headings, inline bullets, numbered lists)
   const normalized = text
     .replace(/\r\n/g, '\n')
+    // Ensure headings always start on a new line
     .replace(/([^\n])\s*(#{1,4}\s+)/g, '$1\n$2')
-    .replace(/(:\s*|\.\s+|\?\s+|!\s+|;\s+|"\s+)-\s+(\*\*|[A-Z])/g, '$1\n- $2')
-    .replace(/([^\n])\s+-\s+(\*\*[^*]+\*\*:)/g, '$1\n- $2')
+    // Split ANY inline "- **Bold**" or "* **Bold**" onto its own bullet line
+    .replace(/([^\n])\s+[-*•]\s+(\*\*)/g, '$1\n- $2')
+    // Split inline "- CapitalizedWord..." after sentence-ending punctuation or colons
+    .replace(/([.:;!?])\s+[-*•]\s+([A-Z0-9*])/g, '$1\n- $2')
+    // Split inline numbered lists "1. **..." or "2. **..."
+    .replace(/([.:;!?])\s+(\d+\.\s+\*\*)/g, '$1\n$2')
 
-  const lines = normalized.split('\n').map((l) => l.trim()).filter(Boolean)
+  const lines = normalized
+    .split('\n')
+    .map((l) => l.trim())
+    .filter(Boolean)
+
   const blocks = []
   let currentList = []
 
@@ -96,7 +133,8 @@ function FormattedMessage({ text }) {
       return
     }
 
-    const bulletMatch = line.match(/^[-*•]\s+(.*)$/) || line.match(/^\d+\.\s+(.*)$/)
+    const bulletMatch =
+      line.match(/^[-*•]\s+(.*)$/) || line.match(/^\d+\.\s+(.*)$/)
     if (bulletMatch) {
       currentList.push(bulletMatch[1])
       return
@@ -108,13 +146,13 @@ function FormattedMessage({ text }) {
   flushList()
 
   return (
-    <div className="flex flex-col gap-2 text-xs leading-relaxed sm:text-sm">
+    <div className="flex flex-col gap-2.5 text-xs leading-relaxed sm:text-[13px]">
       {blocks.map((b, i) => {
         if (b.type === 'heading') {
           return (
             <p
               key={i}
-              className="mt-1 border-b border-white/10 pb-1 font-mono text-xs font-semibold uppercase tracking-wider text-cyan"
+              className="mt-1 border-b border-white/10 pb-1 font-mono text-[11px] font-semibold uppercase tracking-wider text-cyan"
             >
               {renderInline(b.content)}
             </p>
@@ -122,18 +160,20 @@ function FormattedMessage({ text }) {
         }
         if (b.type === 'list') {
           return (
-            <ul key={i} className="flex flex-col gap-1.5 pl-1">
+            <ul key={i} className="flex flex-col gap-2 pl-0.5">
               {b.items.map((itemText, j) => (
                 <li key={j} className="flex items-start gap-2">
-                  <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-cyan/70" />
-                  <span className="flex-1">{renderInline(itemText)}</span>
+                  <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-cyan/80" />
+                  <span className="flex-1 break-words leading-relaxed">
+                    {renderInline(itemText)}
+                  </span>
                 </li>
               ))}
             </ul>
           )
         }
         return (
-          <p key={i} className="leading-relaxed">
+          <p key={i} className="break-words leading-relaxed">
             {renderInline(b.content)}
           </p>
         )
@@ -248,7 +288,7 @@ export default function ChatWidget() {
                   className={`flex ${m.role === 'user' ? 'justify-end' : 'justify-start'}`}
                 >
                   <div
-                    className={`max-w-[90%] rounded-xl px-3.5 py-2.5 text-sm leading-relaxed ${
+                    className={`max-w-[92%] rounded-xl px-3.5 py-2.5 text-sm leading-relaxed ${
                       m.role === 'user'
                         ? 'bg-cyan/20 text-text-primary'
                         : 'border border-white/10 bg-white/5 text-text-secondary'
